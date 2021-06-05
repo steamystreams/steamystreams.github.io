@@ -1,0 +1,83 @@
+{
+  "_from": "lazy-line-painter",
+  "_id": "lazy-line-painter@1.9.6",
+  "_inBundle": false,
+  "_integrity": "sha512-1/jmvRiNGxpYfADe5fgns08o92VnzxYh7544w8D8KTT6oZaoN3wa+nrRZ85bzO07Bqx7a4kZ6Z2ravCwGr9vIQ==",
+  "_location": "/lazy-line-painter",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "lazy-line-painter",
+    "name": "lazy-line-painter",
+    "escapedName": "lazy-line-painter",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/lazy-line-painter/-/lazy-line-painter-1.9.6.tgz",
+  "_shasum": "f4946379df6166ba95e7cdbede72072540bcd418",
+  "_spec": "lazy-line-painter",
+  "_where": "/Users/craigellenwood",
+  "author": {
+    "name": "cam o'connell",
+    "email": "oi@merriment.info",
+    "url": "http://lazylinepainter.info"
+  },
+  "bugs": {
+    "url": "https://github.com/camoconnell/lazy-line-painter/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A Modern JS library for SVG path animation",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^8.0.0-beta.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-register": "^7.0.0-beta.3",
+    "chai": "^4.1.2",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "jsdom": "11.11.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^4.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.0.8",
+    "yargs": "^10.0.3"
+  },
+  "directories": {},
+  "homepage": "http://lazylinepainter.info",
+  "keywords": [
+    "svg",
+    "animation",
+    "line",
+    "path",
+    "javascript",
+    "js",
+    "css"
+  ],
+  "license": "MIT",
+  "main": "lib/lazy-line-painter-1.9.6.js",
+  "name": "lazy-line-painter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camoconnell/lazy-line-painter.git"
+  },
+  "scripts": {
+    "build": "webpack --env dev && webpack --env build",
+    "deploy": "webpack --env build && npm publish",
+    "dev": "webpack --progress --colors --watch --env dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.9.6"
+}
