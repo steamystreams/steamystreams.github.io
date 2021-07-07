@@ -8,5 +8,5 @@ A promo website announcing a porn mobile app. No app data lives in this repo.
 
 ## Misc:
 Happy Spanking.
-gif made by me. His name is Lenny. Lenny says "meow".
+gif made by me. His name is Lenny. Lenny says "meow". He is on a transparent background.
 ![meow](https://github.com/steamystreams/steamystreams.github.io/blob/main/scroll_cat2.gif)
