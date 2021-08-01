@@ -57,7 +57,7 @@
 <ol id="hr"></ol>
   <script id="hr-template" type="text/x-handlebars-template">
 
- <iframe src="{{cells.link}}" title={{title}} width="400" height="300" allowfullscreen </iframe>
+ <iframe src="{{cells.link}}" loading="lazy" title={{title}} width="400" height="300" allowfullscreen </iframe>
 
 </script>
    <script> var HRTemplate = Handlebars.compile($('#hr-template').html());
