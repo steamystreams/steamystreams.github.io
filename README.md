@@ -7,5 +7,4 @@ Adult site. No app data lives in this repo. Home of the original nocturnal emiss
 
 
 ## Misc:
-
-![meow](https://github.com/steamystreams/steamystreams.github.io/blob/main/sm_stream.gif)
+(steamystreams.github.io/blob/main/sm_stream.gif)
