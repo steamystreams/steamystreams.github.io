@@ -21,25 +21,25 @@
 
     <base target="_blank">
 
-    <title>captureStream(): video to video</title>
+    <title>captureStream(): video transcoder, muxer, assembler. </title>
 
     <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video//css/main.css"/>
-    <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video/css/main.css"/>
+    <link rel="stylesheet" href="../../../css/main.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 
 </head>
 
 <body>
 
 <div id="container">
-
+<img src="https://steamystreams.com/assets/images/inoculate.gif" <H2>Inoculate Media/Steamy Streams</h2>
     <h1><a href="eo" playsinline controls loop muted>
-        <source src="https://steamystreams.com/app/ title="WebRTC samples homepage">WebRTC samples</a> <span>captureStream(): video to video</span>
+        <source src="https://steamystreams.com/app/ title="Inoculate Media">WebRTC stream (right) mp4/webm (source)</a> <span>captureStream(): video to video</span>
     </h1>
 
     <video id="leftVideo" playsinline controls loop muted video crossOrigin="anonymous">
-        <source src="https://steamystreams.com/app/src/video/bbb.webm" type="video/webm"/>
+        <source src=""../../../bbb.webm" type="video/webm"/>
         <p>This browser does not support the video element.</p>
     </video>
 
@@ -51,8 +51,9 @@
         the <code>srcObject</code> of the video element on the right.</p>
 
     <p>The <code>stream</code> variable are in global scope, so you can inspect them from the browser console.</p>
-
-
+</div>
+<div>
+<iframe src="https://hls-js.netlify.app/demo/?src=https%3A%2F%2Ftest-streams.mux.dev%2Fx36xhzz%2Fx36xhzz.m3u8&demoConfig=eyJlbmFibGVTdHJlYW1pbmciOnRydWUsImF1dG9SZWNvdmVyRXJyb3IiOnRydWUsInN0b3BPblN0YWxsIjpmYWxzZSwiZHVtcGZNUDQiOmZhbHNlLCJsZXZlbENhcHBpbmciOi0xLCJsaW1pdE1ldHJpY3MiOi0xfQ==" width="100%%" height"100%" border="2px" scrolling="yes"></iframe>
 </div>
 
 <script src="https://steamystreams.com/app/src/content/capture/video-video/js/main.js" async></script>
