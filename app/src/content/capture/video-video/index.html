@@ -22,40 +22,26 @@
     <base target="_blank">
 
     <title>captureStream(): video transcoder, muxer, assembler. </title>
-
     <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../../css/main.css"/>
+    <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video/css/main.css"/>
     <link rel="stylesheet" href="css/main.css"/>
-
 </head>
-
 <body>
-
 <div id="container">
-<img src="https://steamystreams.com/assets/images/inoculate.gif" <H2>Inoculate Media/Steamy Streams</h2>
-    <h1><a href="eo" playsinline controls loop muted>
-        <source src="https://steamystreams.com/app/ title="Inoculate Media">WebRTC stream (right) mp4/webm (source)</a> <span>captureStream(): video to video</span>
+<img src="https://steamystreams.com/assets/images/inoculate.gif" width="110px"> <h1>Inoculate Media/Steamy Streams</h1>
+    <h1>Left: mp4 or webm file (source) Right: A fully rendered WebRTC stream <span>captureStream(): video to video</span>
     </h1>
-
     <video id="leftVideo" playsinline controls loop muted video crossOrigin="anonymous">
-        <source src="htps://steamystreams.com/app/src/video/bbb.webm" type="video/webm"/>
+        <source src="https://steamystreams.com/app/src/video/bbb.webm" type="video/webm"/>
         <p>This browser does not support the video element.</p>
     </video>
-
     <video id="rightVideo" playsinline autoplay></video>
-
     <p>Press play on the left video to start the demo.</p>
-
     <p>A stream is captured from the video element on the left using its <code>captureStream()</code> method and set as
         the <code>srcObject</code> of the video element on the right.</p>
-
     <p>The <code>stream</code> variable are in global scope, so you can inspect them from the browser console.</p>
-
 </div>
-
 <script src="https://steamystreams.com/app/src/content/capture/video-video/js/main.js" async></script>
-
-<script src="https://webrtc.github.io/samples/src/js/lib/ga.js"></script>
 </body>
 </html>
