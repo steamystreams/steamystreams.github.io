@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video/css/main.css"/>
 </head>
 <header>
-<div class="flex-container">
+<div class="flex-container-header">
 <h1>Inoculate Media</h1>
  <img src="https://steamystreams.com/assets/images/inoculate.gif" width="120px" padding="3px"><img src="https://steamystreams.com/assets/images/sm_stream.gif" width="120px" padding="3px"><h1>Steamy Streams</h1></div></div>
 </header>
@@ -70,7 +70,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30%;
+  height: 25%;
   padding: 15rem;
 }
 
@@ -83,7 +83,22 @@ header {
   color: #b227c2;
 
 }
-img style=”float: left; padding: 3px 3px 0px 3px;
+
+.flex-container-header {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  height: 200px;
+  align-items: center
+}
 
 
 </style>
@@ -158,7 +173,7 @@ const resolver = {
 const strings = [
   'Why revisit WebRTC? ',
   'WebRTC (Web Real-Time Communication) is a technology which enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers.',
-  'The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer,',
+  'The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer.',
   'WebRTC consists of several interrelated APIs and protocols which work together to achieve this.',
   'WebRTC provides powerful multimedia capabilities to the Web, including support for audio and video conferencing, file exchange, screen sharing, streaming media, and identity management.',
   'It interfaces with legacy telephone systems including support for sending DTMF (touch-tone dialing) signals.',
@@ -211,7 +226,8 @@ resolver.resolve(options, callback);
 
 <div class="flex-container">
     <h1><span>CaptureStream: Source video to streaming video.</span><br>
-    Left: mp4 or webm file (source) Right: A fully rendered, ultra-low latency WebRTC stream</h1>
+    Left: mp4 or webm file (source) Right: A fully rendered, ultra-low latency WebRTC stream</h1></div></div>
+   <div class="flex-container">
     <video id="leftVideo" playsinline controls loop muted video crossOrigin="anonymous">
         <source src="https://steamystreams.com/app/src/video/bbb.webm" type="video/webm"/>
         <p>This browser does not support the video element.</p>
