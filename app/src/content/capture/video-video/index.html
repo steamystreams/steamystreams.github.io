@@ -24,11 +24,23 @@
     <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
     <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video/scss/main.scss" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&family=Roboto&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Philosopher&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://steamystreams.com/app/src/content/capture/video-video/css/main.css"/>
-    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+<header>
+<div class="flex-container">
+<h1>Inoculate Media</h1>
+ <img src="https://steamystreams.com/assets/images/inoculate.gif" width="120px" padding="3px"><img src="https://steamystreams.com/assets/images/sm_stream.gif" width="120px" padding="3px">><h1>Steamy Streams</h1></div></div>
+</header>
+<body>
+   <div class="container">
+  <h1 class="heading" data-target-resolver></h1>
+   <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
 <style>
 * {
   box-sizing: border-box;
@@ -36,26 +48,44 @@
 
 html,
 body {
-  height: 100%;
-  margin: 0;
+  height: 30%;
+  margin: 10;
   font-family: 'Unica One', sans-serif;
-  background: #111;
+  text-transform: uppercase;
+  background: #242323;
+}
+
+
+html,
+header {
+  height: 30%;
+  margin: 5;
+  font-family: 'Philosopher', sans-serif;
+  background: #242323;
+  color: #eeeeee;
+
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  padding: 5rem;
+  height: 30%;
+  padding: 15rem;
 }
 
 .heading {
   color: #eee;
-  font-size: 5rem;
-  font-weight: 300;
+  font-size: 3rem;
+  font-weight: 200;
   text-transform: uppercase;
+  font-family: 'Unica One', sans-serif;
+  color: #b227c2;
+
 }
+img style=”float: left; padding: 3px 3px 0px 3px;
+
+
 </style>
 
 <script type="text/babel">
@@ -127,10 +157,11 @@ const resolver = {
  */
 const strings = [
   'Why revisit WebRTC? ',
-  'WebRTC (Web Real-Time Communication) is a technology which enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers without requiring an intermediary.',
+  'WebRTC (Web Real-Time Communication) is a technology which enables Web applications and sites to capture and optionally stream audio and/or video media, as well as to exchange arbitrary data between browsers.',
   'The set of standards that comprise WebRTC makes it possible to share data and perform teleconferencing peer-to-peer,',
   'WebRTC consists of several interrelated APIs and protocols which work together to achieve this.',
-  'WebRTC provides powerful multimedia capabilities to the Web, including support for audio and video conferencing, file exchange, screen sharing, identity management, and interfacing with legacy telephone systems including support for sending DTMF (touch-tone dialing) signals.',
+  'WebRTC provides powerful multimedia capabilities to the Web, including support for audio and video conferencing, file exchange, screen sharing, streaming media, and identity management.',
+  'It interfaces with legacy telephone systems including support for sending DTMF (touch-tone dialing) signals.',
   'Connections between peers can be made without requiring any special drivers or plug-ins, and can often be made without any intermediary servers.',
   'With sub–500 milliseconds of real-time latency, WebRTC is the fastest protocol on the market. WebRTC was built with bidirectional, real-time communication in mind. Unlike HLS, which is built with TCP, WebRTC is UDP based.',
   'WebRTC is encrypted by default meaning your streams are free from hackers gaining illegal access to your streams. ',
@@ -174,15 +205,12 @@ function callback() {
 
 resolver.resolve(options, callback);
 </script>
-</head>
-<body>
-<div class="container">
-<div class="flex-container">
-  <h1 class="heading" data-target-resolver></h1>
+
+
 </div>
-<div id="container">
-<div class="row" <img src="https://steamystreams.com/assets/images/inoculate.gif" width="120px"> <h1>Inoculate Media/Steamy Streams</h1></div>
-    <h1><span>captureStream(): video to video</span><br>
+
+<div class="flex-container">
+    <h1><span>CaptureStream: Source video to streaming video.</span><br>
     Left: mp4 or webm file (source) Right: A fully rendered, ultra-low latency WebRTC stream</h1>
     <video id="leftVideo" playsinline controls loop muted video crossOrigin="anonymous">
         <source src="https://steamystreams.com/app/src/video/bbb.webm" type="video/webm"/>
@@ -190,10 +218,11 @@ resolver.resolve(options, callback);
     </video>
     <video id="rightVideo" playsinline autoplay></video>
     <p>Press play on the left video to start the demo.</p>
-    <p>A stream is captured from the video element on the left using its <code>captureStream()</code> method and set as
-        the <code>srcObject</code> of the video element on the right.</p>
-    <p>The <code>stream</code> variable are in global scope, so you can inspect them from the browser console.</p>
-</div>
+    <p>A stream is captured from the video element on the left using its CaptureStream method and set as
+        the srcObject of the video element on the right.</p>
+    <p>The stream variable are in global scope, so you can inspect them from the browser console.</p>
+</div></div>
 <script src="https://steamystreams.com/app/src/content/capture/video-video/js/main.js" async></script>
 </body>
 </html>
+
