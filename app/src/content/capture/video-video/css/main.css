@@ -20,4 +20,17 @@ video:last-of-type {
     margin: 0 5px 20px 0;
     width: calc(50% - 5px);
   }
+  .flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container > div {
+  background-color: ##d6d6d6;
+  width: 180px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
 }
