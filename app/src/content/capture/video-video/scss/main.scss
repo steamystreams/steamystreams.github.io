@@ -10,7 +10,7 @@ body {
   background: #111;
 }
 
-.container {
+container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,9 +18,12 @@ body {
   padding: 5rem;
 }
 
-.heading {
+heading {
   color: #eee;
   font-size: 5rem;
   font-weight: 300;
   text-transform: uppercase;
+}
+h1 {
+  font-family: "Times New Roman", Times, serif;
 }
