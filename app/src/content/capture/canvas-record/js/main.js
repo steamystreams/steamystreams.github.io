@@ -22,7 +22,7 @@ let recordedBlobs;
 let sourceBuffer;
 
 const canvas = document.querySelector('canvas');
-const video = document.querySelector('video');
+const video = document.querySelector('video_stream');
 
 const recordButton = document.querySelector('button#record');
 const playButton = document.querySelector('button#play');
