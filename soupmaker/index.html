@@ -1,509 +1,1994 @@
+<!--
+> Muaz Khan     - www.MuazKhan.com
+> MIT License   - www.WebRTC-Experiment.com/licence
+> Documentation - github.com/muaz-khan/RecordRTC
+> and           - RecordRTC.org
+-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steamy Streams</title>
-    <link rel="stylesheet" href="assets/CSS/shorthand.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <title>RecordRTC | WebRTC Audio+Video+Screen Recording</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.webrtc-experiment.com/style.css">
 
+    <style>
+        li {
+            border-bottom: 1px solid rgb(189, 189, 189);
+            border-left: 1px solid rgb(189, 189, 189);
+            padding: .5em;
+        }
+        label {
+            display: inline-block;
+            width: 8em;
+        }
+
+        h1 span {
+            background: yellow;
+            border: 2px solid #8e1515;
+            padding: 2px 8px;
+            margin: 2px 5px;
+            border-radius: 7px;
+            color: #8e1515;
+            display: inline-block;
+        }
+
+        .recordrtc button {
+            font-size: inherit;
+        }
+
+        .recordrtc button, .recordrtc select {
+            vertical-align: middle;
+            line-height: 1;
+            padding: 2px 5px;
+            height: auto;
+            font-size: inherit;
+            margin: 0;
+        }
+
+        .recordrtc, .recordrtc .header {
+            display: block;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .recordrtc video, .recordrtc img {
+            max-width: 100%!important;
+            vertical-align: top;
+        }
+
+        .recordrtc audio {
+            vertical-align: bottom;
+        }
+
+        .recordrtc option[disabled] {
+            display: none;
+        }
+
+        .recordrtc select {
+            font-size: 17px;
+        }
+    </style>
+
+    <script src="/RecordRTC.js"></script>
+
+    <!-- web streams API polyfill to support Firefox -->
+    <script src="https://unpkg.com/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
+
+    <!-- ../libs/DBML.js to fix video seeking issues -->
+    <script src="https://www.webrtc-experiment.com/EBML.js"></script>
+
+    <!-- for Edge/FF/Chrome/Opera/etc. getUserMedia support -->
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://www.webrtc-experiment.com/DetectRTC.js"> </script>
+
+    <!-- video element -->
+    <link href="https://www.webrtc-experiment.com/getHTMLMediaElement.css" rel="stylesheet">
+    <script src="https://www.webrtc-experiment.com/getHTMLMediaElement.js"></script>
 </head>
-<header>
-<body class="bg-black muli">
-    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
-        <div class="flex justify-between">
-            <a href="#" class="flex items-center p-2 mr-4 no-underline">
-                <img class="max-h-40 w-auto" src="assets/images/logo.png" />
-            </a>
-            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
-                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
-                <i data-feather="menu"></i>
-            </a>
 
+<body>
+    <article>
+        <header style="text-align: center;">
+            <h1>
+                Audio+Video+Screen Recording using <a href="https://github.com/muaz-khan/RecordRTC">RecordRTC</a>
+            </h1>
 
-            <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
-                <a href="#home" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Home</a>
-                <a href="http://cams.steamystreams.com" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Cams</a>
-                <a href="http://steamystreams.com/clips.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Clips</a>
-                <a href="http://steamystreams.com/app/index.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">App</a>
-                <a href="http://steamystreams.com/merch" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Merch</a>
-                <a href="#Camgirl Concerige" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Camgirl Concierge</a>
-                <a href="#" class="button bg-white black fw-600 no-underline mx-5">Register</a>
-            </div>    </nav>
+            <p style="margin:0;margin-bottom:-30px;margin-top: 15px;">
+                <a href="https://github.com/muaz-khan/RecordRTC">Github Source Codes</a> |
+                <a href="Canvas-Recording/">Canvas Recording</a> |
+                <a href="simple-demos/" style="color: #EC008C;border: 1px dotted;background: #ffffbe;padding: 0 6px;border-radius: 3px;">30+ Simple Demos</a>
 
-    <!-- hero section -->
+                <br><br>
 
-    <section id="home" class="min-h-100vh flex justify-start items-center">
-        <div class="mx-5 md-mx-l5">
-            <div class="inline-block br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
-                <div class="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">Canada</div>
-                We are coming to Vancouver. Learn more…
-            </div>
-            <div>
-                <video loop muted autoplay src="./video/sstreams_night.mp4" type="video/mp4">
-                </video>
+                <a href="https://www.npmjs.com/package/recordrtc"><img src="https://img.shields.io/npm/v/recordrtc.svg"></a>
+                <a href="https://www.npmjs.com/package/recordrtc"><img src="https://img.shields.io/npm/dm/recordrtc.svg"></a>
+                <a href="https://travis-ci.org/muaz-khan/RecordRTC"><img src="https://travis-ci.org/muaz-khan/RecordRTC.png?branch=master"></a>
+            </p>
+        </header>
 
-            </div>
+        <div class="github-stargazers" style="margin-top: 25px;"></div>
 
+        <section class="experiment recordrtc">
+            <h2 class="header" style="margin: 0;">
+                <select class="recording-media">
+                    <option value="record-audio-plus-video">Microphone+Camera</option>
+                    <option value="record-audio">Microphone</option>
+                    <option value="record-screen">Full Screen</option>
+                    <option value="record-audio-plus-screen">Microphone+Screen</option>
+                </select>
 
-            <div>
-                <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 ">Fresh Content <br />Always Flowing</h1>
+                <span style="font-size: 15px;">into</span>
 
-                <div class="br-8 mt-10 inline-flex">
-                    <input type="text"
-                        class="input-lg half bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 min-w-25vw br-r-0"
-                        placeholder="Email Address">
-                    <button
-                        class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Get
-                        Started</button>
+                <select class="media-container-format">
+                    <option>default</option>
+                    <option>vp8</option>
+                    <option>vp9</option>
+                    <option>h264</option>
+                    <option>mkv</option>
+                    <option>opus</option>
+                    <option>ogg</option>
+                    <option>pcm</option>
+                    <option>gif</option>
+                    <option>whammy</option>
+                    <option>WebAssembly</option>
+                </select>
+
+                <input type="checkbox" id="chk-timeSlice" style="margin:0;width:auto;" title="Use intervals based recording">
+                <label for="chk-timeSlice" style="font-size: 15px;margin:0;width: auto;cursor: pointer;-webkit-user-select:none;user-select:none;" title="Use intervals based recording">Use timeSlice?</label>
+
+                <br>
+
+                <button id="btn-start-recording">Start Recording</button>
+                <button id="btn-pause-recording" style="display: none; font-size: 15px;">Pause</button>
+
+                <div style="display: inline-block;">
+                    <input type="checkbox" id="chk-fixSeeking" style="margin:0;width:auto;" title="Fix video seeking issues?">
+                    <label for="chk-fixSeeking" style="font-size: 15px;margin:0;width: auto;cursor: pointer;-webkit-user-select:none;user-select:none;" title="Fix video seeking issues?">Fix Seeking Issues?</label>
                 </div>
-                <div class="white opacity-20 fs-s3 mt-3">No credit card required</span>
-            </div>
 
-    </section>
+                <hr style="border-top: 0;border-bottom: 1px solid rgb(189, 189, 189);margin: 4px -12px;margin-top: 8px;">
+                <select class="media-resolutions">
+                    <option value="default">Default resolutions</option>
+                    <option value="1920x1080">1080p</option>
+                    <option value="1280x720">720p</option>
+                    <option value="640x480">480p</option>
+                    <option value="3840x2160">4K Ultra HD (3840x2160)</option>
+                </select>
 
-    <!-- features -->
-    <section id="features" class="p-10 md-p-l5">
-        <div class="flex flex-column md-flex-row mx-auto">
-            <div class="w-100pc md-w-40pc">
-                <div class="br-8 p-5 m-5">
-                    <div class="flex justify-center items-center bg-indigo-lightest-10 white w-l5 h-l5 br-round mb-5"><i
-                            data-feather="inbox" class="w-l5"></i></div>
-                    <h4 class="white fw-600 fs-m3 mb-5">Storage</h4>
-                    <div class="indigo-lightest fw-600 fs-m1 lh-3 opacity-50">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                    <a href="#"
-                        class="mt-5 button bg-indigo-lightest-10 fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300">Read</a>
-                </div>
-            </div>
-            <div class="w-100pc md-w-40pc">
-                <div class="br-8 p-5 m-5">
-                    <div class="flex justify-center items-center bg-indigo-lightest-10 white w-l5 h-l5 br-round mb-5"><i
-                            data-feather="cpu" class="w-l5"></i></div>
-                    <h4 class="white fw-600 fs-m3 mb-5">Compute</h4>
-                    <div class="indigo-lightest fw-600 fs-m1 opacity-50">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                    <a href="#"
-                        class="mt-5 button bg-indigo-lightest-10 fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300">Read</a>
-                </div>
-            </div>
-            <div class="w-100pc md-w-40pc">
-                <div class="br-8 p-5 m-5">
-                    <div class="flex justify-center items-center bg-indigo-lightest-10 white w-l5 h-l5 br-round mb-5"><i
-                            data-feather="database" class="w-l5"></i></div>
-                    <h4 class="white fw-600 fs-m3 mb-5">Database</h4>
-                    <div class="indigo-lightest fw-600 fs-m1 opacity-50">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                    <a href="#"
-                        class="mt-5 button bg-indigo-lightest-10 fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300">Read</a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <select class="media-framerates">
+                    <option value="default">Default framerates</option>
+                    <option value="5">5 fps</option>
+                    <option value="15">15 fps</option>
+                    <option value="24">24 fps</option>
+                    <option value="30">30 fps</option>
+                    <option value="60">60 fps</option>
+                </select>
 
-    <!-- slider -->
-    <section class="relative bg-indigo-lightest-10">
-        <div id="slider-1">
-            <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-                <h2 class="white fs-l3 fw-900">Lorem ipsum dolor sit amet, consectetur</h2>
-                <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor </p>
-                <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">BUY NOW</a>
-            </div>
-            <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-                <h2 class="white fs-l3 fw-900">Lorem ipsum dolor sit amet, consectetur</h2>
-                <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor </p>
-                <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">BUY NOW</a>
-            </div>
-            <div class="p-10 md-p-l10 flex justify-center items-center flex-column text-center">
-                <h2 class="white fs-l3 fw-900">Lorem ipsum dolor sit amet, consectetur</h2>
-                <p class="indigo-lightest fw-600 fs-m1 opacity-30 my-5">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor </p>
-                <a href="#" class="button-md bg-indigo white fs-s3 br-4 black fw-600 no-underline m-5">BUY NOW</a>
-            </div>
-        </div>
-        <ul class="absolute list-none w-100pc flex justify-between top-50pc">
-            <li><button
-                    class="prev ml-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2 focus-indigo-lighter outline-none"><i
-                        data-feather="chevron-left"></i></button></li>
-            <li><button
-                    class="next mr-10 br-round border-indigo-lightest indigo-lightest  bg-transparent flex justify-center items-center p-2  focus-indigo-lighter outline-none"><i
-                        data-feather="chevron-right"></i></button></li>
-        </ul>
-    </section>
+                <select class="media-bitrates">
+                    <option value="default">Default bitrates</option>
+                    <option value="8000000000">1 GB bps</option>
+                    <option value="800000000">100 MB bps</option>
+                    <option value="8000000">1 MB bps</option>
+                    <option value="800000">100 KB bps</option>
+                    <option value="8000">1 KB bps</option>
+                    <option value="800">100 Bytes bps</option>
+                </select>
+            </h2>
 
-    <!-- product options -->
-    <section class="py-l10">
-        <div class="flex flex-column md-flex-row md-w-80pc mx-auto">
-            <div class="w-100pc md-w-50pc">
-                <div class="br-8 p-5 m-5 bg-indigo-lightest-10 pointer hover-scale-up-1 ease-300">
-                    <div class="inline-block bg-indigo indigo-lightest br-3 px-4 py-1 mb-10 fs-s4 uppercase">
-                        individual</div>
-                    <div class="indigo-lightest fw-600 fs-m1">Lorem ipsum <span class="opacity-30"> dolor sit amet,
-                            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua.</span> </div>
-                    <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Read</a>
-                </div>
-            </div>
-            <div class="w-100pc md-w-50pc">
-                <div class="br-8 p-5 m-5 bg-indigo-lightest-10  pointer hover-scale-up-1 ease-300">
-                    <div class="inline-block bg-indigo indigo-lightest br-3 px-4 py-1 mb-10 fs-s4 uppercase">
-                        team</div>
-                    <div class="indigo-lightest fw-600 fs-m1">Lorem ipsum <span class="opacity-30"> dolor sit amet,
-                            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua.</span> </div>
-                    <a href="#" class="mt-10 button bg-black fs-s3 white no-underline">Read</a>
+            <div style="text-align: center; display: none;">
+                <button id="save-to-disk">Save To Disk</button>
+                <button id="upload-to-php">Upload to PHP</button>
+                <button id="open-new-tab">Open New Tab</button>
 
-                </div>
-            </div>
-        </div>
-    </section>
+                <div style="margin-top: 10px;">
+                    <span id="signinButton" class="pre-sign-in">
+                      <span
+                        class="g-signin"
+                        data-callback="signinCallback"
+                        data-clientid="41556190767-115ifahd55lk4ln5pop4jus55cr4l7oh.apps.googleusercontent.com"
+                        data-cookiepolicy="single_host_origin"
+                        data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube">
+                      </span>
+                    </span>
 
-
-    <!-- pricing -->
-    <section id="pricing">
-        <div class="p-10 flex flex-wrap">
-            <div class="w-100pc md-w-50pc">
-                <div class="p-5">
-                    <h4 class="white fw-800 fs-l3 mb-5">Pricing</h4>
-                    <div class="indigo-lightest fw-600 fs-m1 opacity-50">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                    <h4 class="white fw-600 fs-m2 mt-10">Companies trusts us.</h4>
-                    <div class="flex indigo-lightest opacity-50">
-                        <div class="w-25pc">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.78 100" fill="currentColor">
-                                <path
-                                    d="M63.87,44.07h3V56.2h-3Zm4.19,7.55c0-3,1.84-4.79,4.68-4.79s4.68,1.79,4.68,4.79-1.8,4.8-4.68,4.8S68.06,54.67,68.06,51.62Zm6.35,0c0-1.65-.65-2.62-1.67-2.62s-1.66,1-1.66,2.62.63,2.6,1.66,2.6S74.41,53.3,74.41,51.63Zm4.14,5.17h2.88a1.55,1.55,0,0,0,1.62.9c1.14,0,1.74-.62,1.74-1.52V54.49h-.06A2.84,2.84,0,0,1,82,56.13c-2.19,0-3.64-1.67-3.64-4.54s1.38-4.68,3.68-4.68a2.87,2.87,0,0,1,2.76,1.76h0V47h3V56.1c0,2.19-1.93,3.55-4.78,3.55C80.37,59.65,78.72,58.46,78.55,56.8Zm6.25-5.18c0-1.46-.67-2.38-1.73-2.38s-1.71.91-1.71,2.38.64,2.3,1.71,2.3S84.8,53.1,84.8,51.62Zm4.13,0c0-3,1.84-4.79,4.68-4.79s4.69,1.79,4.69,4.79-1.8,4.8-4.69,4.8S88.93,54.67,88.93,51.62Zm6.35,0c0-1.65-.65-2.62-1.67-2.62S92,50,92,51.63s.63,2.6,1.65,2.6S95.28,53.3,95.28,51.63Zm4.16-6.79A1.53,1.53,0,1,1,101,46.31,1.46,1.46,0,0,1,99.44,44.84Zm0,2.2h3V56.2h-3Zm13.89,4.59c0,3-1.33,4.71-3.61,4.71a2.86,2.86,0,0,1-2.8-1.7h-.06v4.52h-3V47h3v1.64h.06a2.87,2.87,0,0,1,2.78-1.77C112,46.91,113.37,48.63,113.37,51.63Zm-3,0c0-1.46-.67-2.39-1.72-2.39s-1.72.94-1.73,2.39.68,2.38,1.73,2.38S110.33,53.08,110.33,51.63Zm8.15-4.8c2.49,0,4,1.18,4.07,3.07h-2.73c0-.65-.54-1.06-1.37-1.06s-1.2.32-1.2.79.33.62,1,.76l1.92.39c1.83.39,2.61,1.13,2.61,2.52,0,1.9-1.73,3.12-4.28,3.12s-4.22-1.22-4.35-3.09h2.89c.09.68.63,1.08,1.51,1.08s1.28-.29,1.28-.77-.28-.58-1-.73l-1.73-.37c-1.79-.37-2.73-1.32-2.73-2.72C114.39,48,116,46.83,118.48,46.83Zm14.31,9.37H129.9V54.47h-.06a2.61,2.61,0,0,1-2.66,1.91,3.19,3.19,0,0,1-3.36-3.45V47h3v5.24c0,1.09.56,1.67,1.49,1.67a1.53,1.53,0,0,0,1.52-1.73V47h3ZM134.24,47h2.9v1.77h.06a2.66,2.66,0,0,1,2.61-1.94,2.39,2.39,0,0,1,2.55,2h.06a2.82,2.82,0,0,1,2.82-2,2.91,2.91,0,0,1,3,3.12V56.2h-3V50.75c0-1-.45-1.46-1.29-1.46a1.31,1.31,0,0,0-1.31,1.48V56.2h-2.85V50.71c0-.92-.45-1.42-1.27-1.42a1.34,1.34,0,0,0-1.33,1.5V56.2h-3Z" />
-                                <path
-                                    d="M55.48,44.62a13.25,13.25,0,0,0-2-3.22A13.53,13.53,0,1,0,34.8,60.72,13.09,13.09,0,0,0,38,62.55a13.39,13.39,0,0,0,5.07,1A13.56,13.56,0,0,0,56.6,50,13.39,13.39,0,0,0,55.48,44.62ZM43.06,39.19a10.71,10.71,0,0,1,4.52,1h0a4.39,4.39,0,0,1-1.08.31,5.73,5.73,0,0,0-4.85,4.85A3,3,0,0,1,38.94,48a5.73,5.73,0,0,0-4.85,4.85,2.91,2.91,0,0,1-.79,1.74h0a10.8,10.8,0,0,1,9.77-15.42ZM34.79,57c.12-.11.24-.21.36-.33a5.48,5.48,0,0,0,1.62-3.23,2.92,2.92,0,0,1,.87-1.82,2.83,2.83,0,0,1,1.81-.86,5.73,5.73,0,0,0,4.85-4.85A2.92,2.92,0,0,1,45.17,44,2.87,2.87,0,0,1,47,43.17a5.48,5.48,0,0,0,3-1.43,10.51,10.51,0,0,1,2.36,2.78.86.86,0,0,1-.13.14,2.87,2.87,0,0,1-1.81.88,5.71,5.71,0,0,0-4.85,4.85,3,3,0,0,1-2.69,2.68A5.76,5.76,0,0,0,38,57.92a3.14,3.14,0,0,1-.49,1.37A10.89,10.89,0,0,1,34.79,57Zm8.27,3.86a10.84,10.84,0,0,1-3-.42,5.78,5.78,0,0,0,.64-2,3,3,0,0,1,2.68-2.68,5.73,5.73,0,0,0,4.86-4.85,3,3,0,0,1,2.68-2.68,5.71,5.71,0,0,0,2.56-1A10.82,10.82,0,0,1,43.06,60.81Z" />
-                                </svg>
-                        </div>
-                        <div class="w-25pc">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.78 100" fill="currentColor">
-                                <path
-                                    d="M46.23,41.39h2V55.31h6v2h-8Zm14.23,0a6,6,0,1,1-6,6A6,6,0,0,1,60.46,41.39Zm0,10a4,4,0,1,0-4-4A4,4,0,0,0,60.46,51.37Zm-4,3.94h8v2h-8Zm25.6,2h-2V55.9a7.69,7.69,0,0,1-4.4,1.39,8,8,0,1,1,6-13.23l-1.47,1.31a6,6,0,1,0-4.46,10,5.77,5.77,0,0,0,4.38-2H74.71v-2l7.37,0Zm7.36-15.9a6,6,0,1,1-6,6A6,6,0,0,1,89.44,41.39Zm0,10a4,4,0,1,0-4-4A4,4,0,0,0,89.44,51.37Zm-4,3.94h8v2h-8ZM97.55,41.39h2v15.9h-2Zm4.77,0,2,0a1.47,1.47,0,0,1,.31,0,6,6,0,1,1,0,11.93h-.31v4h-2Zm2,2v7.91h.31a4,4,0,1,0,0-7.93A1.47,1.47,0,0,0,104.31,43.44Zm14.41-.85-1.48,1.17a1.94,1.94,0,0,0-3.33,1.13V45c0,.88.61,1.47,1.8,1.55,4.58.28,6.68,2.43,6.68,5.27V52a5.9,5.9,0,0,1-10.17,3.42l1.53-1.18a3.6,3.6,0,0,0,2.8,1.14A3.74,3.74,0,0,0,120.48,52v-.14c0-2.67-2.62-3.16-4.89-3.38-2.1-.2-3.61-1.51-3.61-3.4V45a3.85,3.85,0,0,1,3.93-3.56A3.74,3.74,0,0,1,118.72,42.59Zm11.5,12.72c2.49,0,4.46-2.69,4.46-6v-8h2l0,8c0,4.4-2.88,7.95-6.42,7.95s-6.42-3.55-6.42-7.95v-8h2v8C125.77,52.62,127.74,55.31,130.22,55.31Zm21.81,2h-2V47.36l-4.61,6-4.61-6v9.93h-2V41.39l6.6,8.69,6.6-8.69Z" />
-                                <path
-                                    d="M36.63,39a5.44,5.44,0,0,0-10.88,0V55.45l4.48,3.21v7.82h1.92V58.66l4.48-3.21Zm-1.92,9.2-2.56,2.56v-2.4l2.56-2.56Zm-7-2.4,2.56,2.56v2.4l-2.56-2.56Zm7-2.72-3.52,3.52L27.67,43v-2.4l3.52,3.52,3.52-3.52Zm-3.52-7.6a3.54,3.54,0,0,1,3.4,2.61l-3.4,3.39-3.4-3.39A3.54,3.54,0,0,1,31.19,35.44Zm-3.52,19V50.88l2.56,2.56V56.3Zm4.48,1.83V53.44l2.56-2.56v3.59Z" />
-                                </svg>
-                        </div>
-                        <div class="w-25pc">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.78 100" fill="currentColor">
-                                <path
-                                    d="M67.88,57.39a2.65,2.65,0,0,1-1.67-.48,1.56,1.56,0,0,1-.63-1.31V46.33a.26.26,0,0,1,.29-.29h1.68c.19,0,.28.1.28.29v8.55c0,.38.17.57.52.57a1.44,1.44,0,0,0,.44-.05c.2,0,.31.06.32.24l.15,1.25a.26.26,0,0,1-.24.31A3.77,3.77,0,0,1,67.88,57.39Z" />
-                                <path
-                                    d="M77.33,56.32a4.71,4.71,0,0,1-6,0,4,4,0,0,1,0-5.63,4.73,4.73,0,0,1,6,0,4.06,4.06,0,0,1,0,5.62ZM72.91,55a2.13,2.13,0,0,0,2.86,0,2.24,2.24,0,0,0,0-2.94,2.13,2.13,0,0,0-2.86,0,2.24,2.24,0,0,0,0,2.94Z" />
-                                <path
-                                    d="M87.71,49.87c.19,0,.28.1.28.29v7.17a3.26,3.26,0,0,1-1.11,2.57,4.2,4.2,0,0,1-2.91,1,4.68,4.68,0,0,1-2.71-.75,3,3,0,0,1-1.31-2c0-.2,0-.29.27-.29H81.9a.37.37,0,0,1,.33.23,1.31,1.31,0,0,0,.61.71,2.34,2.34,0,0,0,1.12.26,1.77,1.77,0,0,0,1.29-.46,1.7,1.7,0,0,0,.47-1.25v-.63a3.35,3.35,0,0,1-2.08.65,3.88,3.88,0,0,1-2.84-1.09,4,4,0,0,1,0-5.56,3.91,3.91,0,0,1,2.84-1.08,3.36,3.36,0,0,1,2.13.69v-.16a.26.26,0,0,1,.28-.29Zm-3.88,5.72A1.76,1.76,0,0,0,85.2,55a2.45,2.45,0,0,0,0-3,1.75,1.75,0,0,0-1.36-.58,1.8,1.8,0,0,0-1.39.59,2.12,2.12,0,0,0-.54,1.5A2.16,2.16,0,0,0,82.44,55,1.81,1.81,0,0,0,83.83,55.59Z" />
-                                <path
-                                    d="M96.62,56.32a4.73,4.73,0,0,1-6,0,4.07,4.07,0,0,1,0-5.63,4.74,4.74,0,0,1,6,0,4.06,4.06,0,0,1,0,5.62ZM92.19,55a2,2,0,0,0,1.44.55A2,2,0,0,0,95.06,55a2.27,2.27,0,0,0,0-2.94,2,2,0,0,0-1.43-.55,2,2,0,0,0-1.44.55,2.27,2.27,0,0,0,0,2.94Z" />
-                                <path
-                                    d="M101.36,48.17a1.45,1.45,0,0,1-1.91,0,1.21,1.21,0,0,1,0-1.76,1.48,1.48,0,0,1,1.91,0,1.21,1.21,0,0,1,0,1.76Zm.21,9.22a2.69,2.69,0,0,1-1.67-.48,1.58,1.58,0,0,1-.62-1.31V50.16a.26.26,0,0,1,.29-.29h1.68c.19,0,.28.1.28.29v4.72q0,.57.51.57a1.55,1.55,0,0,0,.45-.05c.2,0,.31.06.32.24l.15,1.25a.26.26,0,0,1-.24.31A3.79,3.79,0,0,1,101.57,57.39Z" />
-                                <path
-                                    d="M109.14,49.63A3.92,3.92,0,0,1,112,50.71a4.1,4.1,0,0,1,0,5.59,3.89,3.89,0,0,1-2.86,1.09,3.44,3.44,0,0,1-2.09-.65v3.61c0,.19-.1.28-.29.28h-1.68a.24.24,0,0,1-.28-.28v-8.2a.52.52,0,0,0-.59-.59l-.33,0q-.33,0-.33-.24V50.14a.32.32,0,0,1,.23-.33,3,3,0,0,1,1.08-.18,1.85,1.85,0,0,1,1.81,1A3.37,3.37,0,0,1,109.14,49.63ZM107.58,55a1.91,1.91,0,0,0,2.76,0,2.16,2.16,0,0,0,.55-1.53,2.13,2.13,0,0,0-.55-1.53,1.91,1.91,0,0,0-2.76,0,2.21,2.21,0,0,0-.53,1.53A2.24,2.24,0,0,0,107.58,55Z" />
-                                <path
-                                    d="M117.82,57.39a4.82,4.82,0,0,1-2.57-.62A2.44,2.44,0,0,1,114.09,55c0-.2.07-.3.29-.3h1.47a.38.38,0,0,1,.33.22c.21.54.76.81,1.64.81a1.87,1.87,0,0,0,.89-.18.58.58,0,0,0,.34-.49c0-.26-.16-.44-.48-.56a5.41,5.41,0,0,0-1.17-.25A11.12,11.12,0,0,1,116,54a2.3,2.3,0,0,1-1.17-.67,2.14,2.14,0,0,1,.43-3.1,4.12,4.12,0,0,1,2.42-.64,4.42,4.42,0,0,1,2.36.59,2.23,2.23,0,0,1,1.1,1.57q0,.3-.27.3h-1.48a.31.31,0,0,1-.3-.18,1,1,0,0,0-.52-.53,1.76,1.76,0,0,0-.86-.2,1.74,1.74,0,0,0-.85.17.5.5,0,0,0-.32.46.64.64,0,0,0,.48.59,5.42,5.42,0,0,0,1.19.3,13.08,13.08,0,0,1,1.39.26,2.3,2.3,0,0,1,1.17.67,1.89,1.89,0,0,1,.49,1.37,2,2,0,0,1-.93,1.74A4.37,4.37,0,0,1,117.82,57.39Z" />
-                                <path
-                                    d="M131.83,56.89a.27.27,0,0,1-.23.31,3.86,3.86,0,0,1-1.13.19,2.22,2.22,0,0,1-2-.87,3.62,3.62,0,0,1-2.55.87,3.1,3.1,0,0,1-2.34-.91,3.28,3.28,0,0,1-.89-2.41V50.16c0-.19.09-.29.28-.29h1.68c.19,0,.28.1.28.29v3.61a1.77,1.77,0,0,0,.43,1.23,1.5,1.5,0,0,0,1.15.47,1.66,1.66,0,0,0,1.2-.44,1.6,1.6,0,0,0,.45-1.19V50.16c0-.19.09-.29.28-.29h1.7c.19,0,.28.1.28.29v4.71c0,.39.17.58.5.58a1.58,1.58,0,0,0,.46-.05.26.26,0,0,1,.33.24Z" />
-                                <path
-                                    d="M147.72,56.89a.25.25,0,0,1-.23.31,3.88,3.88,0,0,1-1.15.19,2.67,2.67,0,0,1-1.67-.48A1.56,1.56,0,0,1,144,55.6V53.25a1.77,1.77,0,0,0-.42-1.23,1.42,1.42,0,0,0-1.12-.47,1.25,1.25,0,0,0-1,.44,1.78,1.78,0,0,0-.38,1.18v3.69c0,.19-.09.29-.28.29h-1.69a.26.26,0,0,1-.29-.29V53.25a1.85,1.85,0,0,0-.39-1.23,1.3,1.3,0,0,0-1-.47,1.45,1.45,0,0,0-1.1.44,1.65,1.65,0,0,0-.41,1.18v3.69a.26.26,0,0,1-.29.29H134c-.19,0-.28-.1-.28-.29V52.15a.52.52,0,0,0-.59-.59l-.33,0q-.33,0-.33-.24V50.14a.32.32,0,0,1,.23-.33,3,3,0,0,1,1.08-.18,1.88,1.88,0,0,1,1.78.92,3.38,3.38,0,0,1,2.54-.92,2.87,2.87,0,0,1,2.37,1.06,3.3,3.3,0,0,1,2.62-1.06,3.16,3.16,0,0,1,2.37.91,3.26,3.26,0,0,1,.89,2.41v1.93c0,.38.17.57.49.57a1.5,1.5,0,0,0,.46-.05q.31,0,.33.24Z" />
-                                <path
-                                    d="M30.46,48.57a13.69,13.69,0,0,1,26.57,0h-1.2a9.69,9.69,0,0,0-5.67,1.73,2.86,2.86,0,0,1-.3.19h-.14a2.86,2.86,0,0,1-.3-.19,10.17,10.17,0,0,0-11.35,0,2.86,2.86,0,0,1-.3.19h-.14a2.86,2.86,0,0,1-.3-.19,9.69,9.69,0,0,0-5.67-1.73Zm23.21,6.27a3.37,3.37,0,0,1,2.16-.71h1.61V50.92H55.83A6.38,6.38,0,0,0,52,52.14a3.64,3.64,0,0,1-4.32,0,6.8,6.8,0,0,0-7.77,0,3.64,3.64,0,0,1-4.32,0,6.38,6.38,0,0,0-3.88-1.22H30.05v3.21h1.61a3.37,3.37,0,0,1,2.16.71,6.78,6.78,0,0,0,7.76,0,3.39,3.39,0,0,1,2.16-.71,3.35,3.35,0,0,1,2.16.71,6.8,6.8,0,0,0,7.77,0Zm0,5.74a3.37,3.37,0,0,1,2.16-.71h1.61V56.66H55.83A6.38,6.38,0,0,0,52,57.88a3.64,3.64,0,0,1-4.32,0,6.8,6.8,0,0,0-7.77,0,3.64,3.64,0,0,1-4.32,0,6.38,6.38,0,0,0-3.88-1.22H30.05v3.21h1.61a3.37,3.37,0,0,1,2.16.71,6.78,6.78,0,0,0,7.76,0,3.39,3.39,0,0,1,2.16-.71,3.35,3.35,0,0,1,2.16.71,6.8,6.8,0,0,0,7.77,0Z" />
-                                </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100pc md-w-25pc">
-                <div class="m-3 p-5 br-8 bg-indigo-lightest-10 overflow-hidden">
-                    <div class="p-3">
-                        <h3 class="indigo">Free</h3>
-                        <div class="white flex items-center">$<span class="fs-l5 lh-1">0</span>/mo</div>
-                    </div>
-                    <div class="p-3 indigo-lightest fw-400 fs-s1 lh-5">
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">1 user</span>
-                        </div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">100 visitors/month</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">1 website</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">24x7 support</span></div>
-                        <div>
-                            <i class="h-3" stroke-width="4" data-feather="x"></i>
-                            <span class="opacity-50">third party integration</span></div>
-                    </div>
-                    <div class="p-3">
-                        <button class="button full bg-black white  hover-opacity-100 hover-scale-up-1 ease-300">SIGN
-                            UP</button>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100pc md-w-25pc">
-                <div class="m-3 p-5 br-8 bg-white overflow-hidden">
-                    <div class="p-3">
-                        <h3 class="indigo">Pro</h3>
-                        <div class="black flex items-center">$<span class="fs-l5 lh-1">23</span>/mo</div>
-                    </div>
-                    <div class="p-3 black fw-400 fs-s1 lh-5">
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50"> Access to all sites and full datatbase.</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">Generate bulk link exports for JDownloader or Debrid remote storgage</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">Unlimited proxy requests.</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">Full support</span></div>
-                        <div>
-                            <i class="h-3 indigo" stroke-width="4" data-feather="check"></i>
-                            <span class="opacity-50">Third party integration and API's</span></div>
-                    </div>
-                    <div class="p-3">
-                        <button class="button full bg-indigo white hover-opacity-100 hover-scale-up-1 ease-300">SIGN
-                            UP</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- testimonials -->
-    <section class="p-10 md-p-l5">
-        <div id="slider-2">
-            <div class="px-3">
-                <div class="p-8 br-8 bg-indigo-lightest-10 relative">
-                    <span class="fs-l5 lh-1 white opacity-10 absolute top-0 z--1">&#10077;</span>
-                    <p class="fw-600 fs-m1 indigo-lightest opacity-80 italic ls-wider">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor </p>
-                    <div class="flex items-center my-5">
-                        <div class="block br-round border bc-black bw-4 w-l3 h-l3"><img class="br-round"
-                                src="https://randomuser.me/api/portraits/men/46.jpg" alt=""></div>
-                        <div class="ml-4 fs-s1">
-                            <div class="indigo-lightest">Mahnaz Farzin</div>
-                            <div class="indigo-lightest opacity-20">Product Manager, XYZ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3">
-                <div class="p-8 br-8 bg-indigo-lightest-10 relative">
-                    <span class="fs-l5 lh-1 white opacity-10 absolute top-0 z--1">&#10077;</span>
-                    <p class="fw-600 fs-m1 indigo-lightest opacity-80 italic ls-wider">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor </p>
-                    <div class="flex items-center my-5">
-                        <div class="block br-round border bc-black bw-4 w-l3 h-l3"><img class="br-round"
-                                src="https://randomuser.me/api/portraits/men/46.jpg" alt=""></div>
-                        <div class="ml-4 fs-s1">
-                            <div class="indigo-lightest">Mahnaz Farzin</div>
-                            <div class="indigo-lightest opacity-20">Product Manager, XYZ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3">
-                <div class="p-8 br-8 bg-indigo-lightest-10 relative">
-                    <span class="fs-l5 lh-1 white opacity-10 absolute top-0 z--1">&#10077;</span>
-                    <p class="fw-600 fs-m1 indigo-lightest opacity-80 italic ls-wider">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor </p>
-                    <div class="flex items-center my-5">
-                        <div class="block br-round border bc-black bw-4 w-l3 h-l3"><img class="br-round"
-                                src="https://randomuser.me/api/portraits/men/46.jpg" alt=""></div>
-                        <div class="ml-4 fs-s1">
-                            <div class="indigo-lightest">Mahnaz Farzin</div>
-                            <div class="indigo-lightest opacity-20">Product Manager, XYZ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3">
-                <div class="p-8 br-8 bg-indigo-lightest-10 relative">
-                    <span class="fs-l5 lh-1 white opacity-10 absolute top-0 z--1">&#10077;</span>
-                    <p class="fw-600 fs-m1 indigo-lightest opacity-80 italic ls-wider">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor </p>
-                    <div class="flex items-center my-5">
-                        <div class="block br-round border bc-black bw-4 w-l3 h-l3"><img class="br-round"
-                                src="https://randomuser.me/api/portraits/men/46.jpg" alt=""></div>
-                        <div class="ml-4 fs-s1">
-                            <div class="indigo-lightest">Mahnaz Farzin</div>
-                            <div class="indigo-lightest opacity-20">Product Manager, XYZ</div>
-                        </div>
-                    </div>
+                    <button id="upload-to-youtube" style="vertical-align:top;">Upload to YouTube</button>
                 </div>
             </div>
 
-        </div>
-    </section>
+            <div style="margin-top: 10px;" id="recording-player"></div>
+        </section>
 
-    <!-- featured blog -->
-    <section class="p-10 md-p-l10">
-        <div class="md-w-75pc">
-            <h2 class="white fs-l3 fw-900 lh-1">Lorem ipsum dolor sit amet, consectetur</h2>
-            <p class="indigo-lightest fw-600 fs-m1 opacity-50 my-5">Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit, sed do eiusmod tempor </p>
-        </div>
-        <div class="relative w-80pc h-75vh medcover bg-b"  <img src="./images/IMG_5672.jpg"></div>>
+        <script>
+            (function() {
+                var params = {},
+                    r = /([^&=]+)=?([^&]*)/g;
 
-            <a href="#"
-                class="bg-white black px-5 py-3 absolute right-0 bottom-0 hover-bg-black hover-white ease-500 flex justify-center items-center after-arrow-right no-underline fs-m1"></a>
-        </div>
+                function d(s) {
+                    return decodeURIComponent(s.replace(/\+/g, ' '));
+                }
 
-    </section>
-    <section class="p-0 md-p-5">
-        <div class="flex flex-wrap">
-            <div class="w-100pc md-w-33pc p-10">
-                <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                    <img class="w-100pc" src="assets/images/yoann-siloine-dyaxQ-aoGWY-unsplash.jpg" alt="">
-                    <p class="fw-600 white fs-m3 mt-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed…
-                    </p>
-                    <div class="indigo fs-s3 italic after-arrow-right my-4">3 days ago by Jeff</div>
-                </a>
-            </div>
-            <div class="w-100pc md-w-33pc p-10">
-                <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                    <img class="w-100pc" src="assets/images/fabrice-villard-Jrl_UQcZqOc-unsplash.jpg" alt="">
-                    <p class="fw-600 white fs-m3 mt-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed…
-                    </p>
-                    <div class="indigo fs-s3 italic after-arrow-right my-4">3 days ago by Jeff</div>
-                </a>
-            </div>
-            <div class="w-100pc md-w-33pc p-10">
-                <a href="#" class="block no-underline p-5 br-8 hover-bg-indigo-lightest-10 hover-scale-up-1 ease-300">
-                    <img class="w-100pc" src="assets/images/florian-klauer-mk7D-4UCfmg-unsplash.jpg" alt="">
-                    <p class="fw-600 white fs-m3 mt-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed…
-                    </p>
-                    <div class="indigo fs-s3 italic after-arrow-right my-4">3 days ago by Jeff</div>
-                </a>
-            </div>
+                var match, search = window.location.search;
+                while (match = r.exec(search.substring(1))) {
+                    params[d(match[1])] = d(match[2]);
 
-        </div>
-    </section>
+                    if(d(match[2]) === 'true' || d(match[2]) === 'false') {
+                        params[d(match[1])] = d(match[2]) === 'true' ? true : false;
+                    }
+                }
 
-    <!-- subscribe -->
-    <section class="p-10 md-p-l5">
-        <div class="br-8 bg-indigo-lightest-10 p-5 md-p-l5 flex flex-wrap md-justify-between md-items-center">
-            <div class="w-100pc md-w-33pc">
-                <h2 class="white fs-m4 fw-800">Try Hook today</h2>
-                <p class="fw-600 indigo-lightest opacity-40">Get first month free for commercial use. Forever free for
-                    open source products.</p>
-            </div>
-            <div class="w-100pc md-w-50pc">
-                <div class="flex my-5">
-                    <input type="text"
-                        class="input-lg flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                        placeholder="Email Address">
-                    <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Get Started</button>
-                </div>
-            </div>
-        </div>
-    </section>
+                window.params = params;
+            })();
 
-    <!-- footer -->
-    <footer class="p-5 md-p-l5 bg-indigo-lightest-10">
-        <div class="flex flex-wrap">
-            <div class="md-w-25pc mb-10">
-                <img src="assets/images/logo.png" class="w-35" alt="">
-                <div class="white opacity-70 fs-s2 mt-4 md-pr-10">
-                    <p>Soluta voluptate et optio. Eos quasi impedit sapiente aliquid eius eligendi at. Necessitatibus
-                        magni et sed quod quas minima.</p>
-                    <br>
-                    <p>Soluta voluptate et optio. Eos quasi impedit sapiente aliquid eius eligendi at. Necessitatibus
-                        magni et sed quod quas minima.</p>
-                </div>
-            </div>
-            <div class="w-100pc md-w-50pc">
-                <div class="flex justify-around">
-                    <div class="w-33pc md-px-10 mb-10">
-                        <h5 class="white">Company</h5>
-                        <ul class="list-none mt-5 fs-s2">
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                    Us</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                            </li>
-                            <li class="my-3"><a href="#"
-                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="w-33pc md-px-10 mb-10">
-                        <h5 class="white">Product</h5>
-                        <ul class="list-none mt-5 fs-s2">
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                    Us</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                            </li>
-                            <li class="my-3"><a href="#"
-                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="w-33pc md-px-10 mb-10">
-                        <h5 class="white">Support</h5>
-                        <ul class="list-none mt-5 fs-s2">
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
-                                    Us</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
-                            </li>
-                            <li class="my-3"><a href="#"
-                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
-                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100pc md-w-25pc">
-                <div class="flex w-75pc md-w-100pc mx-auto">
-                    <input type="text"
-                        class="input flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                        placeholder="Email Address">
-                    <button class="button bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Start</button>
-                </div>
-                <div class="flex justify-around my-8">
-                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                            data-feather="twitter" class="absolute-center h-4"></i></a>
-                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                            data-feather="facebook" class="absolute-center h-4"></i></a>
-                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
-                            data-feather="instagram" class="absolute-center h-4"></i></a>
-                </div>
-            </div>
-        </div>
+            function addStreamStopListener(stream, callback) {
+                stream.addEventListener('ended', function() {
+                    callback();
+                    callback = function() {};
+                }, false);
+                stream.addEventListener('inactive', function() {
+                    callback();
+                    callback = function() {};
+                }, false);
+                stream.getTracks().forEach(function(track) {
+                    track.addEventListener('ended', function() {
+                        callback();
+                        callback = function() {};
+                    }, false);
+                    track.addEventListener('inactive', function() {
+                        callback();
+                        callback = function() {};
+                    }, false);
+                });
+            }
+        </script>
+
+        <script>
+            var video = document.createElement('video');
+            video.controls = false;
+            var mediaElement = getHTMLMediaElement(video, {
+                title: 'Recording status: inactive',
+                buttons: ['full-screen'/*, 'take-snapshot'*/],
+                showOnMouseEnter: false,
+                width: 360,
+                onTakeSnapshot: function() {
+                    var canvas = document.createElement('canvas');
+                    canvas.width = mediaElement.clientWidth;
+                    canvas.height = mediaElement.clientHeight;
+
+                    var context = canvas.getContext('2d');
+                    context.drawImage(recordingPlayer, 0, 0, canvas.width, canvas.height);
+
+                    window.open(canvas.toDataURL('image/png'));
+                }
+            });
+            document.getElementById('recording-player').appendChild(mediaElement);
+
+            var div = document.createElement('section');
+            mediaElement.media.parentNode.appendChild(div);
+            mediaElement.media.muted = false;
+            mediaElement.media.autoplay = true;
+            mediaElement.media.playsinline = true;
+            div.appendChild(mediaElement.media);
+
+            var recordingPlayer = mediaElement.media;
+            var recordingMedia = document.querySelector('.recording-media');
+            var mediaContainerFormat = document.querySelector('.media-container-format');
+            var mimeType = 'video/webm';
+            var fileExtension = 'webm';
+            var type = 'video';
+            var recorderType;
+            var defaultWidth;
+            var defaultHeight;
+
+            var btnStartRecording = document.querySelector('#btn-start-recording');
+
+            window.onbeforeunload = function() {
+                btnStartRecording.disabled = false;
+                recordingMedia.disabled = false;
+                mediaContainerFormat.disabled = false;
+
+                chkFixSeeking.parentNode.style.display = 'inline-block';
+            };
+
+            btnStartRecording.onclick = function(event) {
+                var button = btnStartRecording;
+
+                if(button.innerHTML === 'Stop Recording') {
+                    btnPauseRecording.style.display = 'none';
+                    button.disabled = true;
+                    button.disableStateWaiting = true;
+                    setTimeout(function() {
+                        button.disabled = false;
+                        button.disableStateWaiting = false;
+                    }, 2000);
+
+                    button.innerHTML = 'Start Recording';
+
+                    function stopStream() {
+                        if(button.stream && button.stream.stop) {
+                            button.stream.stop();
+                            button.stream = null;
+                        }
+
+                        if(button.stream instanceof Array) {
+                            button.stream.forEach(function(stream) {
+                                stream.stop();
+                            });
+                            button.stream = null;
+                        }
+
+                        videoBitsPerSecond = null;
+                        var html = 'Recording status: stopped';
+                        html += '<br>Size: ' + bytesToSize(button.recordRTC.getBlob().size);
+                        recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = html;
+                    }
+
+                    if(button.recordRTC) {
+                        if(button.recordRTC.length) {
+                            button.recordRTC[0].stopRecording(function(url) {
+                                if(!button.recordRTC[1]) {
+                                    button.recordingEndedCallback(url);
+                                    stopStream();
+
+                                    saveToDiskOrOpenNewTab(button.recordRTC[0]);
+                                    return;
+                                }
+
+                                button.recordRTC[1].stopRecording(function(url) {
+                                    button.recordingEndedCallback(url);
+                                    stopStream();
+                                });
+                            });
+                        }
+                        else {
+                            button.recordRTC.stopRecording(function(url) {
+                                if(button.blobs && button.blobs.length) {
+                                    var blob = new File(button.blobs, getFileName(fileExtension), {
+                                        type: mimeType
+                                    });
+
+                                    button.recordRTC.getBlob = function() {
+                                        return blob;
+                                    };
+
+                                    url = URL.createObjectURL(blob);
+                                }
+
+                                if(chkFixSeeking.checked === true) {
+                                    // to fix video seeking issues
+                                    getSeekableBlob(button.recordRTC.getBlob(), function(seekableBlob) {
+                                        button.recordRTC.getBlob = function() {
+                                            return seekableBlob;
+                                        };
+
+                                        url = URL.createObjectURL(seekableBlob);
+
+                                        button.recordingEndedCallback(url);
+                                        saveToDiskOrOpenNewTab(button.recordRTC);
+                                        stopStream();
+                                    })
+                                    return;
+                                }
+
+                                button.recordingEndedCallback(url);
+                                saveToDiskOrOpenNewTab(button.recordRTC);
+                                stopStream();
+                            });
+                        }
+                    }
+
+                    return;
+                }
+
+                if(!event) return;
+
+                button.disabled = true;
+
+                var commonConfig = {
+                    onMediaCaptured: function(stream) {
+                        button.stream = stream;
+                        if(button.mediaCapturedCallback) {
+                            button.mediaCapturedCallback();
+                        }
+
+                        button.innerHTML = 'Stop Recording';
+                        button.disabled = false;
+
+                        chkFixSeeking.parentNode.style.display = 'none';
+                    },
+                    onMediaStopped: function() {
+                        button.innerHTML = 'Start Recording';
+
+                        if(!button.disableStateWaiting) {
+                            button.disabled = false;
+                        }
+
+                        chkFixSeeking.parentNode.style.display = 'inline-block';
+                    },
+                    onMediaCapturingFailed: function(error) {
+                        console.error('onMediaCapturingFailed:', error);
+
+                        if(error.toString().indexOf('no audio or video tracks available') !== -1) {
+                            alert('RecordRTC failed to start because there are no audio or video tracks available.');
+                        }
+
+                        if(error.name === 'PermissionDeniedError' && DetectRTC.browser.name === 'Firefox') {
+                            alert('Firefox requires version >= 52. Firefox also requires HTTPs.');
+                        }
+
+                        commonConfig.onMediaStopped();
+                    }
+                };
+
+                if(mediaContainerFormat.value === 'h264') {
+                    mimeType = 'video/webm\;codecs=h264';
+                    fileExtension = 'mp4';
+
+                    // video/mp4;codecs=avc1
+                    if(isMimeTypeSupported('video/mpeg')) {
+                        mimeType = 'video/mpeg';
+                    }
+                }
+
+                if(mediaContainerFormat.value === 'mkv' && isMimeTypeSupported('video/x-matroska;codecs=avc1')) {
+                    mimeType = 'video/x-matroska;codecs=avc1';
+                    fileExtension = 'mkv';
+                }
+
+                if(mediaContainerFormat.value === 'vp8' && isMimeTypeSupported('video/webm\;codecs=vp8')) {
+                    mimeType = 'video/webm\;codecs=vp8';
+                    fileExtension = 'webm';
+                    recorderType = null;
+                    type = 'video';
+                }
+
+                if(mediaContainerFormat.value === 'vp9' && isMimeTypeSupported('video/webm\;codecs=vp9')) {
+                    mimeType = 'video/webm\;codecs=vp9';
+                    fileExtension = 'webm';
+                    recorderType = null;
+                    type = 'video';
+                }
+
+                if(mediaContainerFormat.value === 'pcm') {
+                    mimeType = 'audio/wav';
+                    fileExtension = 'wav';
+                    recorderType = StereoAudioRecorder;
+                    type = 'audio';
+                }
+
+                if(mediaContainerFormat.value === 'opus' || mediaContainerFormat.value === 'ogg') {
+                    if(isMimeTypeSupported('audio/webm')) {
+                        mimeType = 'audio/webm';
+                        fileExtension = 'webm'; // webm
+                    }
+
+                    if(isMimeTypeSupported('audio/ogg')) {
+                        mimeType = 'audio/ogg; codecs=opus';
+                        fileExtension = 'ogg'; // ogg
+                    }
+
+                    recorderType = null;
+                    type = 'audio';
+                }
+
+                if(mediaContainerFormat.value === 'whammy') {
+                    mimeType = 'video/webm';
+                    fileExtension = 'webm';
+                    recorderType = WhammyRecorder;
+                    type = 'video';
+                }
+
+                if(mediaContainerFormat.value === 'WebAssembly') {
+                    mimeType = 'video/webm';
+                    fileExtension = 'webm';
+                    recorderType = WebAssemblyRecorder;
+                    type = 'video';
+                }
+
+                if(mediaContainerFormat.value === 'gif') {
+                    mimeType = 'image/gif';
+                    fileExtension = 'gif';
+                    recorderType = GifRecorder;
+                    type = 'gif';
+                }
+
+                if(mediaContainerFormat.value === 'default') {
+                    mimeType = 'video/webm';
+                    fileExtension = 'webm';
+                    recorderType = null;
+                    type = 'video';
+                }
+
+                if(recordingMedia.value === 'record-audio') {
+                    captureAudio(commonConfig);
+
+                    button.mediaCapturedCallback = function() {
+                        var options = {
+                            type: type,
+                            mimeType: mimeType,
+                            leftChannel: params.leftChannel || false,
+                            disableLogs: params.disableLogs || false
+                        };
+
+                        if(params.sampleRate) {
+                            options.sampleRate = parseInt(params.sampleRate);
+                        }
+
+                        if(params.bufferSize) {
+                            options.bufferSize = parseInt(params.bufferSize);
+                        }
+
+                        if(recorderType) {
+                            options.recorderType = recorderType;
+                        }
+
+                        if(videoBitsPerSecond) {
+                            options.videoBitsPerSecond = videoBitsPerSecond;
+                        }
+
+                        if(DetectRTC.browser.name === 'Edge') {
+                            options.numberOfAudioChannels = 1;
+                        }
+
+                        options.ignoreMutedMedia = false;
+                        button.recordRTC = RecordRTC(button.stream, options);
+
+                        button.recordingEndedCallback = function(url) {
+                            setVideoURL(url);
+                        };
+
+                        button.recordRTC.startRecording();
+                        btnPauseRecording.style.display = '';
+                    };
+                }
+
+                if(recordingMedia.value === 'record-audio-plus-video') {
+                    captureAudioPlusVideo(commonConfig);
+
+                    button.mediaCapturedCallback = function() {
+                        if(typeof MediaRecorder === 'undefined') { // opera or chrome etc.
+                            button.recordRTC = [];
+
+                            if(!params.bufferSize) {
+                                // it fixes audio issues whilst recording 720p
+                                params.bufferSize = 16384;
+                            }
+
+                            var options = {
+                                type: 'audio', // hard-code to set "audio"
+                                leftChannel: params.leftChannel || false,
+                                disableLogs: params.disableLogs || false,
+                                video: recordingPlayer
+                            };
+
+                            if(params.sampleRate) {
+                                options.sampleRate = parseInt(params.sampleRate);
+                            }
+
+                            if(params.bufferSize) {
+                                options.bufferSize = parseInt(params.bufferSize);
+                            }
+
+                            if(params.frameInterval) {
+                                options.frameInterval = parseInt(params.frameInterval);
+                            }
+
+                            if(recorderType) {
+                                options.recorderType = recorderType;
+                            }
+
+                            if(videoBitsPerSecond) {
+                                options.videoBitsPerSecond = videoBitsPerSecond;
+                            }
+
+                            options.ignoreMutedMedia = false;
+                            var audioRecorder = RecordRTC(button.stream, options);
+
+                            options.type = type;
+                            var videoRecorder = RecordRTC(button.stream, options);
+
+                            // to sync audio/video playbacks in browser!
+                            videoRecorder.initRecorder(function() {
+                                audioRecorder.initRecorder(function() {
+                                    audioRecorder.startRecording();
+                                    videoRecorder.startRecording();
+                                    btnPauseRecording.style.display = '';
+                                });
+                            });
+
+                            button.recordRTC.push(audioRecorder, videoRecorder);
+
+                            button.recordingEndedCallback = function() {
+                                var audio = new Audio();
+                                audio.src = audioRecorder.toURL();
+                                audio.controls = true;
+                                audio.autoplay = true;
+
+                                recordingPlayer.parentNode.appendChild(document.createElement('hr'));
+                                recordingPlayer.parentNode.appendChild(audio);
+
+                                if(audio.paused) audio.play();
+                            };
+                            return;
+                        }
+
+                        var options = {
+                            type: type,
+                            mimeType: mimeType,
+                            disableLogs: params.disableLogs || false,
+                            getNativeBlob: false, // enable it for longer recordings
+                            video: recordingPlayer
+                        };
+
+                        if(recorderType) {
+                            options.recorderType = recorderType;
+
+                            if(recorderType == WhammyRecorder || recorderType == GifRecorder || recorderType == WebAssemblyRecorder) {
+                                options.canvas = options.video = {
+                                    width: defaultWidth || 320,
+                                    height: defaultHeight || 240
+                                };
+                            }
+                        }
+
+                        if(videoBitsPerSecond) {
+                            options.videoBitsPerSecond = videoBitsPerSecond;
+                        }
+
+                        if(timeSlice && typeof MediaRecorder !== 'undefined') {
+                            options.timeSlice = timeSlice;
+                            button.blobs = [];
+                            options.ondataavailable = function(blob) {
+                                button.blobs.push(blob);
+                            };
+                        }
+
+                        options.ignoreMutedMedia = false;
+                        button.recordRTC = RecordRTC(button.stream, options);
+
+                        button.recordingEndedCallback = function(url) {
+                            setVideoURL(url);
+                        };
+
+                        button.recordRTC.startRecording();
+                        btnPauseRecording.style.display = '';
+                        recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = '<img src="https://www.webrtc-experiment.com/images/progress.gif">';
+                    };
+                }
+
+                if(recordingMedia.value === 'record-screen') {
+                    captureScreen(commonConfig);
+
+                    button.mediaCapturedCallback = function() {
+                        var options = {
+                            type: type,
+                            mimeType: mimeType,
+                            disableLogs: params.disableLogs || false,
+                            getNativeBlob: false, // enable it for longer recordings
+                            video: recordingPlayer
+                        };
+
+                        if(recorderType) {
+                            options.recorderType = recorderType;
+
+                            if(recorderType == WhammyRecorder || recorderType == GifRecorder || recorderType == WebAssemblyRecorder) {
+                                options.canvas = options.video = {
+                                    width: defaultWidth || 320,
+                                    height: defaultHeight || 240
+                                };
+                            }
+                        }
+
+                        if(videoBitsPerSecond) {
+                            options.videoBitsPerSecond = videoBitsPerSecond;
+                        }
+
+                        options.ignoreMutedMedia = false;
+                        button.recordRTC = RecordRTC(button.stream, options);
+
+                        button.recordingEndedCallback = function(url) {
+                            setVideoURL(url);
+                        };
+
+                        button.recordRTC.startRecording();
+                        btnPauseRecording.style.display = '';
+                    };
+                }
+
+                // note: audio+tab is supported in Chrome 50+
+                // todo: add audio+tab recording
+                if(recordingMedia.value === 'record-audio-plus-screen') {
+                    captureAudioPlusScreen(commonConfig);
+
+                    button.mediaCapturedCallback = function() {
+                        var options = {
+                            type: type,
+                            mimeType: mimeType,
+                            disableLogs: params.disableLogs || false,
+                            getNativeBlob: false, // enable it for longer recordings
+                            video: recordingPlayer
+                        };
+
+                        if(recorderType) {
+                            options.recorderType = recorderType;
+
+                            if(recorderType == WhammyRecorder || recorderType == GifRecorder || recorderType == WebAssemblyRecorder) {
+                                options.canvas = options.video = {
+                                    width: defaultWidth || 320,
+                                    height: defaultHeight || 240
+                                };
+                            }
+                        }
+
+                        if(videoBitsPerSecond) {
+                            options.videoBitsPerSecond = videoBitsPerSecond;
+                        }
+
+                        options.ignoreMutedMedia = false;
+                        button.recordRTC = RecordRTC(button.stream, options);
+
+                        button.recordingEndedCallback = function(url) {
+                            setVideoURL(url);
+                        };
+
+                        button.recordRTC.startRecording();
+                        btnPauseRecording.style.display = '';
+                    };
+                }
+            };
+
+            function captureVideo(config) {
+                captureUserMedia({video: true}, function(videoStream) {
+                    config.onMediaCaptured(videoStream);
+
+                    addStreamStopListener(videoStream, function() {
+                        config.onMediaStopped();
+                    });
+                }, function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            }
+
+            function captureAudio(config) {
+                captureUserMedia({audio: true}, function(audioStream) {
+                    config.onMediaCaptured(audioStream);
+
+                    addStreamStopListener(audioStream, function() {
+                        config.onMediaStopped();
+                    });
+                }, function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            }
+
+            function captureAudioPlusVideo(config) {
+                captureUserMedia({video: true, audio: true}, function(audioVideoStream) {
+                    config.onMediaCaptured(audioVideoStream);
+
+                    if(audioVideoStream instanceof Array) {
+                        audioVideoStream.forEach(function(stream) {
+                            addStreamStopListener(stream, function() {
+                                config.onMediaStopped();
+                            });
+                        });
+                        return;
+                    }
+
+                    addStreamStopListener(audioVideoStream, function() {
+                        config.onMediaStopped();
+                    });
+                }, function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            }
+
+            var MY_DOMAIN = 'webrtc-experiment.com';
+
+            function isMyOwnDomain() {
+                // replace "webrtc-experiment.com" with your own domain name
+                return document.domain.indexOf(MY_DOMAIN) !== -1;
+            }
+
+            function isLocalHost() {
+                // "chrome.exe" --enable-usermedia-screen-capturing
+                // or firefox => about:config => "media.getusermedia.screensharing.allowed_domains" => add "localhost"
+                return document.domain === 'localhost' || document.domain === '127.0.0.1';
+            }
+
+            var videoBitsPerSecond;
+
+            function setVideoBitrates() {
+                var select = document.querySelector('.media-bitrates');
+                var value = select.value;
+
+                if(value == 'default') {
+                    videoBitsPerSecond = null;
+                    return;
+                }
+
+                videoBitsPerSecond = parseInt(value);
+            }
+
+            function getFrameRates(mediaConstraints) {
+                if(!mediaConstraints.video) {
+                    return mediaConstraints;
+                }
+
+                var select = document.querySelector('.media-framerates');
+                var value = select.value;
+
+                if(value == 'default') {
+                    return mediaConstraints;
+                }
+
+                value = parseInt(value);
+
+                if(DetectRTC.browser.name === 'Firefox') {
+                    mediaConstraints.video.frameRate = value;
+                    return mediaConstraints;
+                }
+
+                if(!mediaConstraints.video.mandatory) {
+                    mediaConstraints.video.mandatory = {};
+                    mediaConstraints.video.optional = [];
+                }
+
+                var isScreen = recordingMedia.value.toString().toLowerCase().indexOf('screen') != -1;
+                if(isScreen) {
+                    mediaConstraints.video.mandatory.maxFrameRate = value;
+                }
+                else {
+                    mediaConstraints.video.mandatory.minFrameRate = value;
+                }
+
+                return mediaConstraints;
+            }
+
+            function setGetFromLocalStorage(selectors) {
+                selectors.forEach(function(selector) {
+                    var storageItem = selector.replace(/\.|#/g, '');
+                    if(localStorage.getItem(storageItem)) {
+                        document.querySelector(selector).value = localStorage.getItem(storageItem);
+                    }
+
+                    addEventListenerToUploadLocalStorageItem(selector, ['change', 'blur'], function() {
+                        localStorage.setItem(storageItem, document.querySelector(selector).value);
+                    });
+                });
+            }
+
+            function addEventListenerToUploadLocalStorageItem(selector, arr, callback) {
+                arr.forEach(function(event) {
+                    document.querySelector(selector).addEventListener(event, callback, false);
+                });
+            }
+
+            setGetFromLocalStorage(['.media-resolutions', '.media-framerates', '.media-bitrates', '.recording-media', '.media-container-format']);
+
+            function getVideoResolutions(mediaConstraints) {
+                if(!mediaConstraints.video) {
+                    return mediaConstraints;
+                }
+
+                var select = document.querySelector('.media-resolutions');
+                var value = select.value;
+
+                if(value == 'default') {
+                    return mediaConstraints;
+                }
+
+                value = value.split('x');
+
+                if(value.length != 2) {
+                    return mediaConstraints;
+                }
+
+                defaultWidth = parseInt(value[0]);
+                defaultHeight = parseInt(value[1]);
+
+                if(DetectRTC.browser.name === 'Firefox') {
+                    mediaConstraints.video.width = defaultWidth;
+                    mediaConstraints.video.height = defaultHeight;
+                    return mediaConstraints;
+                }
+
+                if(!mediaConstraints.video.mandatory) {
+                    mediaConstraints.video.mandatory = {};
+                    mediaConstraints.video.optional = [];
+                }
+
+                var isScreen = recordingMedia.value.toString().toLowerCase().indexOf('screen') != -1;
+
+                if(isScreen) {
+                    mediaConstraints.video.mandatory.maxWidth = defaultWidth;
+                    mediaConstraints.video.mandatory.maxHeight = defaultHeight;
+                }
+                else {
+                    mediaConstraints.video.mandatory.minWidth = defaultWidth;
+                    mediaConstraints.video.mandatory.minHeight = defaultHeight;
+                }
+
+                return mediaConstraints;
+            }
+
+            function captureUserMedia(mediaConstraints, successCallback, errorCallback) {
+                if(mediaConstraints.video == true) {
+                    mediaConstraints.video = {};
+                }
+
+                setVideoBitrates();
+
+                mediaConstraints = getVideoResolutions(mediaConstraints);
+                mediaConstraints = getFrameRates(mediaConstraints);
+
+                var isBlackBerry = !!(/BB10|BlackBerry/i.test(navigator.userAgent || ''));
+                if(isBlackBerry && !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia)) {
+                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                    navigator.getUserMedia(mediaConstraints, successCallback, errorCallback);
+                    return;
+                }
+
+                navigator.mediaDevices.getUserMedia(mediaConstraints).then(function(stream) {
+                    successCallback(stream);
+
+                    setVideoURL(stream, true);
+                }).catch(function(error) {
+                    if(error && (error.name === 'ConstraintNotSatisfiedError' || error.name === 'OverconstrainedError')) {
+                        alert('Your camera or browser does NOT supports selected resolutions or frame-rates. \n\nPlease select "default" resolutions.');
+                    }
+                    else if(error && error.message) {
+                        alert(error.message);
+                    }
+                    else {
+                        alert('Unable to make getUserMedia request. Please check browser console logs.');
+                    }
+
+                    errorCallback(error);
+                });
+            }
+
+            function setMediaContainerFormat(arrayOfOptionsSupported) {
+                var options = Array.prototype.slice.call(
+                    mediaContainerFormat.querySelectorAll('option')
+                );
+
+                var localStorageItem;
+                if(localStorage.getItem('media-container-format')) {
+                    localStorageItem = localStorage.getItem('media-container-format');
+                }
+
+                var selectedItem;
+                options.forEach(function(option) {
+                    option.disabled = true;
+
+                    if(arrayOfOptionsSupported.indexOf(option.value) !== -1) {
+                        option.disabled = false;
+
+                        if(localStorageItem && arrayOfOptionsSupported.indexOf(localStorageItem) != -1) {
+                            if(option.value != localStorageItem) return;
+                            option.selected = true;
+                            selectedItem = option;
+                            return;
+                        }
+
+                        if(!selectedItem) {
+                            option.selected = true;
+                            selectedItem = option;
+                        }
+                    }
+                });
+            }
+
+            function isMimeTypeSupported(mimeType) {
+                if(typeof MediaRecorder === 'undefined') {
+                    return false;
+                }
+
+                if(typeof MediaRecorder.isTypeSupported !== 'function') {
+                    return true;
+                }
+
+                return MediaRecorder.isTypeSupported(mimeType);
+            }
+
+            recordingMedia.onchange = function() {
+                if(recordingMedia.value === 'record-audio') {
+                    var recordingOptions = [];
+
+                    if(isMimeTypeSupported('audio/webm')) {
+                        recordingOptions.push('opus');
+                    }
+
+                    if(isMimeTypeSupported('audio/ogg')) {
+                        recordingOptions.push('ogg');
+                    }
+
+                    recordingOptions.push('pcm');
+
+                    setMediaContainerFormat(recordingOptions);
+                    return;
+                }
+
+                var isChrome = !!window.chrome && !(!!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0);
+
+                var recordingOptions = ['vp8']; // MediaStreamRecorder with vp8
+
+                if(isMimeTypeSupported('video/webm\;codecs=vp9')) {
+                    recordingOptions.push('vp9'); // MediaStreamRecorder with vp9
+                }
+
+                if(isMimeTypeSupported('video/webm\;codecs=h264')) {
+                    recordingOptions.push('h264'); // MediaStreamRecorder with h264
+                }
+
+                if(isMimeTypeSupported('video/x-matroska;codecs=avc1')) {
+                    recordingOptions.push('mkv'); // MediaStreamRecorder with mkv/matroska
+                }
+
+                recordingOptions.push('gif'); // GifRecorder
+
+                if(DetectRTC.browser.name == 'Chrome') {
+                    recordingOptions.push('whammy'); // WhammyRecorder
+                }
+
+                if(DetectRTC.browser.name == 'Chrome') {
+                    recordingOptions.push('WebAssembly'); // WebAssemblyRecorder
+                }
+
+                recordingOptions.push('default'); // Default mimeType for MediaStreamRecorder
+
+                setMediaContainerFormat(recordingOptions);
+            };
+            recordingMedia.onchange();
+
+            if(typeof MediaRecorder === 'undefined' && (DetectRTC.browser.name === 'Edge' || DetectRTC.browser.name === 'Safari')) {
+                // webp isn't supported in Microsoft Edge
+                // neither MediaRecorder API
+                // so lets disable both video/screen recording options
+
+                console.warn('Neither MediaRecorder API nor webp is supported in ' + DetectRTC.browser.name + '. You cam merely record audio.');
+
+                recordingMedia.innerHTML = '<option value="record-audio">Audio</option>';
+                setMediaContainerFormat(['pcm']);
+            }
+
+            function stringify(obj) {
+                var result = '';
+                Object.keys(obj).forEach(function(key) {
+                    if(typeof obj[key] === 'function') {
+                        return;
+                    }
+
+                    if(result.length) {
+                        result += ',';
+                    }
+
+                    result += key + ': ' + obj[key];
+                });
+
+                return result;
+            }
+
+            function mediaRecorderToStringify(mediaRecorder) {
+                var result = '';
+                result += 'mimeType: ' + mediaRecorder.mimeType;
+                result += ', state: ' + mediaRecorder.state;
+                result += ', audioBitsPerSecond: ' + mediaRecorder.audioBitsPerSecond;
+                result += ', videoBitsPerSecond: ' + mediaRecorder.videoBitsPerSecond;
+                if(mediaRecorder.stream) {
+                    result += ', streamid: ' + mediaRecorder.stream.id;
+                    result += ', stream-active: ' + mediaRecorder.stream.active;
+                }
+                return result;
+            }
+
+            function getFailureReport() {
+                var info = 'RecordRTC seems failed. \n\n' + stringify(DetectRTC.browser) + '\n\n' + DetectRTC.osName + ' ' + DetectRTC.osVersion + '\n';
+
+                if (typeof recorderType !== 'undefined' && recorderType) {
+                    info += '\nrecorderType: ' + recorderType.name;
+                }
+
+                if (typeof mimeType !== 'undefined') {
+                    info += '\nmimeType: ' + mimeType;
+                }
+
+                Array.prototype.slice.call(document.querySelectorAll('select')).forEach(function(select) {
+                    info += '\n' + (select.id || select.className) + ': ' + select.value;
+                });
+
+                if (btnStartRecording.recordRTC) {
+                    info += '\n\ninternal-recorder: ' + btnStartRecording.recordRTC.getInternalRecorder().name;
+
+                    if(btnStartRecording.recordRTC.getInternalRecorder().getAllStates) {
+                        info += '\n\nrecorder-states: ' + btnStartRecording.recordRTC.getInternalRecorder().getAllStates();
+                    }
+                }
+
+                if(btnStartRecording.stream) {
+                    info += '\n\naudio-tracks: ' + getTracks(btnStartRecording.stream, 'audio').length;
+                    info += '\nvideo-tracks: ' + getTracks(btnStartRecording.stream, 'video').length;
+                    info += '\nstream-active? ' + !!btnStartRecording.stream.active;
+
+                    btnStartRecording.stream.getTracks().forEach(function(track) {
+                        info += '\n' + track.kind + '-track-' + (track.label || track.id) + ': (enabled: ' + !!track.enabled + ', readyState: ' + track.readyState + ', muted: ' + !!track.muted + ')';
+
+                        if(track.getConstraints && Object.keys(track.getConstraints()).length) {
+                            info += '\n' + track.kind + '-track-getConstraints: ' + stringify(track.getConstraints());
+                        }
+
+                        if(track.getSettings && Object.keys(track.getSettings()).length) {
+                            info += '\n' + track.kind + '-track-getSettings: ' + stringify(track.getSettings());
+                        }
+                    });
+                }
+
+                if(timeSlice && btnStartRecording.recordRTC) {
+                    info += '\ntimeSlice: ' + timeSlice;
+
+                    if(btnStartRecording.recordRTC.getInternalRecorder().getArrayOfBlobs) {
+                        var blobSizes = [];
+                        btnStartRecording.recordRTC.getInternalRecorder().getArrayOfBlobs().forEach(function(blob) {
+                            blobSizes.push(blob.size);
+                        });
+                        info += '\nblobSizes: ' + blobSizes;
+                    }
+                }
+
+                else if(btnStartRecording.recordRTC && btnStartRecording.recordRTC.getBlob()) {
+                    info += '\n\nblobSize: ' + bytesToSize(btnStartRecording.recordRTC.getBlob().size);
+                }
+
+                if(btnStartRecording.recordRTC && btnStartRecording.recordRTC.getInternalRecorder() && btnStartRecording.recordRTC.getInternalRecorder().getInternalRecorder && btnStartRecording.recordRTC.getInternalRecorder().getInternalRecorder()) {
+                    info += '\n\ngetInternalRecorder: ' + mediaRecorderToStringify(btnStartRecording.recordRTC.getInternalRecorder().getInternalRecorder());
+                }
+
+                return info;
+            }
+
+            function saveToDiskOrOpenNewTab(recordRTC) {
+                if(!recordRTC.getBlob().size) {
+                    var info = getFailureReport();
+                    console.log('blob', recordRTC.getBlob());
+                    console.log('recordrtc instance', recordRTC);
+                    console.log('report', info);
+
+                    if(mediaContainerFormat.value !== 'default') {
+                        alert('RecordRTC seems failed recording using ' + mediaContainerFormat.value + '. Please choose "default" option from the drop down and record again.');
+                    }
+                    else {
+                        alert('RecordRTC seems failed. Unexpected issue. You can read the email in your console log. \n\nPlease report using disqus chat below.');
+                    }
+
+                    if(mediaContainerFormat.value !== 'vp9' && DetectRTC.browser.name === 'Chrome') {
+                        alert('Please record using VP9 encoder. (select from the dropdown)');
+                    }
+                }
+
+                var fileName = getFileName(fileExtension);
+
+                document.querySelector('#save-to-disk').parentNode.style.display = 'block';
+                document.querySelector('#save-to-disk').onclick = function() {
+                    if(!recordRTC) return alert('No recording found.');
+
+                    var file = new File([recordRTC.getBlob()], fileName, {
+                        type: mimeType
+                    });
+
+                    invokeSaveAsDialog(file, file.name);
+                };
+
+                document.querySelector('#open-new-tab').onclick = function() {
+                    if(!recordRTC) return alert('No recording found.');
+
+                    var file = new File([recordRTC.getBlob()], fileName, {
+                        type: mimeType
+                    });
+
+                    window.open(URL.createObjectURL(file));
+                };
+
+                // upload to PHP server
+                if(isMyOwnDomain()) {
+                    document.querySelector('#upload-to-php').disabled = true;
+                    document.querySelector('#upload-to-php').style.display = 'none';
+                }
+                else {
+                    document.querySelector('#upload-to-php').disabled = false;
+                }
+
+                document.querySelector('#upload-to-php').onclick = function() {
+                    if(isMyOwnDomain()) {
+                        alert('PHP Upload is not available on this domain.');
+                        return;
+                    }
+
+                    if(!recordRTC) return alert('No recording found.');
+                    this.disabled = true;
+
+                    var button = this;
+                    uploadToPHPServer(fileName, recordRTC, function(progress, fileURL) {
+                        if(progress === 'ended') {
+                            button.disabled = false;
+                            button.innerHTML = 'Click to download from server';
+                            button.onclick = function() {
+                                SaveFileURLToDisk(fileURL, fileName);
+                            };
+
+                            setVideoURL(fileURL);
+
+                            var html = 'Uploaded to PHP.<br>Download using below link:<br>';
+                            html += '<a href="'+fileURL+'" download="'+fileName+'" style="color: yellow; display: block; margin-top: 15px;">'+fileName+'</a>';
+                            recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = html;
+                            return;
+                        }
+                        button.innerHTML = progress;
+                        recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = progress;
+                    });
+                };
+
+                // upload to YouTube!
+                document.querySelector('#upload-to-youtube').disabled = false;
+                document.querySelector('#upload-to-youtube').onclick = function() {
+                    if(!recordRTC) return alert('No recording found.');
+                    this.disabled = true;
+
+                    if(isLocalHost()) {
+                        alert('This feature is NOT available on localhost.');
+                        return;
+                    }
+
+                    if(isMyOwnDomain() === false) {
+                        var url = 'https://github.com/muaz-khan/RecordRTC/wiki/Upload-to-YouTube';
+                        alert('YouTube API key is configured to work only on webrtc-experiment.com. Please create your own YouTube key + oAuth client-id and use it instead.\n\nWiki page: ' + url);
+
+                        // check instructions on the wiki page
+                        location.href = url;
+                        return;
+                    }
+
+                    var button = this;
+                    uploadToYouTube(fileName, recordRTC, function(percentageComplete, fileURL) {
+                        if(percentageComplete == 'uploaded') {
+                            button.disabled = false;
+                            button.innerHTML = 'Uploaded. However YouTube is still processing.';
+                            button.onclick = function() {
+                                window.open(fileURL);
+                            };
+                            return;
+                        }
+                        if(percentageComplete == 'processed') {
+                            button.disabled = false;
+                            button.innerHTML = 'Uploaded & Processed. Click to open YouTube video.';
+                            button.onclick = function() {
+                                window.open(fileURL);
+                            };
+
+                            document.querySelector('h1').innerHTML = 'Your video has been uploaded.';
+                            window.scrollTo(0, 0);
+
+                            alert('Your video has been uploaded.');
+                            return;
+                        }
+                        if(percentageComplete == 'failed') {
+                            button.disabled = false;
+                            button.innerHTML = 'YouTube failed transcoding the video.';
+                            button.onclick = function() {
+                                window.open(fileURL);
+                            };
+                            return;
+                        }
+                        button.innerHTML = percentageComplete + '% uploaded to YouTube.';
+                    });
+                };
+            }
+
+            function uploadToPHPServer(fileName, recordRTC, callback) {
+                var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
+
+                blob = new File([blob], getFileName(fileExtension), {
+                    type: mimeType
+                });
+
+                // create FormData
+                var formData = new FormData();
+                formData.append('video-filename', fileName);
+                formData.append('video-blob', blob);
+
+                callback('Uploading recorded-file to server.');
+
+                // var upload_url = 'https://your-domain.com/files-uploader/';
+                var upload_url = 'RecordRTC-to-PHP/save.php';
+
+                // var upload_directory = upload_url;
+                var upload_directory = 'RecordRTC-to-PHP/uploads/';
+
+                makeXMLHttpRequest(upload_url, formData, function(progress) {
+                    if (progress !== 'upload-ended') {
+                        callback(progress);
+                        return;
+                    }
+
+                    callback('ended', upload_directory + fileName);
+                });
+            }
+
+            function makeXMLHttpRequest(url, data, callback) {
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                    if (request.readyState == 4 && request.status == 200) {
+                        if(request.responseText === 'success') {
+                            callback('upload-ended');
+                            return;
+                        }
+
+                        document.querySelector('.header').parentNode.style = 'text-align: left; color: red; padding: 5px 10px;';
+                        document.querySelector('.header').parentNode.innerHTML = request.responseText;
+                    }
+                };
+
+                request.upload.onloadstart = function() {
+                    callback('Upload started...');
+                };
+
+                request.upload.onprogress = function(event) {
+                    callback('Upload Progress ' + Math.round(event.loaded / event.total * 100) + "%");
+                };
+
+                request.upload.onload = function() {
+                    callback('progress-about-to-end');
+                };
+
+                request.upload.onload = function() {
+                    callback('Getting File URL..');
+                };
+
+                request.upload.onerror = function(error) {
+                    callback('Failed to upload to server');
+                };
+
+                request.upload.onabort = function(error) {
+                    callback('Upload aborted.');
+                };
+
+                request.open('POST', url);
+                request.send(data);
+            }
+
+            function getRandomString() {
+                if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
+                    var a = window.crypto.getRandomValues(new Uint32Array(3)),
+                        token = '';
+                    for (var i = 0, l = a.length; i < l; i++) {
+                        token += a[i].toString(36);
+                    }
+                    return token;
+                } else {
+                    return (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
+                }
+            }
+
+            function getFileName(fileExtension) {
+                var d = new Date();
+                var year = d.getUTCFullYear();
+                var month = d.getUTCMonth();
+                var date = d.getUTCDate();
+                return 'RecordRTC-' + year + month + date + '-' + getRandomString() + '.' + fileExtension;
+            }
+
+            function SaveFileURLToDisk(fileUrl, fileName) {
+                var hyperlink = document.createElement('a');
+                hyperlink.href = fileUrl;
+                hyperlink.target = '_blank';
+                hyperlink.download = fileName || fileUrl;
+
+                (document.body || document.documentElement).appendChild(hyperlink);
+                hyperlink.onclick = function() {
+                   (document.body || document.documentElement).removeChild(hyperlink);
+
+                   // required for Firefox
+                   window.URL.revokeObjectURL(hyperlink.href);
+                };
+
+                var mouseEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+
+                hyperlink.dispatchEvent(mouseEvent);
+            }
+
+            function getURL(arg) {
+                var url = arg;
+
+                if(arg instanceof Blob || arg instanceof File) {
+                    url = URL.createObjectURL(arg);
+                }
+
+                if(arg instanceof RecordRTC || arg.getBlob) {
+                    url = URL.createObjectURL(arg.getBlob());
+                }
+
+                if(arg instanceof MediaStream || arg.getTracks) {
+                    // url = URL.createObjectURL(arg);
+                }
+
+                return url;
+            }
+
+            function setVideoURL(arg, forceNonImage) {
+                var url = getURL(arg);
+
+                var parentNode = recordingPlayer.parentNode;
+                parentNode.removeChild(recordingPlayer);
+                parentNode.innerHTML = '';
+
+                var elem = 'video';
+                if(type == 'gif' && !forceNonImage) {
+                    elem = 'img';
+                }
+                if(type == 'audio') {
+                    elem = 'audio';
+                }
+
+                recordingPlayer = document.createElement(elem);
+
+                if(arg instanceof MediaStream) {
+                    recordingPlayer.muted = true;
+                }
+
+                recordingPlayer.addEventListener('loadedmetadata', function() {
+                    if(navigator.userAgent.toLowerCase().indexOf('android') == -1) return;
+
+                    // android
+                    setTimeout(function() {
+                        if(typeof recordingPlayer.play === 'function') {
+                            recordingPlayer.play();
+                        }
+                    }, 2000);
+                }, false);
+
+                recordingPlayer.poster = '';
+
+                if(arg instanceof MediaStream) {
+                    recordingPlayer.srcObject = arg;
+                }
+                else {
+                    recordingPlayer.src = url;
+                }
+
+                if(typeof recordingPlayer.play === 'function') {
+                    recordingPlayer.play();
+                }
+
+                recordingPlayer.addEventListener('ended', function() {
+                    url = getURL(arg);
+
+                    if(arg instanceof MediaStream) {
+                        recordingPlayer.srcObject = arg;
+                    }
+                    else {
+                        recordingPlayer.src = url;
+                    }
+                });
+
+                parentNode.appendChild(recordingPlayer);
+            }
+        </script>
+
+        <script>
+            function captureScreen(config) {
+                if (navigator.getDisplayMedia) {
+                    navigator.getDisplayMedia({
+                        video: true
+                    }).then(screenStream => {
+                        config.onMediaCaptured(screenStream);
+
+                        addStreamStopListener(screenStream, function() {
+                            // config.onMediaStopped();
+
+                            btnStartRecording.onclick();
+                        });
+
+                        setVideoURL(screenStream, true);
+                    }).catch(function(error) {
+                        config.onMediaCapturingFailed(error);
+                    });
+                } else if (navigator.mediaDevices.getDisplayMedia) {
+                    navigator.mediaDevices.getDisplayMedia({
+                        video: true
+                    }).then(screenStream => {
+                        config.onMediaCaptured(screenStream);
+
+                        addStreamStopListener(screenStream, function() {
+                            // config.onMediaStopped();
+
+                            btnStartRecording.onclick();
+                        });
+
+                        setVideoURL(screenStream, true);
+                    }).catch(function(error) {
+                        config.onMediaCapturingFailed(error);
+                    });
+                } else {
+                    var error = 'getDisplayMedia API are not supported in this browser.';
+                    config.onMediaCapturingFailed(error);
+                    alert(error);
+                }
+            }
+
+            function captureAudioPlusScreen(config) {
+                if (navigator.getDisplayMedia) {
+                    navigator.getDisplayMedia({
+                        video: true
+                    }).then(screenStream => {
+                        navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic) {
+                            screenStream.addTrack(mic.getTracks()[0]);
+
+                            config.onMediaCaptured(screenStream);
+
+                            addStreamStopListener(screenStream, function() {
+                                // config.onMediaStopped();
+
+                                btnStartRecording.onclick();
+                            });
+
+                            setVideoURL(screenStream, true);
+                        });
+                    }).catch(function(error) {
+                        config.onMediaCapturingFailed(error);
+                    });
+                } else if (navigator.mediaDevices.getDisplayMedia) {
+                    navigator.mediaDevices.getDisplayMedia({
+                        video: true
+                    }).then(screenStream => {
+                        navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic) {
+                            screenStream.addTrack(mic.getTracks()[0]);
+
+                            config.onMediaCaptured(screenStream);
+
+                            addStreamStopListener(screenStream, function() {
+                                // config.onMediaStopped();
+
+                                btnStartRecording.onclick();
+                            });
+
+                            setVideoURL(screenStream, true);
+                        });
+                    }).catch(function(error) {
+                        config.onMediaCapturingFailed(error);
+                    });
+                } else {
+                    var error = 'getDisplayMedia API are not supported in this browser.';
+                    config.onMediaCapturingFailed(error);
+                    alert(error);
+                }
+            }
+        </script>
+
+        <script>
+            /* upload_youtube_video.js Copyright 2017 Google Inc. All Rights Reserved. */
+
+            function uploadToYouTube(fileName, recordRTC, callback) {
+                var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
+
+                blob = new File([blob], getFileName(fileExtension), {
+                    type: mimeType
+                });
+
+                if(!uploadVideo) {
+                    alert('YouTube API are not available.');
+                    return;
+                }
+
+                uploadVideo.callback = callback;
+                uploadVideo.uploadFile(fileName, blob);
+            }
+
+            var uploadVideo;
+
+            var signinCallback = function (result){
+              if(result.access_token) {
+                uploadVideo = new UploadVideo();
+                uploadVideo.ready(result.access_token);
+
+                document.querySelector('#signinButton').style.display = 'none';
+              }
+              else {
+                // console.error('YouTube error', result);
+                // document.querySelector('#upload-to-youtube').style.display = 'none';
+              }
+            };
+
+            var STATUS_POLLING_INTERVAL_MILLIS = 60 * 1000; // One minute.
+
+            var UploadVideo = function() {
+              this.tags = ['recordrtc'];
+              this.categoryId = 28; // via: http://stackoverflow.com/a/35877512/552182
+              this.videoId = '';
+              this.uploadStartTime = 0;
+            };
+
+
+            UploadVideo.prototype.ready = function(accessToken) {
+              this.accessToken = accessToken;
+              this.gapi = gapi;
+              this.authenticated = true;
+              false && this.gapi.client.request({
+                path: '/youtube/v3/channels',
+                params: {
+                  part: 'snippet',
+                  mine: true
+                },
+                callback: function(response) {
+                  if (!response.error) {
+                    // response.items[0].snippet.title -- channel title
+                    // response.items[0].snippet.thumbnails.default.url -- channel thumbnail
+                  }
+                }.bind(this)
+              });
+            };
+
+            UploadVideo.prototype.uploadFile = function(fileName, file) {
+              var metadata = {
+                snippet: {
+                  title: fileName,
+                  description: fileName,
+                  tags: this.tags,
+                  categoryId: this.categoryId
+                },
+                status: {
+                  privacyStatus: 'public'
+                }
+              };
+              var uploader = new MediaUploader({
+                baseUrl: 'https://www.googleapis.com/upload/youtube/v3/videos',
+                file: file,
+                token: this.accessToken,
+                metadata: metadata,
+                params: {
+                  part: Object.keys(metadata).join(',')
+                },
+                onError: function(data) {
+                  var message = data;
+                  try {
+                    var errorResponse = JSON.parse(data);
+                    message = errorResponse.error.message;
+                  } finally {
+                    alert(message);
+                  }
+                }.bind(this),
+                onProgress: function(data) {
+                  var bytesUploaded = data.loaded;
+                  var totalBytes = parseInt(data.total);
+                  var percentageComplete = parseInt((bytesUploaded * 100) / totalBytes);
+
+                  uploadVideo.callback(percentageComplete);
+                }.bind(this),
+                onComplete: function(data) {
+                  var uploadResponse = JSON.parse(data);
+                  this.videoId = uploadResponse.id;
+                  this.videoURL = 'https://www.youtube.com/watch?v=' + this.videoId;
+                  uploadVideo.callback('uploaded', this.videoURL);
+
+                  setTimeout(this.pollForVideoStatus, 2000);
+                }.bind(this)
+              });
+              this.uploadStartTime = Date.now();
+              uploader.upload();
+            };
+
+            UploadVideo.prototype.pollForVideoStatus = function() {
+              this.gapi.client.request({
+                path: '/youtube/v3/videos',
+                params: {
+                  part: 'status,player',
+                  id: this.videoId
+                },
+                callback: function(response) {
+                  if (response.error) {
+                    uploadVideo.pollForVideoStatus();
+                  } else {
+                    var uploadStatus = response.items[0].status.uploadStatus;
+                    switch (uploadStatus) {
+                      case 'uploaded':
+                        uploadVideo.callback('uploaded', uploadVideo.videoURL);
+                        uploadVideo.pollForVideoStatus();
+                        break;
+                        case 'processed':
+                        uploadVideo.callback('processed', uploadVideo.videoURL);
+                        break;
+                        default:
+                        uploadVideo.callback('failed', uploadVideo.videoURL);
+                        break;
+                    }
+                  }
+                }.bind(this)
+              });
+            };
+
+        </script>
+
+        <script>
+            /* cors_upload.js Copyright 2015 Google Inc. All Rights Reserved. */
+
+            var DRIVE_UPLOAD_URL = 'https://www.googleapis.com/upload/drive/v2/files/';
+
+            var RetryHandler = function() {
+              this.interval = 1000; // Start at one second
+              this.maxInterval = 60 * 1000; // Don't wait longer than a minute
+            };
+
+            RetryHandler.prototype.retry = function(fn) {
+              setTimeout(fn, this.interval);
+              this.interval = this.nextInterval_();
+            };
+
+            RetryHandler.prototype.reset = function() {
+              this.interval = 1000;
+            };
+
+            RetryHandler.prototype.nextInterval_ = function() {
+              var interval = this.interval * 2 + this.getRandomInt_(0, 1000);
+              return Math.min(interval, this.maxInterval);
+            };
+
+            RetryHandler.prototype.getRandomInt_ = function(min, max) {
+              return Math.floor(Math.random() * (max - min + 1) + min);
+            };
+
+            var MediaUploader = function(options) {
+              var noop = function() {};
+              this.file = options.file;
+              this.contentType = options.contentType || this.file.type || 'application/octet-stream';
+              this.metadata = options.metadata || {
+                'title': this.file.name,
+                'mimeType': this.contentType
+              };
+              this.token = options.token;
+              this.onComplete = options.onComplete || noop;
+              this.onProgress = options.onProgress || noop;
+              this.onError = options.onError || noop;
+              this.offset = options.offset || 0;
+              this.chunkSize = options.chunkSize || 0;
+              this.retryHandler = new RetryHandler();
+
+              this.url = options.url;
+              if (!this.url) {
+                var params = options.params || {};
+                params.uploadType = 'resumable';
+                this.url = this.buildUrl_(options.fileId, params, options.baseUrl);
+              }
+              this.httpMethod = options.fileId ? 'PUT' : 'POST';
+            };
+
+            MediaUploader.prototype.upload = function() {
+              var self = this;
+              var xhr = new XMLHttpRequest();
+
+              xhr.open(this.httpMethod, this.url, true);
+              xhr.setRequestHeader('Authorization', 'Bearer ' + this.token);
+              xhr.setRequestHeader('Content-Type', 'application/json');
+              xhr.setRequestHeader('X-Upload-Content-Length', this.file.size);
+              xhr.setRequestHeader('X-Upload-Content-Type', this.contentType);
+
+              xhr.onload = function(e) {
+                if (e.target.status < 400) {
+                  var location = e.target.getResponseHeader('Location');
+                  this.url = location;
+                  this.sendFile_();
+                } else {
+                  this.onUploadError_(e);
+                }
+              }.bind(this);
+              xhr.onerror = this.onUploadError_.bind(this);
+              xhr.send(JSON.stringify(this.metadata));
+            };
+
+            MediaUploader.prototype.sendFile_ = function() {
+              var content = this.file;
+              var end = this.file.size;
+
+              if (this.offset || this.chunkSize) {
+                // Only bother to slice the file if we're either resuming or uploading in chunks
+                if (this.chunkSize) {
+                  end = Math.min(this.offset + this.chunkSize, this.file.size);
+                }
+                content = content.slice(this.offset, end);
+              }
+
+              var xhr = new XMLHttpRequest();
+              xhr.open('PUT', this.url, true);
+              xhr.setRequestHeader('Content-Type', this.contentType);
+              xhr.setRequestHeader('Content-Range', 'bytes ' + this.offset + '-' + (end - 1) + '/' + this.file.size);
+              xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+              if (xhr.upload) {
+                xhr.upload.addEventListener('progress', this.onProgress);
+              }
+              xhr.onload = this.onContentUploadSuccess_.bind(this);
+              xhr.onerror = this.onContentUploadError_.bind(this);
+              xhr.send(content);
+            };
+
+            MediaUploader.prototype.resume_ = function() {
+              var xhr = new XMLHttpRequest();
+              xhr.open('PUT', this.url, true);
+              xhr.setRequestHeader('Content-Range', 'bytes */' + this.file.size);
+              xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+              if (xhr.upload) {
+                xhr.upload.addEventListener('progress', this.onProgress);
+              }
+              xhr.onload = this.onContentUploadSuccess_.bind(this);
+              xhr.onerror = this.onContentUploadError_.bind(this);
+              xhr.send();
+            };
+
+            MediaUploader.prototype.extractRange_ = function(xhr) {
+              var range = xhr.getResponseHeader('Range');
+              if (range) {
+                this.offset = parseInt(range.match(/\d+/g).pop(), 10) + 1;
+              }
+            };
+
+            MediaUploader.prototype.onContentUploadSuccess_ = function(e) {
+              if (e.target.status == 200 || e.target.status == 201) {
+                this.onComplete(e.target.response);
+              } else if (e.target.status == 308) {
+                this.extractRange_(e.target);
+                this.retryHandler.reset();
+                this.sendFile_();
+              }
+            };
+
+            MediaUploader.prototype.onContentUploadError_ = function(e) {
+              if (e.target.status && e.target.status < 500) {
+                this.onError(e.target.response);
+              } else {
+                this.retryHandler.retry(this.resume_.bind(this));
+              }
+            };
+
+            MediaUploader.prototype.onUploadError_ = function(e) {
+              this.onError(e.target.response); // TODO - Retries for initial upload
+            };
+
+            MediaUploader.prototype.buildQuery_ = function(params) {
+              params = params || {};
+              return Object.keys(params).map(function(key) {
+                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+              }).join('&');
+            };
+
+            MediaUploader.prototype.buildUrl_ = function(id, params, baseUrl) {
+              var url = baseUrl || DRIVE_UPLOAD_URL;
+              if (id) {
+                url += id;
+              }
+              var query = this.buildQuery_(params);
+              if (query) {
+                url += '?' + query;
+              }
+              return url;
+            };
+        </script>
+
+        <script>
+            var chkFixSeeking = document.querySelector('#chk-fixSeeking');
+            chkFixSeeking.onchange = function() {
+                if(this.checked === true) {
+                    localStorage.setItem(this.id, 'true');
+                }
+                else {
+                    localStorage.removeItem(this.id);
+                }
+            };
+            if(localStorage.getItem(chkFixSeeking.id) === 'true') {
+                chkFixSeeking.checked = true;
+            }
+        </script>
+
+        <script>
+            var chkTimeSlice = document.querySelector('#chk-timeSlice');
+            var timeSlice = false;
+
+            if(typeof MediaRecorder === 'undefined') {
+                chkTimeSlice.disabled = true;
+            }
+
+            chkTimeSlice.addEventListener('change', function() {
+                if(chkTimeSlice.checked === true) {
+                    var _timeSlice = prompt('Please enter timeSlice in milliseconds e.g. 1000 or 2000 or 3000.', 1000);
+                    _timeSlice = parseInt(_timeSlice);
+                    if(!_timeSlice || _timeSlice == NaN || typeof _timeSlice === 'undefined') {
+                        timeSlice = false;
+                        return;
+                    }
+
+                    timeSlice = _timeSlice;
+                }
+                else {
+                    timeSlice = false;
+                }
+            }, false);
+        </script>
+
+        <script>
+            var btnPauseRecording = document.querySelector('#btn-pause-recording');
+            btnPauseRecording.onclick = function() {
+                if(!btnStartRecording.recordRTC) {
+                    btnPauseRecording.style.display = 'none';
+                    return;
+                }
+
+                btnPauseRecording.disabled = true;
+                if(btnPauseRecording.innerHTML === 'Pause') {
+                    btnStartRecording.disabled = true;
+                    chkFixSeeking.parentNode.style.display = 'none';
+                    btnStartRecording.style.fontSize = '15px';
+                    btnStartRecording.recordRTC.pauseRecording();
+                    recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = 'Recording status: paused';
+                    recordingPlayer.pause();
+
+                    btnPauseRecording.style.fontSize = 'inherit';
+                    setTimeout(function() {
+                        btnPauseRecording.innerHTML = 'Resume Recording';
+                        btnPauseRecording.disabled = false;
+                    }, 2000);
+                }
+
+                if(btnPauseRecording.innerHTML === 'Resume Recording') {
+                    btnStartRecording.disabled = false;
+                    chkFixSeeking.parentNode.style.display = 'none';
+                    btnStartRecording.style.fontSize = 'inherit';
+                    btnStartRecording.recordRTC.resumeRecording();
+                    recordingPlayer.parentNode.parentNode.querySelector('h2').innerHTML = '<img src="https://www.webrtc-experiment.com/images/progress.gif">';
+                    recordingPlayer.play();
+
+                    btnPauseRecording.style.fontSize = '15px';
+                    btnPauseRecording.innerHTML = 'Pause';
+                    setTimeout(function() {
+                        btnPauseRecording.disabled = false;
+                    }, 2000);
+                }
+            };
+        </script>
+        <script>
+  <!-- We'll transform this input into a pond -->
+  <input type="file" class="filepond">
+
+  <!-- Load FilePond library -->
+  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+  <!-- Turn all file input elements into ponds -->
+  <script>
+  FilePond.parse(document.body);
+  </script>
+
+</body>
+</html>
+
+    <footer>
+        <p>
+
+            <a href="https://www.webrtc-experiment.com/">WebRTC Experiments</a> |
+            <a href="http://www.muazkhan.com/">Muaz Khan</a> |
+            <a href="https://twitter.com/WebRTCWeb">@WebRTCWeb</a> |
+            <a href="https://twitter.com/muazkh">@muazkh</a>
+        </p>
     </footer>
-    <a class="fixed top-50pc right-0 p-3 bg-indigo white hover-scale-up-1 ease-300 no-underline" href="https://gum.co/tifJM" target="_blank" >
-        <i class="w-4" data-feather="download"></i>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.8.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/8.8.1/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+    <!-- commits.js is useless for you! -->
+    <script>
+        window.useThisGithubPath = 'muaz-khan/RecordRTC';
+    </script>
+    <script src="https://www.webrtc-experiment.com/commits.js" async></script>
+    <script src="https://apis.google.com/js/client:plusone.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
 </html>
