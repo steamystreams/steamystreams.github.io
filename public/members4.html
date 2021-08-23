@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steamy Streams</title>
+    <link rel="stylesheet" href="assets/CSS/shorthand.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script>
+
+</head>
+
+<body class="bg-black muli">
+
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
+        <div class="flex justify-between">
+            <div class="flex justify-between">
+                <a href="#" class="flex items-center p-2 mr-4 no-underline">
+                    <img class="max-h-40 w-auto"  src="assets/images/sm_stream.gif" /></div> <a href="#" class="flex items-center p-2 mr-4 no-underline">
+                <img class="max-h-40 w-auto"  src="assets/images/logo.png"  />
+
+            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
+                class="flex items-left ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
+                <i data-feather="menu"></i>
+            </a>
+
+        </div>
+
+        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="#home" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Home</a>
+            <a href="http://cams.steamystreams.com" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Cams</a>
+            <a href="http://steamystreams.com/clips.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Clips</a>
+            <a href="https://steamystreams.com/app/index.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">App</a>
+            <a href="#merch" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Merch</a>
+            <a href="Camgirl Concerige" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Camgirl Concierge</a>
+            <a href="http://steamystreams.com/soupmaker.html" class="fs-s1 mx-3 py-3 indigo no-underline hover-underline">Soupmaker</a>
+
+            <a href="#" class="button bg-white black fw-600 no-underline mx-5">Register</a>
+        </div>
+
+    </nav>
+
+<body>
+
+
+
+   <script>var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1cwS645GO-_QX4aZpon0o6qEEVf_1SgAt4D6Sw8YPTE4/edit#gid=0';
+   </script>
+
+<div></div><h2>Premium Content</h2><div>
+<ol id="hr"></ol>
+  <script id="hr-template" type="text/x-handlebars-template">
+
+ <iframe src="{{cells.link}}" title={{title}} loading="lazy" width="400" height="300" allowfullscreen </iframe>
+
+</script>
+   <script> var HRTemplate = Handlebars.compile($('#hr-template').html());
+   </script>
+
+<script>
+    $('#hr').sheetrock({
+      url: mySpreadsheet,
+      query: "select A,D",
+      fetchSize: 48,
+      rowTemplate: HRTemplate
+    });
+    </script>
+
+    <!-- footer -->
+    <footer class="p-5 md-p-l5 bg-indigo-lightest-10">
+        <div class="flex flex-wrap">
+            <div class="md-w-25pc mb-10">
+                <img src="assets/images/logo.png" class="w-35" alt="">
+                <div class="white opacity-70 fs-s2 mt-4 md-pr-10">
+                    <p>Soluta voluptate et optio. Eos quasi impedit sapiente aliquid eius eligendi at. Necessitatibus
+                        magni et sed quod quas minima.</p>
+                    <br>
+                    <p>Soluta voluptate et optio. Eos quasi impedit sapiente aliquid eius eligendi at. Necessitatibus
+                        magni et sed quod quas minima.</p>
+                </div>
+            </div>
+            <div class="w-100pc md-w-50pc">
+                <div class="flex justify-around">
+                    <div class="w-33pc md-px-10 mb-10">
+                        <h5 class="white">Company</h5>
+                        <ul class="list-none mt-5 fs-s2">
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
+                                    Us</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
+                            </li>
+                            <li class="my-3"><a href="#"
+                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-33pc md-px-10 mb-10">
+                        <h5 class="white">Product</h5>
+                        <ul class="list-none mt-5 fs-s2">
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
+                                    Us</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
+                            </li>
+                            <li class="my-3"><a href="#"
+                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-33pc md-px-10 mb-10">
+                        <h5 class="white">Support</h5>
+                        <ul class="list-none mt-5 fs-s2">
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">About
+                                    Us</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Jobs</a>
+                            </li>
+                            <li class="my-3"><a href="#"
+                                    class="white opacity-70 no-underline hover-underline">Contact</a></li>
+                            <li class="my-3"><a href="#" class="white opacity-70 no-underline hover-underline">Media</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100pc md-w-25pc">
+                <div class="flex w-75pc md-w-100pc mx-auto">
+                    <input type="text"
+                        class="input flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
+                        placeholder="Email Address">
+                    <button class="button bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Start</button>
+                </div>
+                <div class="flex justify-around my-8">
+                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
+                            data-feather="twitter" class="absolute-center h-4"></i></a>
+                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
+                            data-feather="facebook" class="absolute-center h-4"></i></a>
+                    <a href="#" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><i
+                            data-feather="instagram" class="absolute-center h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a class="fixed top-50pc right-0 p-3 bg-indigo white hover-scale-up-1 ease-300 no-underline" href="https://gum.co/tifJM" target="_blank" >
+        <i class="w-4" data-feather="download"></i>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
+
