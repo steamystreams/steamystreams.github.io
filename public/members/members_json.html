@@ -1,0 +1,46 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+<script>
+
+    $(function() {
+
+
+   var people = [];
+
+   $.getJSON('https:steamystreams.com/public.members./json.json', function(data) {
+       $.each(data.title", function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.download_url + "</td>" +
+           "<td>" + f.single_img + "</td>" + "<td>" + f.uploaded + "</td>" + "<td>" + f.length" + "</td>" + "</tr>"
+           $(tblRow).appendTo("#userdata tbody");
+     });
+
+   });
+
+});
+</script>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="profile">
+   <table id= "userdata" border="2">
+  <thead>
+            <th>Title</th>
+            <th>download_url</th>
+            <th>single_img</th>
+            <th>uploaded</th>
+            <th>length</th>
+        </thead>
+      <tbody>
+
+       </tbody>
+   </table>
+
+</div>
+</div>
+
+</body>
+</html>
