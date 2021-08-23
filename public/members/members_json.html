@@ -9,7 +9,7 @@
 
    var video = [];
 
-   $.getJSON('https://steamystreams.com/public/members/json.json', function(data) {
+   $.getJSON('https://steamystreams.com/public/members/json.json'), function(data) {
        $.each(data.title", function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.download_url + "</td>" +
            "<td>" + f.single_img + "</td>" + "<td>" + f.uploaded + "</td>" + "<td>" + f.length" + "</td>" + "</tr>"
