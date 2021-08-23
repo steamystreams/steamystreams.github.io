@@ -1,4 +1,4 @@
-  fetch(https://enmcl1x9akrhc23.m.pipedream.net)
+  fetch('https://enmcl1x9akrhc23.m.pipedream.net')
   .then(response => response.json())
   .then(data => console.log(data))
   const fetchDataBtn = document.querySelector('#fetchdata')
