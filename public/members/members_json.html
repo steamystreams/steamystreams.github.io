@@ -5,8 +5,9 @@
 <!-- Include Handlebars from a CDN -->
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script>
+{{log 'files.single_img' single image 'files.download_url' download url 'files.file_code' embed code}}
   // compile the template
-  var template = Handlebars.compile("Files <b>{{download_url}}</b>");
+  var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
   // execute the compiled template and print the output to the console
   console.log(template({ doesWhat: "rocks!" }));
 </script>
@@ -54,7 +55,7 @@ fetch("https://ennc4cdxthnt6kw.m.pipedream.net", options)
         </div>
       <p>{{single_img}}</p>
       <p>{{download_url}}</p>
-      <p>{{les.download_url}}</p>
+    <p>{{files.download_url}}</p>
 
 </body>
 </html>
