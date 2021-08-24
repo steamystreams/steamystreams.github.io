@@ -1,0 +1,40 @@
+<! DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <script language="javascript" type="text/javascript">
+               function ParseJSON()  {
+        "download_url": "https://dood.la/d/jlx71qt8gmsk",
+        "single_img": "https://img.doodcdn.com/snaps/ydstb59hvplnswvd.jpg",
+        "file_code": "jlx71qt8gmsk",
+        "canplay": 1,
+        "length": "2507",
+        "views": "0",
+        "uploaded": "2021-08-23 22:20:50",
+        "public": "1",
+        "fld_id": "0",
+        "title": "12582"
+      },
+            document.getElementById("download_url").innerHTML = JSONObject.download_url
+            document.getElementById("length").innerHTML = JSONObject.length
+            document.getElementById("file_code").innerHTML = JSONObject.file_code
+            document.getElementById("uploaded").innerHTML = JSONObject.uploaded
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="download_url">
+        </div>
+        <div id="length">
+        </div>
+        <div id="file_code">
+        </div>
+        <div id="uploaded">
+        </div>
+        <input type="button" onclick="ParseJSON()" style="width: 59px" value="Click me" />
+    </div>
+    </form>
+    </body>
+</html>
