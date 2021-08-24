@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script>
   // compile the template
-  var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+  var template = Handlebars.compile("Files <b>{{download_url}}</b>");
   // execute the compiled template and print the output to the console
   console.log(template({ doesWhat: "rocks!" }));
 </script>
@@ -53,6 +53,8 @@ fetch("https://ennc4cdxthnt6kw.m.pipedream.net", options)
 <P><iframe width="600" height="480" src="https://dood.la/e/{{files.file_code}}" scrolling="no" frameborder="0" allowfullscreen="true"></iframe></p>
         </div>
       <p>{{single_img}}</p>
+      <p>{{download_url}}</p>
+      <p>{{les.download_url}}</p>
 
 </body>
 </html>
