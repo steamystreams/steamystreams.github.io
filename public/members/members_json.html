@@ -1,6 +1,24 @@
 <html>
 <head>
-<script type="text/javascript" src="https://steamystreams.github.io/public/assets/js/fetch.js"</script>
+<script>  fetch('https://enmcl1x9akrhc23.m.pipedream.net')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  const fetchDataBtn = document.querySelector('#fetchdata')
+const result = document.querySelector('#result')
+
+
+const getData = function() {
+  result.innerText = 'Loading....'
+  fetch('https://enmcl1x9akrhc23.m.pipedream.net')
+    .then(res => res.json())
+    .then(data => {
+      result.innerText = JSON.stringify(data, null, 2)
+    })
+    .catch(error => console.log(error))
+}
+
+
+fetchDataBtn.addEventListener('click', getData)</script>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 </script>
