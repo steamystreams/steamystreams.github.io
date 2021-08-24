@@ -25,7 +25,6 @@ fetchDataBtn.addEventListener('click', getData)</script>
 <!-- Include Handlebars from a CDN -->
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script>
-{{log 'files.single_img' single image 'files.download_url' download url 'files.file_code' embed code}}
   // compile the template
   var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
   // execute the compiled template and print the output to the console
@@ -44,6 +43,7 @@ fetchDataBtn.addEventListener('click', getData)</script>
     <p>{{files.single_img}}</p>
     <p>{{files.title}}</p>
     </div>
+{{log 'files.single_img' single image 'files.download_url' download url 'files.file_code' embed code}}
 
 
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
