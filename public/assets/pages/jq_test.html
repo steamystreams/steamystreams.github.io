@@ -1,0 +1,33 @@
+<html>
+  <head>
+ 
+  <script>
+  $(document).ready(function() {
+    function newAdUnit(obj) {
+        var iframe = document.createElement('iframe');
+        iframe.onload = function() {
+            iframe = iframe.contentWindow.document;
+            var html = <body><iframe width="640" height="360" src="https://videotxxx.com/embed/16231679/?promo=33163" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<iframe width="640" height="360" src="https://videotxxx.com/embed/16231657/?promo=33163" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<iframe width="640" height="360" src="https://videotxxx.com/embed/16231401/?promo=33163" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+</body>;
+</script>
+<script>
+            iframe.open();
+            iframe.write(html);
+            iframe.close();
+        };
+        $(obj).append(iframe);
+    }
+
+    newAdUnit($('#test'));
+  });
+  </script>
+  </head>
+  <body>
+    <div id="test">
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </body>
+</html>
