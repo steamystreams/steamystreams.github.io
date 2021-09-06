@@ -23,7 +23,7 @@
 
     $.ajax({
         type: "GET",
-        url: "http://steamystreams.com/assets/hot.csv",
+        url: "https://steamystreams.com/assets/hot.csv",
         success: function (data) {
             $('body').append(arrayToTable(Papa.parse(data).data));
         }
