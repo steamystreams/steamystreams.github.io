@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RecordRTC | WebRTC Audio+Video+Screen Recording</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<style>
+    html, body {
+        margin: top:0!important;
+        padding: 0!important;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 1em;
+    }
+
+    video {
+        width: 30%;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+       .recordrtc button {
+            font-size: inherit;
+        }
+
+        .recordrtc button, .recordrtc select {
+            vertical-align: middle;
+            line-height: 1;
+            padding: 2px 5px;
+            height: auto;
+            font-size: inherit;
+            margin: 0;
+        }
+</style>
+
+
+    <!-- web streams API polyfill to support Firefox -->
+    <script src="./assets/js/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
+
+    <!-- ../libs/DBML.js to fix video seeking issues -->
+    <script src="./assets/js/EBML.js"></script>
+
+    <!-- for Edge/FF/Chrome/Opera/etc. getUserMedia support -->
+    <script src="./assets/js/adapter/adapter-latest.js"></script>
+    <script src="./assets/js/DetectRTC.js"> </script>
+
+    <!-- video element -->
+    <link href="./assets/js/getHTMLMediaElement.css" rel="stylesheet">
+    <script src="./assets/js/getHTMLMediaElement.js"></script>
+</head>
+<body>
+
+<button id="btn-start-recording">Start Recording</button>
+<button id="btn-stop-recording"> Stop Recording</button>
+<button id="btn-save-recording"> Save Recording</button>
+<hr>
+<video controls autoplay playsinline></video>
+
+<script src="/RecordRTC.js"></script>
+<script>
+var video = document.querySelector('video');
+
+if(!navigator.getDisplayMedia && !navigator.mediaDevices.getDisplayMedia) {
+    var error = 'Your browser does NOT support the getDisplayMedia API.';
+    document.querySelector('h1').innerHTML = error;
+
+    document.querySelector('video').style.display = 'none';
+    document.getElementById('btn-start-recording').style.display = 'none';
+    document.getElementById('btn-stop-recording').style.display = 'none';
+    throw new Error(error);
+}
+
+function invokeGetDisplayMedia(success, error) {
+    var displaymediastreamconstraints = {
+        video: {
+            displaySurface: 'monitor', // monitor, window, application, browser
+            logicalSurface: true,
+            cursor: 'always' // never, always, motion
+        }
+    };
+
+    // above constraints are NOT supported YET
+    // that's why overridnig them
+    displaymediastreamconstraints = {
+        video: true
+    };
+
+    if(navigator.mediaDevices.getDisplayMedia) {
+        navigator.mediaDevices.getDisplayMedia(displaymediastreamconstraints).then(success).catch(error);
+    }
+    else {
+        navigator.getDisplayMedia(displaymediastreamconstraints).then(success).catch(error);
+    }
+}
+
+function captureScreen(callback) {
+    invokeGetDisplayMedia(function(screen) {
+        addStreamStopListener(screen, function() {
+            document.getElementById('btn-stop-recording').click();
+        });
+        callback(screen);
+    }, function(error) {
+        console.error(error);
+        alert('Unable to capture your screen. Please check console logs.\n' + error);
+    });
+}
+
+function stopRecordingCallback() {
+    video.src = video.srcObject = null;
+    video.src = URL.createObjectURL(recorder.getBlob());
+
+    recorder.screen.stop();
+    recorder.destroy();
+    recorder = null;
+
+    document.getElementById('btn-start-recording').disabled = false;
+}
+
+var recorder; // globally accessible
+
+document.getElementById('btn-start-recording').onclick = function() {
+    this.disabled = true;
+    captureScreen(function(screen) {
+        video.srcObject = screen;
+
+        recorder = RecordRTC(screen, {
+            type: 'video'
+        });
+
+        recorder.startRecording();
+
+
+        document.getElementById('btn-stop-recording').disabled = false;
+    });
+};
+
+var recorder = RecordRTC(camera, {
+    recorderType: MediaStreamRecorder,
+    mimeType: 'video/webm',
+    timeSlice: 1000, // pass this parameter
+    ondataavailable: function(blob) {
+        invokeSaveAsDialog(blob);
+    }
+});
+document.getElementById('btn-stop-recording').onclick = function() {
+    this.disabled = true;
+    recorder.stopRecording(stopRecordingCallback);
+};
+
+function addStreamStopListener(stream, callback) {
+    stream.addEventListener('ended', function() {
+        callback();
+        callback = function() {};
+    }, false);
+    stream.addEventListener('inactive', function() {
+        callback();
+        callback = function() {};
+    }, false);
+    stream.getTracks().forEach(function(track) {
+        track.addEventListener('ended', function() {
+            callback();
+            callback = function() {};
+        }, false);
+        track.addEventListener('inactive', function() {
+            callback();
+            callback = function() {};
+        }, false);
+    });
+}
+</script>
+<br><br>
+<div>
+
+
+<style>
+ source-box{
+margin-top: 25px;
+padding:1ppx;
+overflow:hidden;
+</style>
+  <div class="source-box"> <iframe src="https://chaturbate.com/in/?track=embed&tour=Limj&campaign=dkMJV&signup_notice=1&b=7sins_allstars&disable_sound=1&mobileRedirect=never" class="code" scrolling="no" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:100px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe>
+</div></div>
+    </body>
+
+
+
+<html>
