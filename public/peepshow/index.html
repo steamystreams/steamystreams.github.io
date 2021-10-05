@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   font-family: 'Lato', sans-serif;
-  background-image: url("./assets/images/pexels-pixabay-235994.jpg");
-  opacity: 1;
+
 }
 * { box-sizing: border-box;}
 
@@ -16,6 +15,13 @@ html {
 body {
   padding: 1rem;
   font-familiy: Verdana, Geneva, sans-serif;
+}
+image_main {
+    position: absolute
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 20;
 }
 /* The Container */
 .box-grid {
@@ -40,86 +46,28 @@ body {
   background-color: #333333;
   color: #d9d9d9;
 }
+ .flex-container-tm {
+     background-color: #5e20c9;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: .9;
 
-/* Box: Center Center */
-.box-flex-center {
-  align-items: center;
 }
-
-/* Box: Bottom Center */
-.box-flex-bottom {
-  align-items: flex-end;
+.flex-container-tm > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
 }
-
-/* Box: Top Right */
-.box-flex-top-right {
-  justify-content: flex-end;
-}
-
-/* Box: Center Left */
-.box-flex-center-left {
-  align-items: center;
-  justify-content: flex-start;
-}
-
-/* Box: Bottom Right */
-.box-flex-bottom-right {
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.box-img {
-  transition: -webkit-transform .5s ease-in-out;
-  transition: transform .5s ease-in-out;
-}
-
-.box-img:hover {
-  -webkit-transform: scale(1.07);
-  transform: scale(1.07);
-}
-
-.box-caption {
-  position: absolute;
-  max-width: 200px;
-  margin: 0;
-  padding: .5rem;
-  word-break: break-word;
-  font-size: 1.25rem;
-  background-color: rgba(0,0,0,.3);
-  color: #f2f2f2;
-}
-
-.box-caption:hover {
-  background-color: rgba(0,0,0,.5);
-  color: #e6e6e6;
-  transition: all ease .5s;
-}
-
-/* Styles for multiple caption overlays */
-
-/* align-self: flex-start */
-.align-start {
-  align-self: flex-start;
-}
-
-/* align-self: center */
-.align-center {
-  -ms-grid-row-align: center;
-  align-self: center;
-}
-
-/* align-self: flex-end */
-.align-end {
-  align-self: flex-end;
-}
-
-
-
 .overlay {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: -20;
   top: 0;
   left: 0;
   background-color: rgb(0,0,0);
@@ -129,19 +77,18 @@ body {
 }
 
 .overlay-content1 {
-  position: relative;
-  top: 25%;
+  position: absolute;
+  top: 0;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
   z-index: -1;
 }
 .overlay-content2 {
-  position: relative;
-  top: 25%;
+  position: absolute;
+  top: 0;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
+  opacity: 1;
   z-index: 1;
 }
 
@@ -164,6 +111,28 @@ body {
   right: 45px;
   font-size: 60px;
 }
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
 
 @media screen and (max-height: 450px) {
   .overlay a {font-size: 20px}
@@ -177,54 +146,61 @@ body {
 </head>
 <body>
 
- <div id="iframe" class="overlay1">
+  <div id="myiframe" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content1">
-<iframe src="https://chaturbate.com/in/?track=embed&tour=gLDS&campaign=dkMJV&signup_notice=1&disable_sound=1&mobileRedirect=never" height="480px" width="850px" frameborder="0" class="code" scrolling="no"></iframe>
-</div>
+
+    <iframe src="https://chaturbate.com/in/?track=embed&tour=Limj&campaign=dkMJV&signup_notice=1&b=mazeekin30&disable_sound=1&mobileRedirect=never" frameborder="0" style="overflow:hidden;height:100%;width:100%" ></iframe>
+</body></div>
 <div class="overlay-content2">
-<img src="https://steamystreams.com/public/peepshow/images/knot_mask.png" width="1920px" height="1080px" alt="chaturbate peepshow">
+<body style="margin:0px;padding:0px;overflow:hidden">
+<img src="https://steamystreams.com/public/peepshow/images/knot_mask.png" alt="chaturbate peepshow"></img>
 
   </div>
 </div>
 
-<h2>Fullscreen Overlay Nav Example</h2>
+
     <!-- big text -->
-    <section class="p-10 md-py-10">
-        <div class="w-100pc md-w-70pc mx-auto py-10">
-            <h2 class="white fs-l2 md-fs-xl1 fw-900 lh-2">
-                <span class="border-b bc-indigo bw-4"> </h2>
-        </div>
+    <style>
+    .flex-container-tm {
+     background-color: #333333;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 1;
 
-<div data-stein-url="https://api.steinhq.com/v1/storages/615ad33e47873c2b735f4a9b/Sheet1"
-data-stein-limit="12"
-data-stein-offset="1"
+}
+.flex-container-tm > div {
+  background-color: #333333:
+  width: 100px;
+  margin-top: 360px;
+  text-align: center;
+  line-height: 65px;
+  font-size: 60px;
+}
 
-<div class="box-grid">
-  <div class="box-flex">
-  <div class="box-flex-start">
- <h5 class="box-caption align-start;cursor:pointer" onclick="openNav();">&#9776; open</h5></div>
-<img class="box-img" src="{{Results Image Url 360x270}}"  alt="Image from chaturbate.com"</div>
-    <h6 class="box-caption align-end">{{Results Username}}</h6></div>
-
-
-  <!-- end: box-flex --></div></div></div>
-  <!-- end: box-flex --></div></div></div>
+</style>
+<span onclick="openNav()">open
 
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/1.0.0/anime.min.js'></script><script  src="./assets/js/script.js"></script>
-<script src="https://unpkg.com/stein-expedite@0.0.4/dist/index.js"></script></body></div>
+<div class="flex-container-tm">
+ </span></div>
+
+
     </section>
 
 <script>
 function openNav() {
-  document.getElementById("iframe").style.width = "100%";
+  document.getElementById("myiframe").style.width = "100%";
 }
 
 function closeNav() {
-  document.getElementById("iframe").style.width = "0%";
+  document.getElementById("myiframe").style.width = "0%";
 }
 </script>
 
+ </div>
+</div>
 </body>
 </html>
