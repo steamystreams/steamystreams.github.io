@@ -83,7 +83,7 @@ function main() {
 
     const texture = initTexture(gl);
 
-    const video = setupVideo('/toke.webm');
+    const video = setupVideo('https://steamystreams.com/clouds/toke.webm');
 
     var then = 0;
 
