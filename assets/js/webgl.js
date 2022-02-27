@@ -83,7 +83,6 @@ function main() {
     const texture = initTexture(gl);
 
     const video = setupVideo('${steps.send_http_request_2.$return_value.models[0].stream.url');
-    <canvas id="glcanvas" source src='${steps.send_http_request_2.$return_value.models[0].stream.url');
 
     var then = 0;
 
