@@ -30163,6 +30163,11 @@ function testPoint( point, index, localThresholdSq, matrixWorld, raycaster, inte
 
 }
 
+
+   
+import { LinearFilter } from '../constants.js';
+import { Texture } from './Texture.js';
+
 class VideoTexture extends Texture {
 
 	constructor( video, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) {
