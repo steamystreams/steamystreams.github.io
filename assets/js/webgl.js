@@ -82,7 +82,7 @@ function main() {
 
     const texture = initTexture(gl);
 
-    const video = setupVideo('${steps.send_http_request_2.$return_value.models[0].stream.url');
+    const video = setupVideo('$https://b-hls-16.strpst.com/hls/2534682/2534682.m3u8');
 
     var then = 0;
 
