@@ -43,14 +43,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merienda+One&display=swap" rel="stylesheet">
 <style>
+.canvas {
+
+  position: relative;
+  margin-top: 60px;
+  left: 0;
+  background-color: black;
+  z-index: -1;
+
+}
 
 
 
 
 
-
-
-           <style>
      h1 {
 	display: inline;
 	position: absolute;
@@ -86,12 +92,88 @@ h1:after {
 
 
 .top-container {
+  display: flex;
   flex-wrap: nowrap;
-  position: absolute;
-    margin: auto;
+  position: relative;
+    margin: 0 auto;
 
 }
 
+.flex-container > div {
+  background-color: #000000;
+  width: 100px;
+  margin: 10px;
+
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+.flex-container {
+background-color: #000000;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  display: flex;
+   width: 100%;
+  margin: 10px;
+  text-align: center;
+  justify-content: center;
+  height: 80px;
+  align-items: stretch;
+}
+.flex-container-footer {
+  margin: 2px
+  text-align: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  text-align: center;
+  height: 400px;
+
+}
+
+.flex-container-footer > div {
+
+  width: 800px;
+  margin: 10px;
+
+}
+
+.flex-container-player {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   align-content: space-between;
+   align-items: baseline;
+
+
+}
+
+.flex-container-logo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  margins: 100px;
+  align-content: space-between;
+  align-items: baseline;
+
+
+}
+
+.flex-container-ot {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  justify-content: center;
+
+}
 .overlay {
     position: absolute;
     margin: 0 auto;
@@ -108,12 +190,56 @@ h1:after {
   right: 0;
   width: 100%;
   height: 130%;
-  z-index: 10;
 }
 
+ .overlay-player {
+    position: absolute;
+    margin: 0 auto;
+    z-index: 7;
+    opacity:.7;
+}
+ .myButton {
+	-moz-box-shadow: 0px 10px 14px -7px #276873;
+	-webkit-box-shadow: 0px 10px 14px -7px #276873;
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));
+	background:-moz-linear-gradient(top, #599bb3 5%, #408c99 100%);
+	background:-webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);
+	background:-o-linear-gradient(top, #599bb3 5%, #408c99 100%);
+	background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+	background-color:#599bb3;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:19px;
+	font-weight:bold;
+	padding:12px 13px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
+	background:-moz-linear-gradient(top, #408c99 5%, #599bb3 100%);
+	background:-webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);
+	background:-o-linear-gradient(top, #408c99 5%, #599bb3 100%);
+	background:-ms-linear-gradient(top, #408c99 5%, #599bb3 100%);
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+	background-color:#408c99;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 
-.icontainer {
-  position: absolute;
+.container {
+  position: relative;
   overflow: hidden;
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
@@ -128,41 +254,53 @@ h1:after {
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
 }
 
 
 
-</style>
+</style><br><p>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 
-
+</div>
+</div>
 </head>
+<header>
+
 
 
 <body>
 
+<div class="top-container">
 
-  <div class="icontainer">
 
  <div class="overlay-xray">
-          <img src="https://steamystreams.com/public/peepshow/images/knot_mask.png" width="100%" height="100%" alt="chaturbate peepshow">
+          <img src="https://steamystreams.com/public/peepshow/images/knot_mask.png" alt="chaturbate peepshow"
+ width="100%" height="100%" alt="x-ray">
           </div>
 
 
- <div class="responsive-iframe" src="https://chaturbate.com/in/?track=embed&tour=gLDS&campaign=dkMJV&signup_notice=1&disable_sound=1&mobileRedirect=never"></iframe>
 
+
+ <div class="container">
+  <iframe class="responsive-iframe" src="https://chaturbate.com/in/?track=embed&tour=gLDS&campaign=dkMJV&signup_notice=1&disable_sound=1&mobileRedirect=never"
+frameborder="0" style="overflow:hidden; "></iframe>
 </div>
 
-</div>
 
+            </div>     </div>
 
 
 
     <!-- hero section -->
 
 
- 
-    
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="https://steamystreams.com/assets/js/script.js"></script>
 
