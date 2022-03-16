@@ -1,0 +1,74 @@
+    html {
+        overflow: auto;
+    }
+    
+    h1 {
+        display: inline;
+        position: absolute;
+        font-family: 'Merienda One', cursive;
+        color: rgba(01, 01, 01, 0.8);
+        font-size: 4vw;
+        letter-spacing: 2px;
+    }
+
+    h4 {
+        font-family: 'Merienda One', cursive;
+        color: rgba(255, 250, 0);
+    }
+    
+    h1:after {
+        content: position: absolute;
+        left: 10px;
+        top: 5px;
+        color: rgba(20, 199, 130, 0.8);
+    }
+    
+    h3 {
+        display: inline;
+        position: relative;
+        font-family: Philosopher, Sans-Serif;
+        color: rgba(250, 251, 252, 0.5);
+        font-size: 3vw;
+        letter-spacing: 1px;
+    }
+    
+
+
+   
+      
+    .video-container {
+        width: 100%; /* this make container fluid*/
+        height: auto;
+        background-color: rgb(34, 34, 34); /* this make content background-color*/
+        margin-right: auto; /* this make content center*/
+        margin-left: auto; /* this make content center*/
+        z-index: -10;
+        }
+    
+    
+    }
+    .stripper-container {
+        width: 100%; /* this make container fluid*/
+        position: relative;
+        height: auto;
+        margin-right: auto; /* this make content center*/
+        margin-left: auto; /* this make content center*/
+        z-index: 10;
+        }
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0
+        }
+        to {
+            opacity: 1
+        }
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0
+        }
+        to {
+            opacity: 1
+        }
+    }

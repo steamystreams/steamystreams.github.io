@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - materials - dynamic cube reflection</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				touch-action: none;
+			}
+		</style>
+	</head>
+	<body>
+	<video id="video" loop crossOrigin="anonymous" playsinline style="display:none">
+			<source src="textures/hacker.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+		</video>
+
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			import Stats from './jsm/libs/stats.module.js';
+
+			let camera, scene, renderer, stats;
+			let cube, sphere, material;
+
+			let count = 0, cubeCamera1, cubeCamera2, cubeRenderTarget1, cubeRenderTarget2;
+
+			let onPointerDownPointerX, onPointerDownPointerY, onPointerDownLon, onPointerDownLat;
+
+			let lon = 0, lat = 0;
+			let phi = 0, theta = 0;
+
+			const textureLoader = new THREE.TextureLoader();
+
+			textureLoader.load( './tex/ukraine.png', function ( texture ) {
+
+				texture.encoding = THREE.sRGBEncoding;
+				texture.mapping = THREE.EquirectangularReflectionMapping;
+
+				init( texture );
+				animate();
+
+			} );
+
+			function init( texture ) {
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				document.body.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				document.body.appendChild( stats.dom );
+
+				scene = new THREE.Scene();
+				scene.background = texture;
+
+				camera = new THREE.PerspectiveCamera( 1, window.innerWidth / window.innerHeight, 10, 6000 );
+
+				//
+
+				cubeRenderTarget1 = new THREE.WebGLCubeRenderTarget( 256 );
+
+				cubeCamera1 = new THREE.CubeCamera( 1, 1000, cubeRenderTarget1 );
+
+				cubeRenderTarget2 = new THREE.WebGLCubeRenderTarget( 256 );
+
+				cubeCamera2 = new THREE.CubeCamera( 5, 1000, cubeRenderTarget2 );
+
+				//
+
+				material = new THREE.MeshStandardMaterial( {
+					envMap: cubeRenderTarget2.texture,
+					roughness: 0.1,
+					metalness: 1.4
+				} );
+
+				sphere = new THREE.Mesh( new THREE.IcosahedronGeometry( 20, 8 ), material );
+				scene.add( sphere );
+
+
+				//
+
+				document.addEventListener( 'pointerdown', onPointerDown );
+				document.addEventListener( 'wheel', onDocumentMouseWheel );
+
+				window.addEventListener( 'resize', onWindowResized );
+
+			}
+
+			function onWindowResized() {
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+			}
+
+			function onPointerDown( event ) {
+
+				event.preventDefault();
+
+				onPointerDownPointerX = event.clientX;
+				onPointerDownPointerY = event.clientY;
+
+				onPointerDownLon = lon;
+				onPointerDownLat = lat;
+
+				document.addEventListener( 'pointermove', onPointerMove );
+				document.addEventListener( 'pointerup', onPointerUp );
+
+			}
+
+			function onPointerMove( event ) {
+
+				lon = ( event.clientX - onPointerDownPointerX ) * 0.1 + onPointerDownLon;
+				lat = ( event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+
+			}
+
+			function onPointerUp() {
+
+				document.removeEventListener( 'pointermove', onPointerMove );
+				document.removeEventListener( 'pointerup', onPointerUp );
+
+			}
+
+			function onDocumentMouseWheel( event ) {
+
+				const fov = camera.fov + event.deltaY * 0.05;
+
+				camera.fov = THREE.MathUtils.clamp( fov, 10, 80 );
+
+				camera.updateProjectionMatrix();
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				const time = Date.now();
+
+				lon += .15;
+
+				lat = Math.max( - 85, Math.min( 85, lat ) );
+				phi = THREE.MathUtils.degToRad( 90 - lat );
+				theta = THREE.MathUtils.degToRad( lon );
+
+
+				camera.position.x = 100 * Math.sin( phi ) * Math.cos( theta );
+				camera.position.y = 100 * Math.cos( phi );
+				camera.position.z = 100 * Math.sin( phi ) * Math.sin( theta );
+
+				camera.lookAt( scene.position );
+
+				// pingpong
+
+				if ( count % 2 === 0 ) {
+
+					cubeCamera1.update( renderer, scene );
+					material.envMap = cubeRenderTarget1.texture;
+
+				} else {
+
+					cubeCamera2.update( renderer, scene );
+					material.envMap = cubeRenderTarget2.texture;
+
+				}
+
+				count ++;
+
+				render();
+
+				stats.update();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>
