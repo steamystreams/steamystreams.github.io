@@ -9,25 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
 
 </head>
-<script>
-    const data = null;
 
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-    
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        console.log(this.responseText);
-      }
-    });
-    
-    xhr.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&gender=f&limit=4&hd=true&embed_video_only=true");
-    xhr.setRequestHeader("cookie", "affkey=%22eJyrVipSslJQUqoFAAwfAk0%3D%22; stcki=%22pOtSwZ%3D0%5C054FqPd9a%3D0%5C054aDBbcK%3D1%5C0546pduSG%3D0%22; sbr=%22sec%3Asbrec607a5d-8565-42ff-8555-fef0ebafdcfb%3A1nUz5n%3AFA22h7qY69PEIWKqXxl3qJnzRQU%22");
-    
-    xhr.send(data);
-
-</script>
-<body class="bg-black muli">
 
     <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-black">
 
@@ -63,7 +45,7 @@
  display: flex;
  justify-content: center;
  align-items: center;
- background-color: rgb(73, 15, 150);
+ background-color: #ffffff;
 }
 
 .flex-container-frame > div {
@@ -77,6 +59,25 @@
 
 
 </style>
+            <body class="bg-black muli">
+                <script>
+const data = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&gender=f&limit=4&hd=true&embed_video_only=true");
+xhr.setRequestHeader("cookie", "affkey=%22eJyrVipSslJQUqoFAAwfAk0%3D%22; stcki=%22pOtSwZ%3D0%5C054FqPd9a%3D0%5C054aDBbcK%3D1%5C0546pduSG%3D0%22; sbr=%22sec%3Asbrec607a5d-8565-42ff-8555-fef0ebafdcfb%3A1nUz5n%3AFA22h7qY69PEIWKqXxl3qJnzRQU%22");
+
+xhr.send(data);
+</script>
+
 <div class=flex-container>
   <p id="result1"></p>
 <p id="result2"></p>
