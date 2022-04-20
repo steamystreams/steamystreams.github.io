@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1,maximum-scale=1">
+		<title>Autogenerative nude drawings from webcam API</title>
+		<meta name="author" content="Sam Twidale">
+		<meta name="description" content="Robots like making art too">
+		<meta name="keywords" content="geometrize, geometrizer, primitive, haxe, geometric, procedural, hillclimbing, art, shapes, geometry">
+		<meta name="subject" content="Geometrize images into geometric primitives">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href="https://www.steamystreams.com/project/geometrize-haxe-web/" />
+		<meta property="og:title" content="Geometrize Web Demo">
+		<meta property="og:description" content="Recreate images with geometric primitives.">
+		<meta property="og:site_name" content="SteamyStreams">
+		<meta name="twitter:title" content="Image Geometrizer">
+		<meta name="twitter:description" content="Recreate images with geometric primitives.">
+		<link rel="icon" type="image/x-icon" href="icon/favicon.png">
+		<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="icon/apple-touch-icon-precomposed.png">		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+		<link rel="stylesheet" type="text/css" href="css/nouislider.min.css">
+		<link rel="stylesheet" type="text/css" href="css/nouislider.pips.css">
+
+		<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="icon/favicon.ico"><![endif]-->
+		<script>
+			window.onload = function(loadDoc) {
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			  var data = JSON.parse(this.responseText);
+			  document.getElementById('defaultImage').src = data.results[6].image_url;
+			  
+
+			}
+		  };
+		  xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&gender=f&limit=7&hd=true",);
+		  xhttp.send();
+		}
+		function preloadImage(elementl)
+{
+    var img = new Image();
+    img.src= 'defaultImage';
+}
+		</script>
+	</head>
+	
+    <body>
+		<section id="header">
+			<div class="inner">
+				<!-- Icon -->
+				<h1><strong>Geometrized real time webcam drawings</strong> </h1>
+				<h2>Rendering sexy people into geometric primitives</h2>
+				
+				<img id="logo" class="logo" src="assets/images/bw.png" width="300px"  alt="logo">
+
+					<img id="logo" class="logo" src="assets/images/mm.png" width="300px"  alt="logo">
+					<img id="logo" class="logo" src="assets/images/snake.png" width="300px"  alt="logo">
+
+				
+				<p>An <a href="https://github.com/Tw1ddle/geometrize" target="_blank"> open source</a> chopped and screwed web demo of <a href="https://www.geometrize.co.uk/" target="_blank"> Geometrize</a> originally by <a href="https://twitter.com/Sam_Twidale" target="_blank">Sam Twidale</a>. Based on <a href="https://github.com/fogleman/primitive" target="_blank">primitive</a> by <a href="https://github.com/fogleman" target="_blank">Michael Fogleman</a>.
+					<br> Webcam api integration by <a href="https://steamystreams.com" target="_blank">Steamy Streams</p></a>
+					
+			</div>
+		</section>
+		
+		<!-- Options and filters -->
+		<section id="accordion">
+			<div>
+				<input type="checkbox" id="check-1">
+				<h2><label for="check-1">Settings</label></h2>
+
+				<div class="settings">
+				
+					<div class="sliders stitched">
+						<div class="container">
+							<h3>Shape Opacity</h3>
+							<div id="shapeopacity" class="black"></div>
+						</div>
+						
+						<div class="container">
+							<h3>Initial Background Opacity</h3>
+							<div id="initialbackgroundopacity" class="orange"></div>
+						</div>
+						
+						<div class="container">
+							<h3>Random Shapes Per Step</h3>
+							<div id="randomshapesperstep" class="red"></div>
+						</div>
+						
+						<div class="container">
+							<h3>Shape Mutations Per Step</h3>
+							<div id="shapemutationsperstep" class="green"></div>
+						</div>
+					</div>
+					
+					<br>
+					
+					<div class="textboxes stitched">
+						<div class="container"> <h3>Rectangles</h3> <input type="checkbox" id="rectangles" class="control"> </div>
+						<div class="container"> <h3>Rotated Rectangles</h3> <input type="checkbox" id="rotatedrectangles" class="control"> </div>
+						<div class="container"> <h3>Triangles</h3> <input type="checkbox" id="triangles" class="control"> </div>
+						<div class="container"> <h3>Ellipses</h3> <input type="checkbox" id="ellipses" class="control"> </div>
+						<div class="container"> <h3>Rotated Ellipses</h3> <input type="checkbox" id="rotatedellipses" class="control"> </div>
+						<div class="container"> <h3>Circles</h3> <input type="checkbox" id="circles" class="control"> </div>
+						<div class="container"> <h3>Lines</h3> <input type="checkbox" id="lines" class="control"> </div>
+						<div class="container"> <h3>Quadratic Beziers</h3> <input type="checkbox" id="quadraticbeziers" class="control"> </div>
+					</div>
+					
+					<div class="textboxes stitched">
+						<div class="container"> <h3>Shapes Added</h3> <h3 id="shapesaddedtext">0</h3> </div>
+						<div class="container"> <h3>Max Shapes Cap</h3> <input class="control" id="maxshapescaptextedit" type="number" min="20" step="1"> </div>
+					</div>
+					
+					<br>
+				</div>
+			</div>
+	</section>
+	
+	<br>
+
+		<!-- <main>
+		<script>
+			,imageToCanvas: function(image) {
+		var canvas = window.document.createElement("canvas");
+		canvas.width = image.width;
+		canvas.height = image.height;
+		var context = canvas.getContext("2d",null);
+		context.drawImage(image,0,0);
+		return canvas;
+	}
+				
+		};
+
+	
+		</script>
+
+		 -->
+		<div id="currentsvgcontainer" class="container stitched"></div>
+		
+		<br>
+		<br>
+		
+		<div class="container stitched">
+			<div id="controls">
+				<a class="button" id="runpausebutton">
+					<h2>Run</h2>
+				</a>
+				<a class="button" id="stepbutton">
+					<h2>Step</h2>
+				</a>
+				
+				<input id="openimageinput" type="file" style="display:none;" accept="image/*"/>
+				<input type="button" class="button" id="openimagebutton" value="Open Image" onclick="document.getElementById('openimageinput').click();">
+				
+				<a class="button" id="randomimagebutton">
+					<h2>Refresh cam images</h2>
+				</a>
+				<script>
+				randomimagebutton.onclick = (event) => {loadDoc(); };
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+				var data = JSON.parse(this.responseText);
+				 document.getElementById("myimage1").src = data.results[0].image_url
+				 document.getElementById("myimage2").src = data.results[1].image_url
+				 document.getElementById("myimage3").src = data.results[2].image_url
+				 document.getElementById("myimage4").src = data.results[3].image_url
+				 document.getElementById("myimage5").src = data.results[4].image_url
+				 document.getElementById("dmyimage6").src = data.results[5].image_url
+				 var obj = this.responseText;
+				 console.log(JSON.parse(JSON.stringify(obj)))
+
+			  }
+			};
+			xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&gender=f&hd=true&limit=7",);
+			xhttp.send();
+		  }
+		</script>
+				<a class="button" id="resetbutton">
+					<h2>Reset</h2>
+				</a>
+			</div>
+		</div>
+		
+		<div class="container stitched">
+			<div id="saveoptions">
+				<a class="button" id="saveimagebutton">
+					<h2>Save Image</h2>
+				</a>
+				<a class="button" id="savesvgbutton">
+					<h2>Save Svg</h2>
+				</a>
+				<a class="button" id="savejsonbutton">
+					<h2>Save Json</h2>
+				</a>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="container stitched">
+			<h2>How It Works</h2>
+			<p>Given an image to recreate, Chattysketch generates hundreds of random shapes, and repeatedly mutates these as part of a hillclimbing optimization approach. Internally, this demo uses a web worker so the webpage remains responsive while the geometrization algorithm ranks thousands of these shapes behind the scenes, only picking the best-fitting shapes for use in the final image.</p>
+			<p>The "Run/Pause" button starts or stops the geometrization process, the "Step" button adds one primitive to the image when pressed, the "Open Image" button lets you select your own images, the "Random Image" button picks a random but real-time cam image, and the "Reset" button clears all of the current shapes, restarting the geometrization from scratch. The "Save Image" button saves a PNG of the geometrized image, the "Save SVG" button saves an infinitely scalable vector-based image, and the "Save JSON" button saves the shape data to a JSON text file.</p>
+			<p>Additional controls are accessed by clicking on the "Settings" section. The "Shape Opacity" slider controls the how transparent added shapes are. The "Initial Background Opacity" slider lets you make the initial background image more or less opaque - try turning this down and then hitting the "Reset" button if have an image with a transparent background. The "Random Mutations" and "Shapes Per Step" parameters are adjustable for striking a balance between speed and quality. The "Shape Type" checkboxes allow you to select the shape types used in the final image. To leave an image geometrizing in the background, it is often useful to set the "Max Shape Cap" to your desired number of shapes.</p>
+		</div>
+	
+		<div class="sampleimages">
+<!-- fix cb api
+<img id="defaultimage" src="data.results[7].image_url" alt="default image - this is the default image that will be geometrized into geometric primitives when the page loads">
+
+ <img id="defaultimage" src="assets/images/demo_images/model.jpg" alt="default image - this is the default image that will be geometrized into geometric primitives when the page loads">
+-->
+ <div id="sampleimages">
+	<img id="defaultImage"  alt="default image - this is the default image that will be geometrized into geometric primitives when the page loads">
+	</div>
+</div>
+	</div>
+
+
+		<script type="text/javascript" src="js_new/wNumb.min.js"></script>
+		<script type="text/javascript" src="js_new/nouislider.min.js"></script>
+		<script type="text/javascript" src="js_new/geometrize.js"></script>
+
+   </body>
+</html>
