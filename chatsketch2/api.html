@@ -13,7 +13,7 @@
       var data = JSON.parse(this.responseText);
        document.getElementById("myimage1").src = data.results[1].image_url
       
-       document.getElementById("iframe1").src = data.results[1].iframe_embed_revshare	
+       document.getElementById("div1").src = data.results[1].iframe_embed_revshare	
        console.log(JSON.parse(JSON.stringify(obj)))
 
       }
@@ -32,7 +32,7 @@
 
 <div id="camsdiv">
   <img id="myimage1" src="">
-<div id="iframe1"></div>
+<div id="div1"></div>
 </div>
 </body>
 </html>
