@@ -1,0 +1,38 @@
+<html>
+<head>
+\<meta http-equiv="content-type" content="text/html; charset=windows-1250">         
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+</head>
+
+<script>
+  window.onload = function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      var data = JSON.parse(this.responseText);
+       document.getElementById("myimage1").src = data.results[1].image_url
+      
+       document.getElementById("myiframe1").src = data.results[1].iframe_embed_revshare	
+       console.log(JSON.parse(JSON.stringify(obj)))
+
+      }
+    };
+    xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&gender=f&hd=true&limit=8",);
+    xhttp.send();
+    }
+</script>
+</head>
+<body>
+<div style="width:100%;text-align:center;">
+<h1>Example of pulling Chaturbate API Version 2 using just javascript</h1>
+<br>
+</div>
+</div>
+
+<div id="camsdiv">
+  <img id="myimage1" src="">
+<iframe id="myiframe1"></iframe>
+</div>
+</body>
+</html>
