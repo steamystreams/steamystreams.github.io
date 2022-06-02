@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment</title>
+    <script src="hls.js"></script>
+    <script src="hls-demo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
+
+  </head>
+  <body>
+    <video controls id="video2" width="100%" height="100%"></video>
+
+
+<script>
+  const data = null;
+
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = false;
+  
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      console.log(this.responseText);
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        if (Hls.isSupported()) {
+          document.getElementById("video2").src = data.models[1].stream.url;
+          var hls = new Hls();
+          var videoSrc = data.models[1].stream.url;
+          hls.loadSource(data.models[1].stream.url);
+          hls.attachMedia(video2);
+        }
+        
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = data.models[1].stream.url;
+        }
+    
+
+        console.log(JSON.parse(JSON.stringify((data))))
+    }
+  };
+});
+  
+  xhr.open("GET", "https://go.xxxiijmp.com/api/models/");
+  
+  xhr.send(data);   
+</script>
+ 
+    <img id="myimage1">
+ 
+  
+
+</body>
+</html>

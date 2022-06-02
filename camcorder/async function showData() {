@@ -1,0 +1,8 @@
+async function showData() {
+    const main = document.querySelector("#main");
+    document.body.appendChild(main);
+    const obj = parser(await request()); // <-- Assuming this works and it returns an object (not json)
+    // Give your elements Id's to make it easier
+    document.getElementById('time').innerText = obj.time;
+    ...
+}

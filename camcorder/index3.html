@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment</title>
+	<style>
+    </style> 
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+<script>
+    fetch("https://go.xxxiijmp.com/api/models", {
+        "method": "GET",
+
+        then(response => {
+            console.log(response);
+          })
+          .catch(err => {
+            console.error(err);
+       
+    
+    async function schemaPageHandler(){
+        try {
+            var data = JSON.parse(this.responseText);
+        
+            var thingList = sourceDoc.getElementById("mydiv");
+            document.getElementById("structured-data-types").appendChild(thingList);
+        } catch(error) {
+            console.log("Error fetching remote HTML: ", error);
+        }              
+    }
+  
+ 
+});
+
+     
+</script>
+
+ <div class="container>"
+<div id="mydiv"></div>
+ </div>
+
+	<p>This is an example website.</p>
+</body>
+</html>

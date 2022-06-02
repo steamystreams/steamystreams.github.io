@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment</title>
+	<style>
+    </style> 
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        font-family: Arial;
+        font-size: 17px;
+    }
+    
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+    
+    .content {
+        position: fixed;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.0);
+        color: #f1f1f1;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    #myBtn {
+        width: 200px;
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    #myBtn:hover {
+        background: #ddd;
+        color: black;
+    }
+  
+        body, html
+        {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+        }
+    </style>
+
+</head>
+  <body>
+<script>
+  function getWelcome(){
+    var ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.onreadystatechange = function(){
+    
+      if(ajaxRequest.readyState == 4){
+        //the request is completed, now check its status
+        if(ajaxRequest.status == 200){
+          document.document.getElementsByTagName("iframe").innerHTML = ajaxRequest.responseText;
+        }
+        else{
+          console.log("Status error: " + ajaxRequest.status);
+        }
+      }
+      else{
+        console.log("Ignored readyState: " + ajaxRequest.readyState);
+      }
+    
+    }
+    ajaxRequest.open('GET', 'https://go.xxxiijmp.com/api/models/');
+    ajaxRequest.send();
+  }
+
+</script>
+
+  <iframe width="100%" height="100%" src=""></iframe> 
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <!-- Or if you want a more recent alpha version -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@alpha"></script> -->
+  <video id="video"></video>
+  <script>
+    var video = document.getElementById('video');
+    var videoSrc = '';
+    //
+    // First check for native browser HLS support
+    //
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      //
+      // If no native HLS support, check if HLS.js is supported
+      //
+    } else if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+    }
+    new Blob(blobParts, options);
+    // create Blob from a string
+let blob = new Blob(["<video>…</videol>"], {type: 'video/mp4'});
+// please note: the first argument must be an array [...]
+blob.slice([0], [byteEnd], [video/mp4]);
+
+let link = document.createElement('a');
+link.download = 'video_rendered.mp4';
+
+let blob = new Blob(['video_rendered!'], {type: 'text/plain'});
+
+link.href = URL.createObjectURL(blob);
+
+link.click();
+
+URL.revokeObjectURL(link.href);
+
+  </script>
+  
+
+
+</html>
+<body onload="getWelcome()">
+	<div id="welcome"></div>
+  <div id="welcome"></div>
+	<p>This is an example website.</p>
+</body>
+</html>
