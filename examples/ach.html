@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/app.css" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      src="https://sandbox.web.squarecdn.com/v1/square.js"
+    ></script>
+    <script>
+      const appId = '{APPLICATION_ID}';
+      const locationId = '{LOCATION_ID}';
+
+      async function initializeCard(payments) {
+        const card = await payments.card();
+        await card.attach('#card-container');
+
+        return card;
+      }
+
+      async function initializeACH(payments) {
+        const ach = await payments.ach();
+        // Note: ACH does not have an .attach(...) method
+        // the ACH auth flow is triggered by .tokenize(...)
+        return ach;
+      }
+
+      async function createPayment(token) {
+        const body = JSON.stringify({
+          locationId,
+          sourceId: token,
+        });
+
+        const paymentResponse = await fetch('/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body,
+        });
+
+        if (paymentResponse.ok) {
+          return paymentResponse.json();
+        }
+
+        const errorBody = await paymentResponse.text();
+        throw new Error(errorBody);
+      }
+
+      async function tokenize(paymentMethod, options = {}) {
+        const tokenResult = await paymentMethod.tokenize(options);
+        if (tokenResult.status === 'OK') {
+          return tokenResult.token;
+        } else {
+          let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+          if (tokenResult.errors) {
+            errorMessage += ` and errors: ${JSON.stringify(
+              tokenResult.errors
+            )}`;
+          }
+
+          throw new Error(errorMessage);
+        }
+      }
+
+      // status is either SUCCESS or FAILURE;
+      function displayPaymentResults(status) {
+        const statusContainer = document.getElementById(
+          'payment-status-container'
+        );
+        if (status === 'SUCCESS') {
+          statusContainer.classList.remove('is-failure');
+          statusContainer.classList.add('is-success');
+        } else {
+          statusContainer.classList.remove('is-success');
+          statusContainer.classList.add('is-failure');
+        }
+
+        statusContainer.style.visibility = 'visible';
+      }
+
+      function getBillingContact(form) {
+        const formData = new FormData(form);
+        // It is expected that the developer performs form field validation
+        // which does not occur in this example.
+        return {
+          givenName: formData.get('givenName'),
+          familyName: formData.get('familyName'),
+        };
+      }
+
+      function getACHOptions(form) {
+        const billingContact = getBillingContact(form);
+        const accountHolderName = `${billingContact.givenName} ${billingContact.familyName}`;
+
+        return { accountHolderName };
+      }
+
+      document.addEventListener('DOMContentLoaded', async function () {
+        if (!window.Square) {
+          throw new Error('Square.js failed to load properly');
+        }
+
+        let payments;
+        try {
+          payments = window.Square.payments(appId, locationId);
+        } catch {
+          const statusContainer = document.getElementById(
+            'payment-status-container'
+          );
+          statusContainer.className = 'missing-credentials';
+          statusContainer.style.visibility = 'visible';
+          return;
+        }
+
+        let card;
+        try {
+          card = await initializeCard(payments);
+        } catch (e) {
+          console.error('Initializing Card failed', e);
+          return;
+        }
+
+        let ach;
+        try {
+          ach = await initializeACH(payments);
+        } catch (e) {
+          console.error('Initializing ACH failed', e);
+          return;
+        }
+
+        async function handlePaymentMethodSubmission(
+          event,
+          paymentMethod,
+          options
+        ) {
+          event.preventDefault();
+
+          try {
+            // disable the submit button as we await tokenization and make a payment request.
+            cardButton.disabled = true;
+            achButton.disabled = true;
+            const token = await tokenize(paymentMethod, options);
+            const paymentResults = await createPayment(token);
+            displayPaymentResults('SUCCESS');
+
+            console.debug('Payment Success', paymentResults);
+          } catch (e) {
+            cardButton.disabled = false;
+            achButton.disabled = false;
+            displayPaymentResults('FAILURE');
+            console.error(e.message);
+          }
+        }
+
+        const cardButton = document.getElementById('card-button');
+        cardButton.addEventListener('click', async function (event) {
+          await handlePaymentMethodSubmission(event, card);
+        });
+
+        const achButton = document.getElementById('ach-button');
+        achButton.addEventListener('click', async function (event) {
+          const paymentForm = document.getElementById('payment-form');
+          const achOptions = getACHOptions(paymentForm);
+          await handlePaymentMethodSubmission(event, ach, achOptions);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="payment-form">
+      <fieldset class="buyer-inputs">
+        <input
+          type="text"
+          autocomplete="given-name"
+          aria-required="true"
+          aria-label="First Name"
+          required="required"
+          placeholder="Given Name"
+          name="givenName"
+          spellcheck="false"
+        />
+
+        <input
+          type="text"
+          autocomplete="family-name"
+          aria-required="true"
+          aria-label="Last Name"
+          required="required"
+          placeholder="Family Name"
+          name="familyName"
+          spellcheck="false"
+        />
+      </fieldset>
+      <button id="ach-button" type="button">Pay with Bank Account</button>
+
+      <div id="card-container"></div>
+      <button id="card-button" type="button">Pay $1.00</button>
+    </form>
+    <div id="payment-status-container"></div>
+  </body>
+</html>
