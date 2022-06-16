@@ -166,7 +166,7 @@
 
             <div style="text-align: center; display: none;">
                 <button id="save-to-disk">Save To Disk</button>
-                <button id="upload-to-php">Upload to PHP</button>
+                <button id="upload-to-php">Get Sharable Link</button>
                 <button id="open-new-tab">Open New Tab</button>
 
                 <div style="margin-top: 10px;">
@@ -180,7 +180,7 @@
                       </span>
                     </span>
 
-                    <button id="upload-to-youtube" style="vertical-align:top;">Upload to YouTube</button>
+                   
                 </div>
             </div>
 
@@ -1310,7 +1310,7 @@ function uploadToPHPServer(fileName, recordRTC, callback) {
                             return;
                         }
 
-                        document.querySelector('.header').parentNode.style = 'text-align: left; color: red; padding: 5px 10px;';
+                        document.querySelector('.header').parentNode.style = 'text-align: left; size: 12; font: arial; color: red; padding: 5px 10px;';
                         document.querySelector('.header').parentNode.innerHTML = request.responseText;
                     }
                 };
