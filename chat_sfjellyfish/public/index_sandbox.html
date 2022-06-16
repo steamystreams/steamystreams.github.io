@@ -21,9 +21,13 @@
 		<link rel="stylesheet" type="text/css" href="css/nouislider.pips.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="/public/app.css" rel="stylesheet" />
-   
+        <script
+          type="text/javascript"
+          src="https://sandbox.web.squarecdn.com/v1/square.js"
+        ></script>
         
         <link rel="stylesheet" type="text/css" href="css/sched.css">
+       <script src="js/sfjelly_sandbox_square.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
@@ -165,10 +169,15 @@ font-family: 'Poller One', cursive;
             <br>    
             <div><h2>Purchase 10 minute private show with Bitcoin</h2> <button class="poof" id="poof" onclick="request()"> </button></div>
             <br> 
-    
+            <form id="payment-form">
+            <div id="card-container"></div>
+            <button id="card-button" type="button">Purchase 10 minute private show with credit card: $50.00</button>
+        </form>
+            <form id="payment-form">
+            <div id="cash-app-pay"><h2>  Or with Cashapp</h2>
               
-          
-            <br>    
+            </form>
+            <br>      <br> 
 
  
             
