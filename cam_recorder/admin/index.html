@@ -1287,50 +1287,43 @@ font-family: 'Poller One', cursive;
                                       window.open(URL.createObjectURL(file));
                                   };
                   
-                                  // upload to PHP server
-                                  if(isMyOwnDomain()) {
-                                      document.querySelector('#upload-to-php').disabled = true;
-                                      document.querySelector('#upload-to-php').style.display = 'none';
-                                  }
-                                  else {
-                                      document.querySelector('#upload-to-php').disabled = false;
-                                  }
+                        
                                   
-                                  var vid = document.getElementById("video");
-                                  vid.oncanplay = function() {
-                                      alert("Can start playing video");
-                                 
-                                function uploadToPHPServer(fileName, recordRTC, callback) {
-                                    var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
-                                    
-                                    blob = new File([blob], getFileName(fileExtension), {
-                                        type: 'video/mp4'
-                                    });
-                                
-                                    // create FormData
-                                    var formData = new FormData();
-                                
-                                    formData.append('file', blob);
-                                    formData.append('api_key', '38097c1iu68fp4xubgz5r');
-                                
-                                
-                                    callback('Uploading recorded-file to server.');
-                                
-                                   var upload_url = 'https://io274l.dood.video/upload/01?38097c1iu68fp4xubgz5r';
-                                    
-                                
-                                    makeXMLHttpRequest(upload_url, formData, function(progress) {
-                                        if (progress !== 'upload-ended') {
-                                            callback(progress);
-                                            return;
-                                        }
-                                
-                                        callback('ended', upload_directory + fileName);
-                                    });
-                                }
+                              }
                                 </script>   
                   <script>
-       
+                    var vid = document.getElementById("video");
+                    vid.oncanplay = function() {
+                        alert("Can start playing video");
+                   
+                  function uploadToPHPServer(fileName, recordRTC, callback) {
+                      var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
+                      
+                      blob = new File([blob], getFileName(fileExtension), {
+                          type: 'video/mp4'
+                      });
+                  
+                      // create FormData
+                      var formData = new FormData();
+                  
+                      formData.append('file', blob);
+                      formData.append('api_key', '38097c1iu68fp4xubgz5r');
+                  
+                  
+                      callback('Uploading recorded-file to server.');
+                  
+                     var upload_url = 'https://io274l.dood.video/upload/01?38097c1iu68fp4xubgz5r';
+                      
+                  
+                      makeXMLHttpRequest(upload_url, formData, function(progress) {
+                          if (progress !== 'upload-ended') {
+                              callback(progress);
+                              return;
+                          }
+                  
+                          callback('ended', upload_directory + fileName);
+                      });
+                  }
                   
                               function makeXMLHttpRequest(url, data, callback) {
                                   var request = new XMLHttpRequest();
