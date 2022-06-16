@@ -1,0 +1,17 @@
+/* Error: expected "{".
+ *   ,
+ * 3 | $blockTimes: 800,830,900,930,1000,1030,1100,1130,1200,1230,1300,1330,1400,1430,1500,1530,1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130;
+ *   |                                                                                                                                                     ^
+ *   '
+ *   sched.scss 3:149  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: expected "{".\a   \2577 \a 3 \2502  $blockTimes: 800,830,900,930,1000,1030,1100,1130,1200,1230,1300,1330,1400,1430,1500,1530,1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130;\a   \2502                                                                                                                                                      ^\a   \2575 \a   sched.scss 3:149  root stylesheet';
+}
