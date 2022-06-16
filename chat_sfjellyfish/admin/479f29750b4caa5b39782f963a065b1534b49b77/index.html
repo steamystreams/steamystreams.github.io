@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1,maximum-scale=1">
-		<title>Autogenerative nude drawings from webcam API</title>
+		<title>SFJellyfish, steamy live cam</title>
 		<meta name="author" content="SteamyStreams">
 		<meta name="description" content="SFJellyfish, steamy live cam">
 		<meta name="keywords" content="sexy,female,cam,camgirl,milf,hairy,pussy,bush,nude">
@@ -17,17 +17,12 @@
 		<meta name="twitter:title" content="SFJellyfish">
 		<meta name="twitter:description" content="SFJellyfish, steamy live cam">
 		<link rel="stylesheet" type="text/css" href="css/style.min.css">
-		<link rel="stylesheet" type="text/css" href="css/nouislider.min.css">
-		<link rel="stylesheet" type="text/css" href="css/nouislider.pips.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-       
-
-       
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
 		<style> 
+      body {background-color: rgb(0, 0, 0);}
    .video-container {
 			  display: flex;
 			  flex-direction: row;
@@ -128,39 +123,79 @@ font-family: 'Poller One', cursive;
       </head>
      
       <body>
-        <video id="myVideo" source src="Movement.mp4"  autoplay loop muted ></video>
 
     
                 <div class="content">
-                    <h1><strong>Chat with SFJellyfish</strong> </h1>
-                    <h2>www.AllMyLinks.com/Superfast992</h2>
-                    <!-- Use a button to pause/play the video with JavaScript -->
-                   
-                  <img id="logo" class="logo" src="https://i.redd.it/izd3ja5st3w81.jpg" width="300px"  alt="logo">
-                  <img id="logo1" class="logo" src="https://preview.redd.it/gcb59ooycf591.jpg?width=640&crop=smart&auto=webp&s=44e67568dfa61dafc57e4ca9d1cb1ed0987bad4b" width="300px"  alt="logo">
-                  <img id="logo2" class="logo" src="https://preview.redd.it/p14ka4q76v491.jpg?width=640&crop=smart&auto=webp&s=650cff630cb5921ac1343b010771c15790039f8a" width="300px"  alt="logo"><br>
+                    <h1><strong>Admin mode</strong> </h1>
+                    <h2>Superfast992</h2>
+
                   <div class="img_bg">
                     <iframe src="https://meet.jit.si/moderated/df36466f7ed751a88587c258ba0d2b77edeaad0b5f3c9bec453dd9608f74197c" width="1280px" height="720px" style="margin:0px;padding:0px;overflow:hidden;" allow="camera; microphone"></iframe>
                   </div>
-            <br>      <br> 
-            <form id="payment-form">
-            <div id="card-container"></div>
-            <button id="card-button" type="button">Purchase 10 minute ptivate show with credit card: $50.00</button>
-            <div id="cash-app-pay"><h2>  Or with Cashapp</h2>
-            </form>
-            <br>      <br> 
-   <H2>Click to purchase clips</H2>
-        <video id="milk" class="logo" src="https://thumbs2.redgifs.com/FreeSinfulSkua-mobile.mp4" height="400px" autoplay loop mute></video>
-        <video id="milk2" class="logo" src="https://thumbs2.redgifs.com/SturdyGranularErne-mobile.mp4" height="400px" autoplay loop mute></video>
-     <div class="inner">
-          <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                  <h1><strong>Recorder</strong></h1> <h2>(right click --> Save Video after stopped)</strong> </h2>       
+<button id="start">Start Recording</button>
+<button id="stop" disabled>Stop Recording</button>
+<br><br>
+<video id="video" controls autoplay playsinline></video>
 
-                  <div class="elfsight-app-af046f6c-7d51-40cc-8877-4127016e1c90"></div>
-                    
-                   
-                </div></div>
-                </div>
-                            
+<!-- web streams API polyfill to support Firefox -->
+<script src="https://unpkg.com/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
+
+<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>       
+
+
+<script>
+
+
+var recorder;
+
+document.getElementById('start').onclick = function() {
+    this.disabled = true;
+    navigator.mediaDevices.getUserMedia({
+        video: {
+            width: {
+                ideal: 640
+            },
+            height: {
+                ideal: 480
+            }
+        },
+        audio: false
+    }).then(function(stream) {
+        document.getElementById('video').srcObject = stream;
+
+        recorder = RecordRTC(stream, {
+            recorderType: WebAssemblyRecorder,
+            // workerPath: '../libs/webm-worker.js',
+            // webAssemblyPath: '../libs/webm-wasm.wasm',
+            width: 640,
+            height: 480,
+            frameRate: 30
+        });
+        recorder.startRecording();
+
+        document.getElementById('stop').disabled = false;
+    });
+};
+
+document.getElementById('stop').onclick = function() {
+    document.getElementById('video').srcObject = null;
+
+    this.disabled = true;
+    recorder.stopRecording(function(blob) {
+        document.getElementById('video').src = URL.createObjectURL(recorder.getBlob());
+        document.getElementById('start').disabled = false;
+    });
+}
+</script><div class="content">
+<img src="8iE6yRj4T.png">
+<h2><strong>Reports (coming soon)</strong> </h2>
+<button>Purchase history</button>
+<button>Request Payment</button>
+</div>
+<br><br>
+<footer style="margin-top: 20px;"><small id="send-message"></small></footer>
+<script src="https://www.webrtc-experiment.com/common.js"></script>
 
 </body>
 </html>	
