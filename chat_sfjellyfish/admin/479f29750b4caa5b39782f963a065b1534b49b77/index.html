@@ -22,6 +22,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://steamystreams.com//webassembly_rtc/style.css">
+        <script src="http://steamystreams.com/webassembly_rtc/RecordRTC.js"></script>
 
 		<style> 
       body {background-color: rgb(0, 0, 0);}
@@ -133,7 +134,7 @@ font-family: 'Poller One', cursive;
                   <div class="img_bg">
                     <iframe src="https://meet.jit.si/moderated/df36466f7ed751a88587c258ba0d2b77edeaad0b5f3c9bec453dd9608f74197c" width="1280px" height="720px" style="margin:0px;padding:0px;overflow:hidden;" allow="camera; microphone"></iframe>
                   </div>
-                  <h1><strong>Recorder</strong></h1> <h2>(right click --> Save Video after stopped)</strong> </h2>       
+                  <h1><strong>Recorder </h1></strong><h2>   (supplies a ready to email or embed recording of your show. </h2>
   
 
 
@@ -198,7 +199,6 @@ font-family: 'Poller One', cursive;
                           }
                       </style>
                   
-                      <script src="http://steamystreams.com/webassembly_rtc/RecordRTC.js"></script>
                       
                       <!-- web streams API polyfill to support Firefox -->
                       <script src="https://unpkg.com/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
@@ -1327,9 +1327,12 @@ font-family: 'Poller One', cursive;
                                       });
                                   }};
                   
-                                 
-                  
-                         var button = this;
+                                </script>   
+                  <script>
+                    var vid = document.getElementById("video");
+                    vid.oncanplay = function() {
+                        alert("Can start playing video");
+                   
                   function uploadToPHPServer(fileName, recordRTC, callback) {
                       var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
                       
@@ -1400,7 +1403,7 @@ font-family: 'Poller One', cursive;
                                   request.open('POST', url);
                                   request.send(data);
                               }
-                  
+                            };
                               function getRandomString() {
                                   if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
                                       var a = window.crypto.getRandomValues(new Uint32Array(3)),
@@ -1521,6 +1524,7 @@ font-family: 'Poller One', cursive;
                   
                                   parentNode.appendChild(recordingPlayer);
                               }
+                           
                           </script>
                   
                           <script>
