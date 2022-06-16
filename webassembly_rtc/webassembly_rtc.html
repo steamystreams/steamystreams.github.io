@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" lang="en">
+<head><title>WebAssembly Recorder using RecordRTC</title>
+<style type="text/css">
+body {
+  text-align: center;
+}
+
+video {
+  border-radius: 5px;
+  border: 1px solid black;
+}
+</style>
+<script src="RecordRTC.js"></script>
+<script src="webm-worker.js"></script>
+<script src="webm-wasm.wasm"></script>
+<script src="webm-wasm.js"></script>
+</head>
+<body>
+    <script>
+        var fileEl = document.querySelector("url");
+
+        fileEl.onchange = function(e) {
+        
+        
+            var file = e.target.files[0]; // selected file
+        
+            if (!file) {
+                console.log("nothing here");
+                return;
+            }
+        
+            console.log(file);
+            console.log('file.size-' + file.size);
+            console.log('file.type-' + file.type);
+            console.log('file.acutalName-' + file.name);
+        
+            let start = performance.now();
+        
+            var mime = file.type, // store mime for later
+                rd = new FileReader(); // create a FileReader
+        
+            if (/video/.test(mime)) {
+        
+                rd.onload = function(e) { // when file has read:
+        
+        
+                    var blob = new Blob([e.target.result], {
+                            type: mime
+                        }), // create a blob of buffer
+                        url = (URL || webkitURL).createObjectURL(blob), // create o-URL of blob
+                        video = document.createElement("video"); // create video element
+                    //console.log(blob);
+                    video.preload = "metadata"; // preload setting
+        
+                    video.addEventListener("loadedmetadata", function() { // when enough data loads
+                        console.log('video.duration-' + video.duration);
+                        console.log('video.videoHeight-' + video.videoHeight);
+                        console.log('video.videoWidth-' + video.videoWidth);
+                        //document.querySelector("div")
+                        //  .innerHTML = "Duration: " + video.duration + "s" + " <br>Height: " + video.videoHeight; // show duration
+                        (URL || webkitURL).revokeObjectURL(url); // clean up
+        
+                        console.log(start - performance.now());
+                        // ... continue from here ...
+        
+                    });
+                    video.src = url; // start video load
+                };
+            } else if (/image/.test(mime)) {
+                rd.onload = function(e) {
+        
+                    var blob = new Blob([e.target.result], {
+                            type: mime
+                        }),
+                        url = URL.createObjectURL(blob),
+                        img = new Image();
+        
+                    img.onload = function() {
+                        console.log('iamge');
+                        console.dir('this.height-' + this.height);
+                        console.dir('this.width-' + this.width);
+                        URL.revokeObjectURL(this.src); // clean-up memory
+                        console.log(start - performance.now()); // add image to DOM
+                    }
+        
+                    img.src = url;
+        
+                };
+            }
+        
+            var chunk = file.slice(0, 1024 * 1024 * 10); // .5MB
+            rd.readAsArrayBuffer(chunk); // read file object
+        
+        };
+    </script>
+    <form action="/action_page.php">
+        <label for="homepage">Add your homepage:</label>
+        <input type="url" id="homepage" name="homepage"><br><br>
+        <input type="submit">
+      </form>
+<div> duration: <span id='sp'></span><div>
+<h1>WebAssembly Recorder using RecordRTC <span id="version"></span></h1>
+<button id="start">Start Recording</button>
+<button id="stop" disabled>Stop Recording</button>
+<button id="upload-to-dood">Upload to Dood</button>
+<form enctype="multipart/form-data" action="https://dio118p.dood.video/upload/01?38097c1iu68fp4xubgz5r" method="post">
+    <input type="hidden" name="api_key" value="38097c1iu68fp4xubgz5r"">
+    <input type="url"  type="file">
+    <input type="submit">
+    </form>
+<br><br>
+<video id="video" controls autoplay playsinline></video>
+
+<!-- web streams API polyfill to support Firefox -->
+<script src="https://unpkg.com/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
+
+<script>
+document.getElementById('version').innerHTML = RecordRTC.version;
+
+var recorder;
+
+document.getElementById('start').onclick = function() {
+    this.disabled = true;
+    navigator.mediaDevices.getDisplayMedia({
+        video: {
+            width: {
+                ideal: 1280
+            },
+            height: {
+                ideal: 720
+            }
+        },
+        audio: false
+    }).then(function(stream) {
+        document.getElementById('video').srcObject = stream;
+
+        recorder = RecordRTC(stream, {
+            recorderType: WebAssemblyRecorder,
+           workerPath: 'webm-worker.js',
+           webAssemblyPath: 'webm-wasm.wasm',
+            width: 1280,
+            height: 720,
+            frameRate: 30
+        });
+        recorder.startRecording();
+
+        document.getElementById('stop').disabled = false;
+    });
+};
+
+document.getElementById('stop').onclick = function() {
+    document.getElementById('video').srcObject = null;
+
+    this.disabled = true;
+    recorder.stopRecording(function(blob) {
+        document.getElementById('video').src = URL.createObjectURL(recorder.getBlob());
+        document.getElementById('start').disabled = false;
+    });
+}
+
+</script>
+
+    <script>
+        // upload to Dood
+   document.querySelector('#upload-to-dood').disabled = false;
+   document.querySelector('#upload-to-dood').onclick = function(uploadToDood) {
+       if(!recordRTC) return alert('No recording found.');
+       this.disabled = true;
+        function uploadToDood(fileName, recordRTC, callback) {
+            var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
+            
+            blob = new File([blob], getFileName(fileExtension), {
+                type: mimeType
+            });
+
+            // create FormData
+            var api_key = '38097c1iu68fp4xubgz5r';
+            var formData = new FormData();
+            formData.append('filename', fileName);
+            formData.append('api_key', api_key);
+            formData.append('video-blob', blob);
+
+            callback('Uploading recorded-file to server.');
+
+          
+            var upload_url = 'https://dio118p.dood.video/upload/01?38097c1iu68fp4xubgz5r';
+
+
+            makeXMLHttpRequest(upload_url, formData, function(progress) {
+                if (progress !== 'upload-ended') {
+                    callback(progress);
+                    return;
+                }
+
+                callback('ended', fileName);
+            });
+        }
+
+        function makeXMLHttpRequest(url, data, callback) {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    if(request.responseText === 'success') {
+                        callback('upload-ended');
+                        return;
+                    }
+
+                    document.querySelector('.header').parentNode.style = 'text-align: left; color: red; padding: 5px 10px;';
+                    document.querySelector('.header').parentNode.innerHTML = request.responseText;
+                }
+            };
+
+            request.upload.onloadstart = function() {
+                callback('Upload started...');
+            };
+
+            request.upload.onprogress = function(event) {
+                callback('Upload Progress ' + Math.round(event.loaded / event.total * 100) + "%");
+            };
+
+            request.upload.onload = function() {
+                callback('progress-about-to-end');
+            };
+
+            request.upload.onload = function() {
+                callback('Getting File URL..');
+            };
+
+            request.upload.onerror = function(error) {
+                callback('Failed to upload to server');
+            };
+
+            request.upload.onabort = function(error) {
+                callback('Upload aborted.');
+            };
+
+            request.open('POST', url);
+            request.send(data);
+        }
+
+        function getRandomString() {
+            if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
+                var a = window.crypto.getRandomValues(new Uint32Array(3)),
+                    token = '';
+                for (var i = 0, l = a.length; i < l; i++) {
+                    token += a[i].toString(36);
+                }
+                return token;
+            } else {
+                return (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
+            }
+        }
+
+        function getFileName(fileExtension) {
+            var d = new Date();
+            var year = d.getUTCFullYear();
+            var month = d.getUTCMonth();
+            var date = d.getUTCDate();
+            return 'RecordRTC-' + year + month + date + '-' + getRandomString() + '.' + fileExtension;
+        }
+
+
+
+        function SaveFileURLToDisk(fileUrl, fileName) {
+            var hyperlink = document.createElement('a');
+            hyperlink.href = fileUrl;
+            hyperlink.target = '_blank';
+            hyperlink.download = fileName || fileUrl;
+
+            (document.body || document.documentElement).appendChild(hyperlink);
+            hyperlink.onclick = function() {
+               (document.body || document.documentElement).removeChild(hyperlink);
+
+               // required for Firefox
+               window.URL.revokeObjectURL(hyperlink.href);
+            };
+
+            var mouseEvent = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+
+            hyperlink.dispatchEvent(mouseEvent);
+        }
+
+        function getURL(arg) {
+            var url = arg;
+
+            if(arg instanceof Blob || arg instanceof File) {
+                url = URL.createObjectURL(arg);
+            }
+
+            if(arg instanceof RecordRTC || arg.getBlob) {
+                url = URL.createObjectURL(arg.getBlob());
+            }
+
+            if(arg instanceof MediaStream || arg.getTracks) {
+                // url = URL.createObjectURL(arg);
+            }
+
+            return url;
+        }
+
+        function setVideoURL(arg, forceNonImage) {
+            var url = getURL(arg);
+
+            var parentNode = recordingPlayer.parentNode;
+            parentNode.removeChild(recordingPlayer);
+            parentNode.innerHTML = '';
+
+            var elem = 'video';
+            if(type == 'gif' && !forceNonImage) {
+                elem = 'img';
+            }
+            if(type == 'audio') {
+                elem = 'audio';
+            }
+
+            recordingPlayer = document.createElement(elem);
+            
+            if(arg instanceof MediaStream) {
+                recordingPlayer.muted = true;
+            }
+
+            recordingPlayer.addEventListener('loadedmetadata', function() {
+                if(navigator.userAgent.toLowerCase().indexOf('android') == -1) return;
+
+                // android
+                setTimeout(function() {
+                    if(typeof recordingPlayer.play === 'function') {
+                        recordingPlayer.play();
+                    }
+                }, 2000);
+            }, false);
+
+            recordingPlayer.poster = '';
+
+            if(arg instanceof MediaStream) {
+                recordingPlayer.srcObject = arg;
+            }
+            else {
+                recordingPlayer.src = url;
+            }
+
+            if(typeof recordingPlayer.play === 'function') {
+                recordingPlayer.play();
+            }
+
+            recordingPlayer.addEventListener('ended', function() {
+                url = getURL(arg);
+                
+                if(arg instanceof MediaStream) {
+                    recordingPlayer.srcObject = arg;
+                }
+                else {
+                    recordingPlayer.src = url;
+                }
+            });
+
+            parentNode.appendChild(recordingPlayer);
+        }
+    </script>
+
+    <script>
+        function captureScreen(config) {
+            if (navigator.getDisplayMedia) {
+                navigator.getDisplayMedia({
+                    video: true
+                }).then(screenStream => {
+                    config.onMediaCaptured(screenStream);
+
+                    addStreamStopListener(screenStream, function() {
+                        // config.onMediaStopped();
+
+                        btnStartRecording.onclick();
+                    });
+
+                    setVideoURL(screenStream, true);
+                }).catch(function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            } else if (navigator.mediaDevices.getDisplayMedia) {
+                navigator.mediaDevices.getDisplayMedia({
+                    video: true
+                }).then(screenStream => {
+                    config.onMediaCaptured(screenStream);
+
+                    addStreamStopListener(screenStream, function() {
+                        // config.onMediaStopped();
+
+                        btnStartRecording.onclick();
+                    });
+
+                    setVideoURL(screenStream, true);
+                }).catch(function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            } else {
+                var error = 'getDisplayMedia API are not supported in this browser.';
+                config.onMediaCapturingFailed(error);
+                alert(error);
+            }
+        }
+
+        function captureAudioPlusScreen(config) {
+            if (navigator.getDisplayMedia) {
+                navigator.getDisplayMedia({
+                    video: true
+                }).then(screenStream => {
+                    navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic) {
+                        screenStream.addTrack(mic.getTracks()[0]);
+
+                        config.onMediaCaptured(screenStream);
+
+                        addStreamStopListener(screenStream, function() {
+                            // config.onMediaStopped();
+
+                            btnStartRecording.onclick();
+                        });
+
+                        setVideoURL(screenStream, true);
+                    });
+                }).catch(function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            } else if (navigator.mediaDevices.getDisplayMedia) {
+                navigator.mediaDevices.getDisplayMedia({
+                    video: true
+                }).then(screenStream => {
+                    navigator.mediaDevices.getUserMedia({audio:true}).then(function(mic) {
+                        screenStream.addTrack(mic.getTracks()[0]);
+
+                        config.onMediaCaptured(screenStream);
+
+                        addStreamStopListener(screenStream, function() {
+                            // config.onMediaStopped();
+
+                            btnStartRecording.onclick();
+                        });
+
+                        setVideoURL(screenStream, true);
+                    });
+                }).catch(function(error) {
+                    config.onMediaCapturingFailed(error);
+                });
+            } else {
+                var error = 'getDisplayMedia API are not supported in this browser.';
+                config.onMediaCapturingFailed(error);
+                alert(error);
+            }
+        }
+    </script>
+
+   
+
+
+
+</body>
+</html>
