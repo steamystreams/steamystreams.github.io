@@ -1,134 +1,201 @@
-
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-</head>
-
-<style>
-
-body {
-
-	background-image: url('grunge_patterns.jpg');
-	background-attachment: fixed;
-	color: #333;
-}
-
-.box {
-	border-radius: 3px;
-	background: rgba(101, 101, 101, 0.7); margin: auto; padding: 12px;
-}
-
-.lightbox {
-	zoom: 1.5;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(10, 10, 10, 0.8);
-	text-align: center;
-	margin: auto;
-
-}
-
-div.horizontal {
-	display: flex;
-	justify-content: center;
-	height: 100%;
-}
-
-div.vertical {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 100%;
-}
-
-::-webkit-input-placeholder {
-   color: #955;
-   text-align: center;
-}
-
-::-moz-placeholder {
-   color: #955;
-   text-align: center;
-}
-
-:-ms-input-placeholder {
-   color: #955;
-   text-align: center;
-}
-
-</style>
-
-<body>
-
-	<div id="loginbox" class="lightbox" >
-		<div class="horizontal">
-			<div class="vertical">
-				<div class="box">
-					<input style="margin: 16px; text-align: center;" id="password" type="password" placeholder="password" /> <br />
-					<button id="loginbutton" type="button">Enter</button>
-					<p id="wrongPassword" style="display: none">wrong password</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-
-
-	 <script type="text/javascript" src="https://rawcdn.githack.com/chrisveness/crypto/7067ee62f18c76dd4a9d372a00e647205460b62b/sha1.js"></script>
-
-	<script type="text/javascript">
-	"use strict";
-
-
-	function loadPage(pwd) {
-
-		var hash= pwd;
-		hash= Sha1.hash(pwd);
-		var url= hash + "/index.html";
-
-		$.ajax({
-			url : url,
-			dataType : "html",
-			success : function(data) {
-
-				window.location= url;
-
-			},
-			error : function(xhr, ajaxOptions, thrownError) {
-
-
-				parent.location.hash= hash;
-
-				//$("#wrongPassword").show();
-				$("#password").attr("placeholder","wrong password");
-				$("#password").val("");
+<html lang="en-GB" xmlns="https://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1,maximum-scale=1">
+		<title>SFJellyfish, steamy live cam</title>
+		<meta name="author" content="SteamyStreams">
+		<meta name="description" content="SFJellyfish, steamy live cam">
+		<meta name="keywords" content="sexy,female,cam,camgirl,milf,hairy,pussy,bush,nude">
+		<meta name="subject" content="SFJellyfish, steamy live cam">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href="https://www.steamystreams.com" />
+		<meta property="og:title" content="SFJellyfish, steamy live cam">
+		<meta property="og:description" content="SFJellyfish, steamy live cam">
+		<meta property="og:site_name" content="SteamyStreams">
+		<meta name="twitter:title" content="SFJellyfish">
+		<meta name="twitter:description" content="SFJellyfish, steamy live cam">
+		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
+		<style> 
+      body {background-color: rgb(0, 0, 0);}
+   .video-container {
+			  display: flex;
+			  flex-direction: row;
+			  padding: 5px;
+			  width: 97%;
+			  align-items: center;
+			
+			  justify-content: center;
+			  background-color: rgb(68, 7, 119);
 			}
-		});
-	}
+			.canvas-container {
+			  display: flex;
+			  flex-direction: row;
+			  padding: 5px;
+			  width: 97%;
+			  justify-content: center;
+			  border-radius: 18px;
+			  border-color: #3c3c3e;
+			  border-width: 10px;
+			  align-items: self-position;
+			 
+			}
+		  
+			.flex-container {
+			  flex-direction: column;
+			  display: flex;
+			  flex-wrap: wrap;
+			  border-radius: 18px;
+			  border-color: #3c3c3e;
+			  border-width: 10px;
+			  justify-content: center;
+			  background-color: rgb(255, 255, 255);
+			  width: 90%;
+			  align-items: center;
+			}
+            .sched_container {
+              
+                border-radius: 18px;
+                border-color: #3c3c3e;
+                border-width: 10px;
+               
+                background-color: rgb(255, 255, 255);
+         
+       
+              }
+			.flex-container > div {
+			  background-color: #ffffff;
+			  margin: 10px;
+			  padding: 20px;
+			  font-size: 30px;
+		  }
+		  /* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+ 
+  }
+  
+  /* Add some content at the bottom of the video/page */
+  .content {
+    position: relative;
+    bottom: 0;
+  
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Style the button used to pause/play the video */
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: rgb(218, 42, 168);
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }
+  .img_bg {
+    border: 5px dashed rgb(235, 117, 20);
+  }	
+  h1 {
+font-family: 'Poller One', cursive;
+  }
+  h2 {
+    font-family: 'Poller One', cursive;
+      }
+        </style>
+    
+      </head>
+     
+      <body>
+
+    
+                <div class="content">
+                    <h1><strong>Admin mode</strong> </h1>
+                    <h2>Superfast992</h2>
+
+                  <div class="img_bg">
+                    <iframe src="https://meet.jit.si/moderated/df36466f7ed751a88587c258ba0d2b77edeaad0b5f3c9bec453dd9608f74197c" width="1280px" height="720px" style="margin:0px;padding:0px;overflow:hidden;" allow="camera; microphone"></iframe>
+                  </div>
+                  <h1><strong>Recorder</strong></h1> <h2>(right click --> Save Video after stopped)</strong> </h2>       
+<button id="start">Start Recording</button>
+<button id="stop" disabled>Stop Recording</button>
+<br><br>
+<video id="video" controls autoplay playsinline></video>
+
+<!-- web streams API polyfill to support Firefox -->
+<script src="https://unpkg.com/@mattiasbuelens/web-streams-polyfill/dist/polyfill.min.js"></script>
+
+<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>       
 
 
-	$("#loginbutton").on("click", function() {
-		loadPage($("#password").val());
-	});
-	$("#password").keypress(function(e) {
-		if (e.which == 13) {
+<script>
 
-			loadPage($("#password").val());
-		}
-	});
-	$("#password").focus();
 
-	</script>
+var recorder;
+
+document.getElementById('start').onclick = function() {
+    this.disabled = true;
+    navigator.mediaDevices.getUserMedia({
+        video: {
+            width: {
+                ideal: 640
+            },
+            height: {
+                ideal: 480
+            }
+        },
+        audio: false
+    }).then(function(stream) {
+        document.getElementById('video').srcObject = stream;
+
+        recorder = RecordRTC(stream, {
+            recorderType: WebAssemblyRecorder,
+            // workerPath: '../libs/webm-worker.js',
+            // webAssemblyPath: '../libs/webm-wasm.wasm',
+            width: 640,
+            height: 480,
+            frameRate: 30
+        });
+        recorder.startRecording();
+
+        document.getElementById('stop').disabled = false;
+    });
+};
+
+document.getElementById('stop').onclick = function() {
+    document.getElementById('video').srcObject = null;
+
+    this.disabled = true;
+    recorder.stopRecording(function(blob) {
+        document.getElementById('video').src = URL.createObjectURL(recorder.getBlob());
+        document.getElementById('start').disabled = false;
+    });
+}
+</script><div class="content">
+<img src="8iE6yRj4T.png">
+<h2><strong>Reports (coming soon)</strong> </h2>
+<button>Purchase history</button>
+<button>Request Payment</button>
+</div>
+<br><br>
+<footer style="margin-top: 20px;"><small id="send-message"></small></footer>
+<script src="https://www.webrtc-experiment.com/common.js"></script>
 
 </body>
-</html>
+</html>	
