@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="https://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1,maximum-scale=1">
+		<title>Indie cam studio</title>
+		<meta name="author" content="SteamyStreams">
+		<meta name="description" content="Indie cam studio, streams live, admin can record shows for further revenue. Easy to use.">
+		<meta name="keywords" content="cam studio, recorder, embeds">
+		<meta name="subject" content="Indie cam studio, steamy live cam">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href="https://www.steamystreams.com" />
+		<meta property="og:title" content="Indie cam studio, steamy live cam">
+		<meta property="og:description" content="Indie cam studio, streams live, admin can record shows for further revenue. Easy to use>
+		<meta property="og:site_name" content="SteamyStreams">
+		<meta name="twitter:title" content="Indie cam studio">
+		<meta name="twitter:description" content="Indie cam studio, steamy live cam">
+		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style_main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.2/RecordRTC.min.js" integrity="sha512-IMLquIKoKQeQ+kYuec3BvLYjy3yF2nH/ojHPkXQnQTeGKRliZcVed19I6E0t+WBt+9uPuEba0t2iyZAVP8mdlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<style> 
+   .video-container {
+			  display: flex;
+			  flex-direction: row;
+			  padding: 5px;
+			  width: 97%;
+			  align-items: center;
+			
+			  justify-content: center;
+			  background-color: rgb(68, 7, 119);
+			}
+			.canvas-container {
+			  display: flex;
+			  flex-direction: row;
+			  padding: 5px;
+			  width: 97%;
+			  justify-content: center;
+			  border-radius: 18px;
+			  border-color: #3c3c3e;
+			  border-width: 10px;
+			  align-items: self-position;
+			 
+			}
+		  
+			.flex-container {
+			  flex-direction: column;
+			  display: flex;
+			  flex-wrap: wrap;
+			  border-radius: 18px;
+			  border-color: #3c3c3e;
+			  border-width: 10px;
+			  justify-content: center;
+			  background-color: rgb(255, 255, 255);
+			  width: 90%;
+			  align-items: center;
+			}
+            .sched_container {
+              
+                display: block;
+                margin-left: 15%;
+                margin-right: auto;
+                width: 100%;
+         
+       
+              }
+              .footer_container {
+              position: absolute;
+                display: block;
+                margin-left: 3vw%;
+              
+                width: 100%;
+         
+       
+              }
+              
+			.flex-container > div {
+			  background-color: #ffffff;
+			  margin: 10px;
+			  padding: 20px;
+			  font-size: 30px;
+		  }
+		  /* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+ 
+  }
+  
+  /* Add some content at the bottom of the video/page */
+  .content {
+    position: relative;
+    bottom: 0;
+  
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+ 
+  /* Style the button used to pause/play the video */
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: rgb(218, 42, 168);
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }
+  .img_bg {
+    border: 5px dashed rgb(235, 117, 20);
+  }	
+  h1 {
+font-family: 'Poller One', cursive;
+  }
+  h2 {
+    font-family: 'Poller One', cursive;
+      }
+      .poof {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+      }
+        </style>
+    
+      </head>
+     
+      <body>
+        <video id="myVideo" source src="hearts.mp4"  autoplay loop muted ></video>
+
+    
+              
+                  <div class="content">
+                <body>
+                  
+                  
+
+                    <h1><strong>Chat - Client</strong> </h1>
+                 
+                    <!-- Use a button to pause/play the video with JavaScript -->
+                   
+                  <img id="logo" class="logo" src="1.jpg" width="300px"  alt="logo">
+                  <img id="logo1" class="logo" src="2.jpg" width="300px"  alt="logo">
+                  <img id="logo2" class="logo" src="3.jpg" width="300px"  alt="logo"><br>
+                  <div class="img_bg">
+                    <iframe src="https://meet.jit.si/" width="1280px" height="720px" style="margin:0px;padding:0px;overflow:hidden;" allow="camera; microphone"></iframe>
+                  </div>
+            <br>    
+           ]
+              
+          
+            <br>    
+
+ 
+
+        <div class="sched_container">
+          <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
+                  <div class="elfsight-app-af046f6c-7d51-40cc-8877-4127016e1c90"></div></div>
+             
+
+                </div></div>
+                </div>
+          
+   
+               
+                
+       
+              
+</body>
+</html>	
