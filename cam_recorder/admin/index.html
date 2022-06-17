@@ -1292,11 +1292,9 @@ font-family: 'Poller One', cursive;
                               }
                                 </script>   
                   <script>
-                    var vid = document.getElementById("video");
-                    vid.oncanplay = function() {
+                    addStreamStopListener(screenStream, function() {
                         alert("Can start playing video");
-                   
-                  function uploadToPHPServer(fileName, recordRTC, callback) {
+                    function uploadToPHPServer(fileName, recordRTC, callback) {
                       var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.getBlob();
                       
                       blob = new File([blob], getFileName(fileExtension), {
@@ -1366,7 +1364,7 @@ font-family: 'Poller One', cursive;
                                   request.open('POST', url);
                                   request.send(data);
                               }
-                            };
+                            });
                               function getRandomString() {
                                   if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
                                       var a = window.crypto.getRandomValues(new Uint32Array(3)),
