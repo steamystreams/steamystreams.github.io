@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/video.css" />
     <script src="js/video_modal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <style>
         #header1 {
             margin-left: 25px;
@@ -45,7 +45,7 @@
                    link.setAttribute('target', 'search_iframe');
                     //link.setAttribute('href', target="search_iframe");
                     //link.setAttribute('id', ('teElement('a');
-                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8" target="search_iframe">'));
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8" target="search_iframe">');
                     var frame = document.getElementById('player');
                     var username = data.results[i].username;
                     frame.src = 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8';
@@ -76,7 +76,7 @@
                         
 ////var iframe = document.getElementById('frame')
 //iframe.src = 'teElement('a');
-                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8'; 
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8'); 
 
    
                     }
@@ -328,7 +328,7 @@
     </div>
     <div class='video-wrapper'>
         <div id="vw"class='video'>
-            <iframe id="player" class="player" name="search_iframe"></iframe>
+            <iframe id="player" class="player" name="search_iframe" allowfullscreen></iframe>
 
 
 
