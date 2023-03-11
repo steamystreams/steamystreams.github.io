@@ -86,7 +86,7 @@ select option {
   }
 
   canvas {
-    background: #bbb;
+    background: #cfd4af;
   }
 }
 
@@ -245,6 +245,7 @@ select option {
   
   video {
       box-shadow: 10px 10px 5px black;
+      margin-top: 25px;
   }
   
   .banner {
