@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Primary Meta Tags -->
+    <title>videos</title>
+    <meta name="title" content="vids">
+    <meta name="description" content="">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/video_modal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/ace.js"></script>
+
+
+    <link rel="stylesheet" href="css/video.css" />
+    
+    <style>
+        #header1 {
+            margin-left: 25px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+       
+    </style>
+</head>
+<script>
+   
+    window.onload = function() {
+    const xhr = new XMLHttpRequest();
+
+    
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        var data = JSON.parse(this.responseText);
+        console.log(this.responseText); 
+  
+      
+
+               for (let i = 1; i < 700; i++) {
+                var d = new Date();
+                    const thumb = document.createElement('img');
+                    thumb.setAttribute("id", data.results[i].username);
+                    thumb.setAttribute("class", 'class="video_banner_img');
+                    $(thumb).attr("src", 'https://cbjpeg.stream.highwebmedia.com/riw/' + data.results[i].username + '.jpg?' + d.getTime());
+                    
+                    const link = document.createElement('a');
+                    link.setAttribute('target', 'search_iframe');
+                    link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+                    link.setAttribute("class", 'class="video_thumb"' + 'js_trigger_video_modal');
+
+                    var frame = document.getElementById('youtube');
+                     frame.src = 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8';
+                
+                    document.getElementById('grid').appendChild(link);
+                     $(thumb).attr("src", 'https://cbjpeg.stream.highwebmedia.com/riw/' + data.results[i].username + '.jpg?' + d.getTime());
+                    link.append(thumb)
+               
+                  
+                
+                  
+               }
+            }
+        }
+    
+    )
+
+    
+        xhr.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1", );
+        xhr.send();
+    
+    }       
+    
+    function myfunction_hairy() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var hairy_pic = document.createElement("IMG");
+                    hairy_pic.src = data.results[i].image_url;
+                    dv.appendChild(hairy_pic);
+
+
+
+                    hairy_pic.setAttribute("id", data.results[i].username);
+                    hairy_pic.setAttribute("class", "hh");
+                    hairy_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+        
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+                    link.setAttribute('class', 'link')
+
+
+
+                    dv.appendChild(link);
+                    link.append(hairy_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=hairy");
+        xhttp.send();
+    }
+
+    function myfunction_couples() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var couples_pic = document.createElement("IMG");
+                    couples_pic.src = data.results[i].image_url;
+                    dv.appendChild(couples_pic);
+
+
+
+                    couples_pic.setAttribute("id", data.results[i].username);
+                    couples_pic.setAttribute("class", "hh");
+                    couples_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+          
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(couples_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=c&embed_video_only=1");
+        xhttp.send();
+    }
+
+    function myfunction_bigboobs() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var boobs_pic = document.createElement("IMG");
+                    boobs_pic.src = data.results[i].image_url;
+                    dv.appendChild(boobs_pic);
+
+
+
+                    boobs_pic.setAttribute("id", data.results[i].username);
+                    boobs_pic.setAttribute("class", "hh");
+                    boobs_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(boobs_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=bigboobs");
+        xhttp.send();
+    }
+
+    function myfunction_smoke() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var smoke_pic = document.createElement("IMG");
+                    smoke_pic.src = data.results[i].image_url;
+                    dv.appendChild(smoke_pic);
+
+
+
+                    smoke_pic.setAttribute("id", data.results[i].username);
+                    smoke_pic.setAttribute("class", "hh");
+                    smoke_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+                
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(smoke_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=smoke");
+        xhttp.send();
+    }
+
+    
+</script>    
+
+</head>
+
+
+<body>
+
+
+
+
+    <header id="header0">
+        <a href="cb.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Chaturbate_logo.svg/516px-Chaturbate_logo.svg.png?20220102033446" height="80px" alt="Chaturbate-logo"></a>
+
+        <a href="sc.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Stripchat-logo.svg/799px-Stripchat-logo.svg.png?20210310204259" height="80px" alt="Stripchat-logo"></a>
+        <a href="dood.html" target="_blank"><img src="HWP_MEW_500.jpg" height="150px" alt="hwp" onclick="myfunction_dood()"></a>
+
+               
+                <button id="hairy" onclick="myfunction_hairy()">Hairy</button>
+                <button id="couples" onclick="myfunction_couples()">Couples</button>
+                <button id="bigboobs" onclick="myfunction_bigboobs()">Big Boobs</button>
+                <button id="smoke" onclick="myfunction_smoke()">Smoke</button>
+
+    </header>
+
+
+
+
+
+  
+   
+
+    <header id="header1"></header>
+  
+<section class="main">
+      
+
+        
+       
+
+        <div id="grid" class="video_thumb_grid">
+      
+   
+          
+        
+          
+        
+          
+        </div>
+        
+     
+        
+      
+    
+    </section>
+    
+  </main>
+  
+  
+  
+  <!-- video modal -->
+  <section class="video_modal">
+  
+      <!-- Modal Content Wrapper -->
+      <div id="video_modal_content" class="video_modal_content">
+        
+         <!-- iframe -->
+         <iframe 
+         scrolling="no"
+            id="youtube" 
+            width="100%" 
+            height="100%" 
+            allow="autoplay" 
+            allowfullscreen 
+            name="search_iframe"
+            src=
+          ></iframe>
+  
+          <a href="#" class="close_video_modal">
+              <!-- X close video icon -->
+            <svg version="1.1" 
+              xmlns="http://www.w3.org/2000/svg" 
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0"
+              y="0"
+              viewBox="0 0 32 32" 
+              style="enable-background:new 0 0 32 32;" 
+              xml:space="preserve" 
+              width="24" 
+              height="24">
+  
+              <g id="icon-x-close">
+                  <path fill="#ffffff" d="M30.3448276,31.4576271 C29.9059965,31.4572473 29.4852797,31.2855701 29.1751724,30.980339 L0.485517241,2.77694915 C-0.122171278,2.13584324 -0.104240278,1.13679247 0.52607603,0.517159487 C1.15639234,-0.102473494 2.17266813,-0.120100579 2.82482759,0.477288136 L31.5144828,28.680678 C31.9872448,29.1460053 32.1285698,29.8453523 31.8726333,30.4529866 C31.6166968,31.0606209 31.0138299,31.4570487 30.3448276,31.4576271 Z" id="Shape"></path>
+                  <path fill="#ffffff" d="M1.65517241,31.4576271 C0.986170142,31.4570487 0.383303157,31.0606209 0.127366673,30.4529866 C-0.12856981,29.8453523 0.0127551942,29.1460053 0.485517241,28.680678 L29.1751724,0.477288136 C29.8273319,-0.120100579 30.8436077,-0.102473494 31.473924,0.517159487 C32.1042403,1.13679247 32.1221713,2.13584324 31.5144828,2.77694915 L2.82482759,30.980339 C2.51472031,31.2855701 2.09400353,31.4572473 1.65517241,31.4576271 Z" id="Shape"></path>
+              </g>
+  
+            </svg>
+          </a>
+  
+      </div><!-- end modal content wrapper -->
+  
+  
+      <!-- clickable overlay element -->
+      <div class="overlay"></div>
+  
+  
+  </section>
+  <!-- end video modal -->
+
+<br>
+    <p>
+        <div class="config-editor-wrapper">
+            <div class="config-editor-container">
+              <div id="config-editor">Loading...</div>
+            </div>
+            <div class="config-editor-commands">
+              <label for="config-persistence">
+                Persist
+                <input
+                  name="config-persistence"
+                  id="config-persistence"
+                  type="checkbox"
+                />
+              </label>
+              <button name="config-apply" onclick="applyConfigEditorValue()">
+                Apply
+              </button>
+            </div>
+            <div id="controls">
+                <div class="demo-controls-wrapper">
+                  <select id="streamSelect" class="innerControls">
+                    <option value="" selected>
+                      Select a test-stream from drop-down menu. Or enter custom URL
+                      below
+                    </option>
+                  </select>
+          
+                  <input id="streamURL" class="innerControls" type="text" value="" />
+          
+                  <label
+                    class="innerControls"
+                    title="Uncheck this to disable loading of streams selected from the drop-down above."
+                  >
+                    Enable streaming:
+                    <input id="enableStreaming" type="checkbox" checked />
+                  </label>
+          
+                  <label
+                    class="innerControls"
+                    title="When a media error occurs, attempt to recover playback by calling `hls.recoverMediaError()`."
+                  >
+                    Auto-recover media-errors:
+                    <input id="autoRecoverError" type="checkbox" checked />
+                  </label>
+          
+                  <label
+                    class="innerControls"
+                    title="Stop loading and playback if playback under-buffer stalls. This can help debug stall errors."
+                  >
+                    Stop on first stall:
+                    <input id="stopOnStall" type="checkbox" unchecked />
+                  </label>
+          
+                  <label class="innerControls">
+                    Dump transmuxed fMP4 data:
+                    <input id="dumpfMP4" type="checkbox" unchecked />
+                  </label>
+          
+                  <label class="innerControls">
+                    Metrics history (max limit, -1 is unlimited):
+                    <input id="limitMetrics" style="width: 8em" type="number" />
+                  </label>
+          
+                  <label class="innerControls">
+                    HTML video element width:
+                    <select id="videoSize" style="float: right">
+                      <option value="240px">240px</option>
+                      <option value="426px">426px</option>
+                      <option value="640px">640px</option>
+                      <option value="720px">720px</option>
+                      <option value="854px">854px</option>
+                      <option value="1280px">1280px</option>
+                      <option value="1920px">1920px</option>
+                      <option value="80%">Responsive (80%)</option>
+                      <option value="100%">Responsive (100%)</option>
+                    </select>
+                  </label>
+          
+                  <label class="innerControls">
+                    Current player size:
+                    <span id="currentSize"></span>
+                  </label>
+                  <label class="innerControls">
+                    Current video resolution:
+                    <span id="currentResolution"></span>
+                  </label>
+          
+                  <label class="innerControls permalink">
+                    Permalink:&nbsp;&nbsp;<span id="StreamPermalink"></span>
+                  </label>
+                </div>
+            </div>
+        </div>
+        <iframe 
+        scrolling="no"
+           id="controls" 
+           width="100%" 
+           height="100%" 
+           allow="autoplay" 
+           allowfullscreen 
+           name="search_iframe"
+           src="controls.html"
+         ></iframe>
+    
+        <!-- demo build -->
+        <script src="js/hls.light.js"></script>
+        <script src="js/hls-demo.js"></script>
+
+</body>
+
+</html>

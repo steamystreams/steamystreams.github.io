@@ -131,7 +131,7 @@ select option {
 
 .config-editor-commands {
   flex: 1 1 auto;
-  background-color: #ddd;
+  background-color: #232222;
   border-top: solid 1px #ccc;
   padding: 5px;
   display: flex;
@@ -158,10 +158,13 @@ select option {
 }
 
 .videoCentered {
-  width: 1240px;
-  margin-left: auto;
+  width: 900px;
+  height: 400px;
+  margin-left: 30%;
   margin-right: auto;
   display: block;
+  overflow: hidden;
+  background-color: #000;
 }
 
 .center {
@@ -241,11 +244,12 @@ select option {
   html {
       height: 100%;
       background-image: url("images/wood.jpg");
+      background-color: #050505;
   }
   
   video {
       box-shadow: 10px 10px 5px black;
-      margin-top: 25px;
+   
   }
   
   .banner {
@@ -253,21 +257,23 @@ select option {
   }
   
 
-  
   .config-editor-container {
       background-image: url("images/logo_bk.png");
       background-repeat: no-repeat;
   }
   
   .mcontainer {
-      width: 100%;
+      width: 60%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-left: 30%;
+      background-color: #050505;
   }
   
   div.mcontainer p {
       margin: 30px;
+      background-color: #050505;
   }
   
   .mcontainer2 {
@@ -275,6 +281,7 @@ select option {
       height: 70px;
       flex-direction: row;
       justify-content: center;
+      background-color: #050505;
   }
   
   #div.mcontainer2 {
@@ -283,6 +290,7 @@ select option {
       text-align: center;
       line-height: 75px;
       font-size: 30px;
+      background-color: #050505;
   }
 
 }

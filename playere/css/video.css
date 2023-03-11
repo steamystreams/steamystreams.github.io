@@ -1,38 +1,406 @@
-.button {
-    background: #dc9106;
-    color: white;
-    font-family: Arial;
-    padding: 5px;
+/* Embed google fonts for demo layout
+-----------------------------------------*/
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900");
+
+/* Main Page Layout 
+-- NOTE: Just for the demo page, and not
+required for the video modal... Video Modal
+styles are down below --
+-----------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+html {
+  background: #fcfcfc;
+}
+@media (min-width: 641px) {
+  html {
+    background: #4b4b4b;
+  }
+}
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+.noscroll {
+  overflow: hidden;
+}
+
+
+
+main {
+  background: #fcfcfc;
+  display: block;
+  position: relative;
+  font-size: 1rem;
+  width: 100%;
+  min-height: 0;
+  font-size: 0;
+
+}
+@media (min-width: 641px) {
+  main .column.left,
+  main .column.right {
+    display: inline-block;
+    width: 50%;
+    min-height: 100vh;
+  }
+  main .column.left {
+    position: fixed;
+  }
+  main .column.right {
+    margin-left: 50%;
+  }
+}
+
+.video-banner {
+  display: block;
+}
+@media (min-width: 641px) {
+  .video-banner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+}
+
+.video-banner .video-banner-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.video-banner-headline {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.25em;
+  font-weight: 900;
+  line-height: 1em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+@media (min-width: 641px) {
+  .video-banner-headline {
+    left: 2em;
+    bottom: 2.75em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+}
+.video-banner-icon-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(1);
+  -ms-transform: translateX(-50%) translateY(-50%) scale(1);
+  -o-transform: translateX(-50%) translateY(-50%) scale(1);
+  transform: translateX(-50%) translateY(-50%) scale(1);
+
+  -webkit-transition: all 0.2s ease-out 0.05s;
+  transition: all 0.2s ease-out 0.05s;
+}
+@media (min-width: 641px) {
+  .video-banner-icon-play {
+    width: 4.5em;
+    height: 4.5em;
+  }
+}
+.video-banner-icon-play:hover {
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -ms-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  -o-transform: translateX(-50%) translateY(-50%) scale(1.2);
+  transform: translateX(-50%) translateY(-50%) scale(1.2);
+
+  backgound: #330099;
+}
+
+.content {
+  display: block;
+  min-height: 100vh;
+  max-width: 40rem;
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+}
+@media (min-width: 641px) {
+  .content {
+    margin: 5.75rem auto;
+    padding: 2.5rem;
+  }
+}
+
+.content h1,
+.content h2,
+.content p {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5em;
+  color: #0d013d;
+}
+.content h1 {
+  font-size: 3.25em;
+  font-weight: 200;
+  line-height: 1em;
+
+  margin: 0 0 0.5rem 0;
+}
+@media (min-width: 641px) {
+  .content h1 {
+    font-size: 4em;
+  }
+}
+.content h2 {
+  font-size: 1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.155em;
+
+  margin-top: 3em;
+}
+
+/* buttons */
+.content .button-group {
+  margin-top: 1em;
+}
+.content .button {
+  display: inline-block;
+  padding: 1em 2em;
+  min-width: 8em;
+  text-align: center;
+  font-weight: 900;
+  text-decoration: none;
+  border-radius: 1.5em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+
+  /* button theme - secondary is default */
+  background: #f0f0f0;
+  color: #2b2b2b;
+
+  -webkit-transition: all 0.2s ease-out 0.05s;
+  transition: all 0.2s ease-out 0.05s;
+}
+.content .button ~ .button {
+  margin-left: 0.5em;
+}
+.content .button:hover {
+  background: #e5e5e5;
+}
+/* primary button overrides */
+.content .button.primary {
+  background: #e50055;
+  color: #fff;
+}
+.content .button.primary:hover {
+  background: #9d00e5;
+}
+
+/* video thumbnail grid */
+.content .video-thumb-grid {
+  position: relative;
+  font-size: 0; /* collapse the white-space */
+  width: calc(100% + 2rem);
+  margin: 0 -1rem;
+}
+.content .video-thumb {
+  display: inline-block;
+  vertical-align: top;
+
+  text-decoration: none;
+
+  /* calculate the width, gutters, and aspect ratio */
+  width: calc((100% - 4rem) / 2);
+  height: 0;
+  padding-top: calc(((100% - 4rem) / 2) * 0.5625); /* 16:9 calc */
+
+  margin: 1rem 1rem; /* gutters */
+
+  overflow: hidden; /* clipping */
+
+  position: relative; /* enable positioning for inner content */
+
+  font-size: 1rem; /* reset the font size */
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+  -webkit-transition: all 0.2s ease-out 0.05s;
+  transition: all 0.2s ease-out 0.05s;
+}
+.content .video-thumb:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(13, 1, 61, 0.35);
+}
+.content .video-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* position inside the 16:9 container */
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  /* clipping for source images that are letterboxed */
+  object-fit: cover;
+  object-position: 50% 50%;
+
+  background: #2b2b2b;
+}
+
+/* Video Modal
+-----------------------------------------*/
+.video-modal,
+.video-modal .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3000;
+}
+.video-modal {
+  overflow: hidden;
+  position: fixed;
+  opacity: 0;
+
+  -webkit-transform: translate(500%, 0%);
+  transform: translate(500%, 0%);
+
+  -webkit-transition: -webkit-transform 0s linear 0s;
+  transition: transform 0s linear 0s;
+
+  /* using flexbox for vertical centering */
+
+  /* Flexbox display */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+
+  /* Vertical alignment */
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.video-modal .overlay {
+  z-index: 0;
+  background: rgba(13, 1, 61, 0.82); /* overlay color */
+
+  opacity: 0;
+
+  -webkit-transition: opacity 0.2s ease-out 0.05s;
+  transition: opacity 0.2s ease-out 0.05s;
+}
+
+.video_modal_content {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: 1;
+
+  margin: 0 auto;
+
+  overflow-y: visible;
+
+  background: #000;
+
+  width: calc(100% - 12em);
+  height: 0;
+  padding-top: calc((100% - 12em) * 0.5625); /* 16:9 calc */
+}
+
+/* Scaling to fit within the current Viewport size:
+   When viewport aspect ratio is greater than 16:9
+   work off the height instead of the width for calc */
+@media (min-aspect-ratio: 16/9) {
+  .video-modal-content {
+    width: 0;
+    height: calc(100vh - 10em);
+    padding-top: 0;
+    padding-left: calc((100vh - 10em) * 1.7778); /* 16:9 calc */
+  }
+}
+
+/* Mobile Layout Tweaks - side margins reduced */
+@media (max-width: 640px) {
+  .video-modal-content {
+    width: calc(100% - 1em);
+    padding-top: calc((100% - 1em) * 0.5625); /* 16:9 calc */
+  }
+}
+
+/* modal close button */
+.close-video-modal {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -40px;
+
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* set the iframe element to stretch to fit its parent element */
+iframe#youtube {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  background: #000;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* show the modal: 
+   add class to the body to reveal */
+.show-video-modal .video-modal {
+  opacity: 1;
+
+  transform: translate(0%, 0%);
+  -webkit-transform: translate(0%, 0%);
+}
+.show-video-modal .video-modal .overlay {
+  opacity: 1;
+}
+.show-video-modal .video-modal-content {
+  transform: translate(0%, 0%);
+  -webkit-transform: translate(0%, 0%);
+}
+#controls {
+   width: 98%;
+   height: 600px;
+   position:absolute;
+   margin-bottom: 0;
+   overflow: scroll;
  
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0px 3px 10px black;
  }
-
-.button:active {
-   top: 12px; 
-   box-shadow: 0px 2px 10px black;
-}
-
-.button:hover {
-   background: #3999ee; 
-}
-
-div.video {
-   width: 420px;
-   height: 315px;
-   display: none;
-   position: absolute;
-
-
-}
-div.video-wrapper {
-   z-index: 1;
-   background: rgba(0,0,0,.5);
-   position: absolute;
-   display: none;
-   width: 100%;
-   height: 100%;
-   top: 0px;
-   left: 0px;
-}
+   
