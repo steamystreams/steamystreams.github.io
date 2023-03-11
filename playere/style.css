@@ -1,0 +1,172 @@
+
+
+#header1 {
+    margin-left: 5px;
+    margin-top: 190px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 100;
+}
+#header0 {
+  
+    width: 100%;
+    margin-top: -190px;
+    margin-left: 0px;
+    background-color: #181818;
+    position: fixed;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+
+th,
+td {
+    padding: 15px;
+}
+
+select {
+    padding: 2px 15px;
+    background-color: rgb(181, 222, 255);
+    font-weight: 600;
+}
+
+select option {
+    font-size: 11px;
+}
+
+
+.button {
+    width:250px;
+    z-index: 100;
+}
+
+.center {
+    width: 70%;
+    min-width: 615px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#toggleButtons button {
+    width: 16%;
+    display: inline-block;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bolder;
+    background-color: rgb(181, 222, 255);
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#statusOut {
+    height: auto;
+    max-height: calc((17px * 3) + 19px);
+    overflow: auto;
+}
+
+#errorOut {
+    height: auto;
+    max-height: calc((17px * 3) + 19px);
+    overflow: auto;
+}
+
+#streamURL,
+#streamSelect {
+    width: calc(100% - 4px);
+    margin-left: 3px;
+}
+
+#streamURL {
+    margin-bottom: 10px;
+    padding-left: 3px;
+}
+
+#streamSelect {
+    padding: 5px 0;
+}
+
+#StreamPermalink {
+    overflow-wrap: break-word;
+    overflow: hidden;
+    /* for IE11 */
+}
+
+#StreamPermalink a {
+    font-size: 10px;
+    font-family: monospace;
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    #controls {
+        flex-direction: row;
+    }
+    .demo-controls-wrapper {
+        max-width: 50%;
+    }
+    .config-editor-wrapper {
+        height: auto;
+        border-top: 0;
+        border-left: solid 1px #ccc;
+    }
+    body,
+    html {
+        height: 100%;
+        background-image: url("");
+        background-color: rgb(0, 0, 0, 1);
+    }
+    video {
+        box-shadow: 10px 10px 5px black;
+    }
+    .banner {
+        border-radius: 25px;
+    }
+}
+
+.config-editor-container {
+    background-image: url("images/logo_bk.png");
+    background-repeat: no-repeat;
+}
+
+.mcontainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.mcontainer p {
+    margin: 30px;
+}
+
+.mcontainer2 {
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#div.mcontainer2 {
+    position: absolute;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
+iframe {
+    z-index: 201;
+}
+.player {
+ 
+        z-index: 201;
+
+}
