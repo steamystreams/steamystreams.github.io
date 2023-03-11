@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Primary Meta Tags -->
+    <title>videos</title>
+    <meta name="title" content="vids">
+    <meta name="description" content="">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/ace.js"></script>
+    <link rel="stylesheet" href="css/video_modal.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.13.1/ace.js"></script>
+    <script src="/tests/test-streams.js"></script>
+
+    <style>
+        #header1 {
+            margin-left: 25px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hh {
+            padding-right: 6px;
+            width: 270px;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+                    var d = new Date();
+                    const thumb = document.createElement('img');
+                    thumb.setAttribute("id", 'btn' + [i]);
+                    thumb.setAttribute("class", "button");
+                  
+                    const link = document.createElement('a');
+                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+                    link.setAttribute('id', 'link'[i])
+                    
+             
+
+                    var header1 = document.getElementById('header1');
+                    header1.appendChild(link);
+                    var frame = document.getElementById("frame");
+
+                
+                    
+                
+
+                    // JavaScript example using jQuery
+
+
+                    // Active camera will refresh every 2 seconds
+                    //  var TIMEOUT = 20000;
+                    // var refreshInterval = setInterval(function() {
+                    // var random = Math.floor(Math.random() * Math.pow(3, 100));
+                    //   $('img#camera').attr('src', 'https://cbjpeg.stream.highwebmedia.com/riw/crown_of_vice01.jpg?' + +d.getTime());
+
+                    //  d = new Date();
+                    $(thumb).attr("src", 'https://cbjpeg.stream.highwebmedia.com/riw/' + data.results[i].username + '.jpg?' + d.getTime());
+                    link.append(thumb)
+                        //  }, TIMEOUT);
+                        //  }
+
+                }
+                //   for(let i = 0; i < 1100; i++) {
+                //       const container = document.createElement('container');
+                //    const img = document.createElement('img');
+                //   const link = document.createElement('a');
+                //   const h3 = document.getElementById('caption');
+
+
+                // link.setAttribute('href', 'https://doodstream.com/e/' + data.result.files[i].file_code);
+                //https://chaturbate.com/api/chatvideocontext/
+                //h3.src = data.result.files[i].title;
+
+                // content.append(link)
+
+
+                // //img.src = (data.result.files[i].single_img);
+
+                // content.append(container);
+
+                //   container.append(link);
+                // link.appendChild(img);
+                //container.append('<p>' + data.result.files[i].title + '</p>');
+
+
+
+
+
+            }
+
+
+        }
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1", );
+        xhttp.send();
+        
+    }
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var btn3 = document.getElementById("btn3");
+    btn1.addEventListener("click",link1)
+    btn2.addEventListener("click",link2)
+    btn3.addEventListener("click",link3)
+    function link1(){
+        frame.src=('https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+      }
+      function link2(){
+        frame.src=('https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+      }
+      function link3(){
+        frame.src=('https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+      }
+    function myfunction_hairy() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var hairy_pic = document.createElement("IMG");
+                    hairy_pic.src = data.results[i].image_url;
+                    dv.appendChild(hairy_pic);
+
+
+
+                    hairy_pic.setAttribute("id", data.results[i].username);
+                    hairy_pic.setAttribute("class", "hh");
+                    hairy_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+                    link.setAttribute('class', 'link')
+
+
+
+                    dv.appendChild(link);
+                    link.append(hairy_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=hairy");
+        xhttp.send();
+    }
+
+    function myfunction_couples() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var couples_pic = document.createElement("IMG");
+                    couples_pic.src = data.results[i].image_url;
+                    dv.appendChild(couples_pic);
+
+
+
+                    couples_pic.setAttribute("id", data.results[i].username);
+                    couples_pic.setAttribute("class", "hh");
+                    couples_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(couples_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=c&embed_video_only=1");
+        xhttp.send();
+    }
+
+    function myfunction_bigboobs() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var boobs_pic = document.createElement("IMG");
+                    boobs_pic.src = data.results[i].image_url;
+                    dv.appendChild(boobs_pic);
+
+
+
+                    boobs_pic.setAttribute("id", data.results[i].username);
+                    boobs_pic.setAttribute("class", "hh");
+                    boobs_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(boobs_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=bigboobs");
+        xhttp.send();
+    }
+
+    function myfunction_smoke() {
+        var dv = document.getElementById('header1');
+
+        // remove all child nodes
+        while (dv.hasChildNodes()) {
+            dv.removeChild(dv.lastChild);
+        }
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                for (let i = 0; i < 700; i++) {
+
+                    var smoke_pic = document.createElement("IMG");
+                    smoke_pic.src = data.results[i].image_url;
+                    dv.appendChild(smoke_pic);
+
+
+
+                    smoke_pic.setAttribute("id", data.results[i].username);
+                    smoke_pic.setAttribute("class", "hh");
+                    smoke_pic.setAttribute('onclick', 'myfunction_' + data.results[i].username + '()');
+                    const link = document.createElement('a');
+                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8', );
+
+
+
+
+                    dv.appendChild(link);
+                    link.append(smoke_pic)
+                }
+            }
+        }
+
+
+        xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1&tag=smoke");
+        xhttp.send();
+    }
+
+    
+</script>    
+
+</head>
+
+
+<body>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function myfunction_(){
+        $('.button').click(function(){
+            if(!$('#iframe').length) {
+                    $('#iframeHolder').html('<iframe id="iframe" src="http://w3schools.com" width="700" height="450"></iframe>');
+            }
+        });   
+    });
+    </script>
+    
+    <div id="iframeHolder"></div>
+<iframe id="frame" src="link2"></iframe>
+    <span class='button'>Watch</span>
+   <div class='video-wrapper'>
+        <div class='video'>
+            <video preload="true" controls id="video" src></video>
+
+        </div>
+        </div>
+
+    <div class="container">
+
+
+
+       
+
+
+
+
+
+
+    </div>
+    </div>
+
+
+
+
+</div>
+
+
+   
+    <header id="header0">
+        <a href="cb.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Chaturbate_logo.svg/516px-Chaturbate_logo.svg.png?20220102033446" height="80px" alt="Chaturbate-logo"></a>
+
+        <a href="sc.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Stripchat-logo.svg/799px-Stripchat-logo.svg.png?20210310204259" height="80px" alt="Stripchat-logo"></a>
+        <a href="dood.html" target="_blank"><img src="HWP_MEW_500.jpg" height="150px" alt="hwp" onclick="myfunction_dood()"></a>
+
+
+                </div>
+                <button id="hairy" onclick="myfunction_hairy()">Hairy</button>
+                <button id="couples" onclick="myfunction_couples()">Couples</button>
+                <button id="bigboobs" onclick="myfunction_bigboobs()">Big Boobs</button>
+                <button id="smoke" onclick="myfunction_smoke()">Smoke</button>
+
+    </header>
+
+
+
+    <header id="header1"></header>
+    <hr class="my-5" />
+    <div id="content"></div>
+
+    </div>
+ 
+
+<br>
+    <p>
+     
+    
+        <!-- demo build -->
+        <script src="https://inoculate.media/hls/hls.light.js"></script>
+        <script src="https://inoculate.media/hls/hls_demo.js"></script>
+
+</body>
+
+</html>
