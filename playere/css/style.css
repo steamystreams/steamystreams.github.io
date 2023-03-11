@@ -1,13 +1,13 @@
 
 
 #header1 {
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 190px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
-    z-index: 200;
+    z-index: 100;
 }
 #header0 {
   
@@ -19,6 +19,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    z-index: 200;
 }
 
 
@@ -40,6 +41,7 @@ select option {
 
 .button {
     width:250px;
+    z-index: 100;
 }
 
 
