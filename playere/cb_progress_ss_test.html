@@ -23,6 +23,7 @@
             align-items: center;
             justify-content: center;
         }
+      
         
        
     </style>
@@ -49,11 +50,11 @@
                     
                     const link = document.createElement('a');
                     link.setAttribute('target', 'search_iframe');
-                    link.setAttribute('href', 'https://steamystreams.github.io/playere/player_basic.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+                    link.setAttribute('href', 'https://steamystreams.github.io/playere/controls.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
                     link.setAttribute("class", 'class="video_thumb"' + 'js_trigger_video_modal');
 
                     var frame = document.getElementById('youtube');
-                     frame.src = 'https://steamystreams.github.io/playere/player_basic.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8';
+                     frame.src = 'https://steamystreams.github.io/playere/controls.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8';
                 
                     document.getElementById('grid').appendChild(link);
                      $(thumb).attr("src", 'https://cbjpeg.stream.highwebmedia.com/riw/' + data.results[i].username + '.jpg?' + d.getTime());
@@ -451,13 +452,14 @@
         </div>
         <iframe 
         scrolling="no"
-           id="controls" 
+           id="vid_controls" 
            width="100%" 
            height="100%" 
            allow="autoplay" 
            allowfullscreen 
            name="search_iframe"
            src="controls.html"
+         
          ></iframe>
     
         <!-- demo build -->
