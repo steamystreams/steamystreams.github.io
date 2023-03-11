@@ -1,12 +1,13 @@
 
 
 #header1 {
-    margin-left: 25px;
+    margin-left: 10px;
     margin-top: 190px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
+    z-index: 200;
 }
 #header0 {
   
@@ -20,10 +21,6 @@
     justify-content: center;
 }
 
-.hh {
-    padding-right: 6px;
-    width: 270px;
-}
 
 th,
 td {
@@ -40,139 +37,15 @@ select option {
     font-size: 11px;
 }
 
-.innerControls input {
-    font-weight: normal;
-    float: right;
+
+.button {
+    width:250px;
 }
 
-.innerControls.permalink {
-    display: inline-block;
-}
 
-@media (prefers-color-scheme: dark) {
-    body {
-        color: #ddd;
-        background-color: #111;
-    }
-    button,
-    optgroup,
-    select {
-        background-color: rgb(212, 215, 218);
-    }
-    input,
-    textarea {
-        background-color: #faf2f2;
-    }
-    label {
-        font-weight: initial;
-    }
-    a {
-        color: #337ab7;
-    }
-    pre {
-        background-color: #050505;
-        border-color: #333;
-        color: #ccc;
-    }
-    .ace-github {
-        background: #000;
-        color: #fff;
-    }
-    .ace-github .ace_gutter {
-        background: #181818;
-        color: #888;
-    }
-    .ace-github .ace_marker-layer .ace_active-line {
-        background: #111;
-    }
-    .ace-github.ace_focus .ace_marker-layer .ace_active-line {
-        background: #321;
-    }
-    div.config-editor-commands {
-        background-color: #444;
-        border-color: #333;
-    }
-    button.btn {
-        color: #050505;
-    }
-    canvas {
-        background: #bbb;
-    }
-}
 
-#controls {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto 20px auto;
-    border: 1px solid #606060;
-    overflow: hidden;
-}
 
-.demo-controls-wrapper {
-    flex: 1 1 auto;
-    max-width: 100%;
-    padding: 5px 5px 0 3px;
-}
 
-.config-editor-wrapper {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    border-top: solid 1px #ccc;
-    height: 256px;
-}
-
-.config-editor-container {
-    flex: 1 1 auto;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-#config-editor {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.config-editor-commands {
-    flex: 1 1 auto;
-    background-color: #ddd;
-    border-top: solid 1px #ccc;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.config-editor-commands label {
-    margin-bottom: 0;
-}
-
-.config-editor-commands button {
-    padding: 5px 8px;
-    font-size: 14px;
-}
-
-.innerControls {
-    display: flex;
-    font-size: 12px;
-    align-items: center;
-    margin-bottom: 5px;
-    padding-left: 5px;
-    justify-content: space-between;
-}
-
-.videoCentered {
-    width: 1240px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
 
 .center {
     width: 70%;

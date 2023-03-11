@@ -11,7 +11,7 @@ select {
   padding: 2px 15px;
   background-color: rgb(181, 222, 255);
   font-weight: 600;
-  padding: 5px 0;
+
 }
 
 select option {
@@ -251,9 +251,7 @@ select option {
       border-radius: 25px;
   }
   
-  .demo-controls-wrapper {
-      background-color: #000000;
-  }
+
   
   .config-editor-container {
       background-image: url("images/logo_bk.png");
