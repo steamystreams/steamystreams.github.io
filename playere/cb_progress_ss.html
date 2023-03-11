@@ -34,21 +34,22 @@
             if (this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(this.responseText);
                 console.log(data)
-                for (let i = 0; i < 700; i++) {
+                for (let i = 1; i < 700; i++) {
                     var d = new Date();
                     const thumb = document.createElement('img');
-                    thumb.setAttribute("id", 'btn' + data.results[i].username);
+                    thumb.setAttribute("id", 'btn_' + data.results[i].username);
                     thumb.setAttribute("class", "button");
-                  
+                  //thumb.setAttribute('onclick', "myfunction_smoke()");
                     const link = document.createElement('a');
-                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8');
+                   //link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8');
                    link.setAttribute('target', 'search_iframe');
                     //link.setAttribute('href', target="search_iframe");
                     //link.setAttribute('id', ('teElement('a');
-                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8" target="search_iframe">');
-                    var frame = document.getElementById('player');
+                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8');
+                   link.setAttribute('target', 'search_iframe');
+                   var frame = document.getElementById('player');
                     var username = data.results[i].username;
-                    frame.src = 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + username + '/playlist.m3u8';
+                    frame.src = 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8';
                   // frame.setAttribute("id", data.results[i].username);
                     var videowrapper = document.getElementById('video-wrapper');
                
@@ -73,30 +74,30 @@
                     link.append(thumb)
                         //  }, TIMEOUT);
                 
+                       // window.addEventListener("click", function myfunction_iframe() {
+ 
+  
+                         //   var vw = document.getElementById('header1');
                         
-////var iframe = document.getElementById('frame')
-//iframe.src = 'teElement('a');
-                   link.setAttribute('href', 'https://steamystreams.github.io/playere/player.html?src=https://edge18-lax.live.mmcdn.com/live-hls/amlst:' + data.results[i].username + '/playlist.m3u8'); 
-
+                            // remove all child nodes
+                          //  while (header1.hasChildNodes()) {
+                            //    header1.removeChild(header1.lastChild);
+                               // header1.append('iframe');
+                           // }
+                       // });
+                    
    
-                    }
+                   // }
             
         }
     }
-        
+}
 
         xhttp.open("GET", "https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=aqAcE&client_ip=request_ip&limit=200&hd=true&gender=f&embed_video_only=1", );
         xhttp.send();
     }
+   
     
-    var vw = document.getElementById('vw');
-
-    // remove all child nodes
-    while (vw.hasChildNodes()) {
-        vw.removeChild(vw.lastChild);
-    }
-
-
     function myfunction_hairy() {
         var dv = document.getElementById('header1');
 
@@ -277,31 +278,6 @@
 
 <body>
 
- 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-
-
-
- 
-    <div class="container">
-
-
-
-       
-
-
-
-
-
-
-    </div>
-    </div>
-
-
-
-
-</div>
-
 
    
     <header id="header0">
@@ -311,7 +287,7 @@
         <a href="dood.html" target="_blank"><img src="HWP_MEW_500.jpg" height="150px" alt="hwp" onclick="myfunction_dood()"></a>
 
 
-                </div>
+               
                 <button id="hairy" onclick="myfunction_hairy()">Hairy</button>
                 <button id="couples" onclick="myfunction_couples()">Couples</button>
                 <button id="bigboobs" onclick="myfunction_bigboobs()">Big Boobs</button>
@@ -328,7 +304,7 @@
     </div>
     <div class='video-wrapper'>
         <div id="vw"class='video'>
-            <iframe id="player" class="player" name="search_iframe" allowfullscreen></iframe>
+            <iframe id="player" class="player" name="search_iframe" allowfullscreen width='1280px' height='720px;'></iframe>
 
 
 
@@ -341,10 +317,9 @@
      
     
         <!-- demo build -->
-        <script src="js/hls.light.js"></script>
-        <script src="js/hls_demo.js"></script>
-      <script src="js/canvas.js"></script>
-        <script src="js/metrics.js"></script>
+        <script src="https://inoculate.media/hls/hls.light.js"></script>
+        <script src="https://inoculate.media/hls/hls_demo.js"></script>
+
 </body>
 
 </html>
