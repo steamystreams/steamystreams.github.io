@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamically Change Video</title>
+  <link rel="stylesheet" type="text/css" href="./resources/style/main.css" />
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+<style>
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: rgb(1, 1, 1);
+}
+.container {
+  width: 50%;
+  height: 1200px;
+  background-color: rgb(0, 0, 0);
+  display: grid;
+  grid-template-columns: 97% 97%;
+  grid-row: auto auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+  .box {
+    background-color: #333;
+    padding: 1px;
+    border-radius: 0px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: sans-serif;
+  }
+
+  iframe {
+    /* the width and height here are your "unshrunken" sizes.  Important bc of the scale variable later. */
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: none;
+
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    -webkit-transform: scale(
+      1,
+      1
+    ); /* Gets the size down to fit into your .thumbnail. */
+    -moz-transform: scale(
+      1,
+      1
+    ); /* Gets the size down to fit into your .thumbnail. */
+    transform: scale(
+      1,
+      1
+    ); /* Gets the size down to fit into your .thumbnail. */
+    overflow: hidden;
+
+    display: grid;
+  }
+
+.button0 {
+  position: fixed;
+  z-index: 5000;
+}
+</style>
+  
+</head>
+ 
+<script>
+
+</script>
+
+
+<body>
+    <section>
+    <div class="container">
+
+     
+        <div class="box">
+
+          <iframe id="0" src="https://chaturbate.com/in/?tour=dU9X&campaign=k9ouG&track=embed&signup_notice=1&disable_sound=1&mobileRedirect=never" height="480px" width="850px" frameborder="0" class="code" scrolling="no"></iframe>
+
+        </div>
+        <div class="box">
+          <iframe id="1" src="https://chaturbate.com/in/?tour=dU9X&campaign=k9ouG&track=embed&signup_notice=1&disable_sound=1&mobileRedirect=never" height="480px" width="850px" frameborder="0" class="code" scrolling="no"></iframe>
+        </div>
+        <div class="box">
+          <iframe id="2" src="https://chaturbate.com/in/?tour=dU9X&campaign=k9ouG&track=embed&signup_notice=1&disable_sound=1&mobileRedirect=never" height="480px" width="850px" frameborder="0" class="code" scrolling="no"></iframe>
+        </div>
+        <div class="box">
+          <iframe id="3" src="https://chaturbate.com/in/?tour=dU9X&campaign=k9ouG&track=embed&signup_notice=1&disable_sound=1&mobileRedirect=never" height="480px" width="850px" frameborder="0" class="code" scrolling="no"></iframe>
+        </div>
+      </div>
+    </section>
+
+
+  <button class="button0" onclick="changeVideo()">Change Video 0</button>
+  <button class="button1" onclick="changeVideo()">Change Video 1</button>
+  <button class="button2" onclick="changeVideo()">Change Video 2</button>
+  <button class="button3" onclick="changeVideo()">Change Video 3</button>
+
+  <script type="text/JavaScript">
+  const container = document.querySelector('flex-container')
+window.onload = function() {
+    var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        for(let i = 0; i < 20; i++) {
+                            console.log(JSON.parse(JSON.stringify(data)))
+                            console.log(data.results[i].username)
+                            const iframe = document.getelementByID('iframe0')
+ iframe.src = 'https://chaturbate.com/in/?tour=9oGW&amp;campaign=aqAcE&amp;track=embed&amp;room="' + data.results[i].username  +  '"&amp;bgcolor=black&embed_video_only=1"></iframe>"');
+
+
+                        }
+                    }
+    // +++ Change video source via iframe src attribute +++
+    function changeVideo(){
+      var iframeTag = document.getElementsByTagName("iframe")[3],
+        newVideo = data.results[+i].username,
+        theSrc = iframeTag.src,
+        srcWithoutVideo = theSrc.substring( 0, theSrc.indexOf( "?" ) ),
+        newSrc = ('<iframe id="0" src="https://chaturbate.com/in/?tour=9oGW&amp;campaign=aqAcE&amp;track=embed&amp;room="' + data.results[i].username  + '"&amp;bgcolor=black&amp;embed_video_only=1"></iframe>');
+;
+      iframeTag.src = newSrc;
+    }
+  </script>
+    <script src="./resources/javascript/external/jquery-3.6.0.min.js"></script>
+</body>
+</html>
+
