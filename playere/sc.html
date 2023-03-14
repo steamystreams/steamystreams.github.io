@@ -34,47 +34,13 @@
                     thumb.setAttribute("class", "hh");
                     thumb.setAttribute('onclick', 'myfunction_' + data.models[i].username + '()');
                     const link = document.createElement('a');
-                    link.setAttribute('href', 'https://inoculate.media/hls/player_light.html?src=' + data.models[i].stream.url);
+                    link.setAttribute('href', 'https://steamystreams.github.io/playere/controls.html?src=' + data.models[i].stream.url);
 
                     thumb.innerText = data.models[i].username;
 
                     var header1 = document.getElementById('header1');
                     header1.appendChild(link);
                     link.append(thumb)
-
-                    // var hairy = document.createElement('button');
-                    // hairy.setAttribute('onclick', 'myfunction_hairy()');
-                    //  hairy.innerText = 'hairy';
-                    //  var header0 = document.getElementById('header0');
-                    //  header0.append(hairy);
-                }
-
-                //   const content = document.getElementById('content');                
-                //   for(let i = 0; i < 1100; i++) {
-                //       const container = document.createElement('container');
-                //    const img = document.createElement('img');
-                //   const link = document.createElement('a');
-                //   const h3 = document.getElementById('caption');
-
-
-                // link.setAttribute('href', 'https://doodstream.com/e/' + data.result.files[i].file_code);
-                //https://chaturbate.com/api/chatvideocontext/
-                //h3.src = data.result.files[i].title;
-
-                // content.append(link)
-
-
-                // //img.src = (data.result.files[i].single_img);
-
-                // content.append(container);
-
-                //   container.append(link);
-                // link.appendChild(img);
-                //container.append('<p>' + data.result.files[i].title + '</p>');
-
-
-
-
 
             }
 
