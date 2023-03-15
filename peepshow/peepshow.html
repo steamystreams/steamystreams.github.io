@@ -12,7 +12,6 @@
     <script src="https://steamystreams.github.io/peepshow/js/hls.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/video_modal.js"></script>
     <style>
         h1 {
             display: inline;
@@ -23,15 +22,14 @@
             letter-spacing: 2px;
         }
         
-        body {
-
-        }
+   
         
         .container {
-            position: absolute;
+            position: relative;
             overflow: hidden;
             width: 100%;
             padding-top: 56.25%;
+            z-index: 599;
             /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
         }
         /* Then style the iframe to fit in the container div with full height and width */
@@ -41,6 +39,10 @@
             width: 100%;
             height: 100%;
             z-index: -2;
+        }
+        title-container {
+          position: relative;
+          z-index: 500;
         }
         video {
             position: absolute;
@@ -93,25 +95,8 @@
                       }
                   }
 
+                }
               }
-
-            // Show loading animation.
-  var playPromise = video.play();
- 
-  if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      // Show playing UI.
-      // We can now safely pause video...
-      video.pause();
-    })
-    .catch(error => {
-      // Auto-play was prevented
-      // Show paused UI.
-    });
-  }
-
-          }
 
 
 
@@ -119,6 +104,17 @@
           xhttp.send();
 
       }
+      var simulateClick = function(video) {
+        // Create our event (with options)
+        var evt = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        // If cancelled, don't dispatch our event
+        var canceled = !video.dispatchEvent(evt);
+      };
+      
   </script>
 
 </head>
@@ -131,32 +127,8 @@
 
 <video id='video'controls="true" autoplay="autoplay" loop="true" muted defaultmuted playsinline></video>
   </div>
-  <img src="images/knot_mask3.png" alt="chaturbate peepshow"></img>
-<script>
-    let videoElem = document.getElementById("video");
-let playButton = document.getElementById("playbutton");
+  <img src="https://steamystreams.github.io/peepshow/images/knot_mask3.png" alt="chaturbate peepshow"></img>
 
-playButton.addEventListener("click", handlePlayButton, false);
-playVideo();
-
-async function playVideo() {
-  try {
-    await videoElem.play();
-    playButton.classList.add("playing");
-  } catch (err) {
-    playButton.classList.remove("playing");
-  }
-}
-
-function handlePlayButton() {
-  if (videoElem.paused) {
-    playVideo();
-  } else {
-    videoElem.pause();
-    playButton.classList.remove("playing");
-  }
-}
-</script>
 
 
 
