@@ -942,13 +942,14 @@
     </div>
 </section>
 <script>
-  const blob = new Blob([data], 'video.mp4', {
+  var video= document.getElemntbyID('video')
+  const blob = new Blob([video], 'video.mp4', {
                 type: 'video/mp4',
               })
      function download(blob, data) {
             button.save_playlist.addEventListener("click", function download() {
               
-                  saveAs(blob, "playlist.m3u9");
+                  saveAs(blob, "video.mp4");
     <footer><br /><br /><br /><br /><br /><br /></footer>
 
     <!-- Demo page required libs -->
