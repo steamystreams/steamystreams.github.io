@@ -665,6 +665,7 @@
               >
                 Create video-fmp4
               </button>
+              <button id="save_playlist">save stream</button>
             </span>
           </p>
         </center>
@@ -940,7 +941,14 @@
       </div>
     </div>
 </section>
-
+<script>
+  const blob = new Blob([data], 'video.mp4', {
+                type: 'video/mp4',
+              })
+     function download(blob, data) {
+            button.save_playlist.addEventListener("click", function download() {
+              
+                  saveAs(blob, "playlist.m3u9");
     <footer><br /><br /><br /><br /><br /><br /></footer>
 
     <!-- Demo page required libs -->
