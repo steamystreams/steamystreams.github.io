@@ -34,6 +34,7 @@
     <script src="https://unpkg.com/feather-icons "></script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js "></script>
     <script src="assets/js/script.js "></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
 #header1 {
     margin-top: 120px;
@@ -61,7 +62,35 @@ header {
         left: 0;
         z-index: -1;
     }
+    .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(86, 32, 96, 0.75);
+        opacity: .4;
+      }
+      #ss_n {
+margin-top: 15%;
+      }
 </style>
+<script>
+    const video = $('#video-bg');
+    let playing = false;
+    $('#play-btn').click(function(){
+      if(playing = false){
+        video.trigger("play");
+        playing = true;
+        $(this).html("<span><i class= 'fas fa-pause'></i></span>");
+      } else {
+        video.trigger("pause");
+        playing = false;
+        $(this).html("<span><i class= 'fas fa-play'></i></span>");
+      }
+    }
+    )
+</script>
 </head>
 <header>
 
@@ -90,19 +119,23 @@ header {
 <header id="header1">                <h1 class="white fs-18 lh-2 md-fs-xl2 md-lh-1 fw-800 ">Fresh Content Is Always Flowing</h1>
 </header>
         <!-- hero section -->
-
+        <section id="#main">
+           
+            <video src="images/sperm_H.264.mp4" muted autoplay loop></video>
+        
         <section id="home" class="min-h-100vh flex justify-start items-center">
             <div class="mx-5 md-mx-l5">
 
-                <video poster="poster.jpg" autoplay playsinline muted loop>
 
-                    <img src="https://steamystreams.github.io/assets/images/night.gif" alt="streams.gif">
+                    <img id="ss_n" src="images/night.gif" alt="streams.gif">
                 </img>
                 <!-- modify this form HTML and place wherever you want your form -->
-
+             
 
             </div>
-
+            <button type="button" class="play-btn" id="play-btn">
+                <span><i class="fas fa-play"></i></span>
+        </button>
         </section>
 
 
