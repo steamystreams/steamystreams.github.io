@@ -37,13 +37,17 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <style>
 #header1 {
-    margin-top: 120px;
-    margin-left: 5%;
+    margin-top: 130px;
+    margin-left: 45%;
 }
 header {
     margin-top: 0px;
     position: fixed;
    width: 100%;
+}
+h1 {
+    text-shadow:2px 4px #1c1b1b;
+
 }
     .styledtext {
         font-family: 'Kavivanar', cursive;
@@ -53,7 +57,7 @@ header {
         color: #000000;
     }
     
-    video {
+    #video_bg {
         width: 100vw;
         height: 100vh;
         object-fit: cover;
@@ -72,7 +76,13 @@ header {
         opacity: .4;
       }
       #ss_n {
-margin-top: 15%;
+margin-top: 12%;
+
+      }
+      iframe {
+        margin-right:4%;
+        width:598px;
+        height: 320px;
       }
 </style>
 <script>
@@ -98,7 +108,7 @@ margin-top: 15%;
         <nav class="w-100pc flex flex-column md-flex-row md-px-20 py-0 bg-black">
             <div class="flex justify-between">
                 <a href="#" class="flex items-center p-2 mr-4 no-underline">
-                    <img class="max-h-70 w-auto" src="assets/images/circle_logo.png" />
+                    <img class="max-h-70 w-auto" src="https://steamystreams.github.io/assets/images/circle_logo.png" />
                 </a>
                 <a data-toggle="toggle-nav" data-target="#nav-items" href="#" class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-300 p-1 m-3">
                     <i data-feather="menu"></i>
@@ -116,19 +126,24 @@ margin-top: 15%;
 
         </nav>
     </header>
-<header id="header1">                <h1 class="white fs-18 lh-2 md-fs-xl2 md-lh-1 fw-800 ">Fresh Content Is Always Flowing</h1>
+<header id="header1">                
+    <h1 class="white fs-18 lh-2 md-fs-xl2 md-lh-1 fw-800 ">Fresh Content <br>
+    Is Always Flowing</h1>
 </header>
         <!-- hero section -->
         <section id="#main">
            
-            <video src="images/sperm_H.264.mp4" muted autoplay loop></video>
+            <video id="video_bg" src="images/sperm_H.264.mp4" muted autoplay loop></video>
         
         <section id="home" class="min-h-100vh flex justify-start items-center">
             <div class="mx-5 md-mx-l5">
 
 
-                    <img id="ss_n" src="images/night.gif" alt="streams.gif">
+                    <video id="ss_n" src="images/3.mp4" autoplay mute loop width="640px"></video>
                 </img>
+                <iframe src="https://steamystreams.github.io/peepshow/peepshow.html"></iframe>
+              <a href="https://steamystreams.github.io/peepshow/peepshow.html"> <h3>Home of the naughty knothole</h3></a>
+               
                 <!-- modify this form HTML and place wherever you want your form -->
              
 
