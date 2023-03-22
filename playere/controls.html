@@ -15,8 +15,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>   
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/FileSaver.js"></script>
-    <script src="js/video_modal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/ace.js"></script>
+    <script>
+    const close_btn = document.getElementById('close_btn')
+   close_btn.setAttribute('onclick', 'function_close()');
+ var vid_div = document.getElementById('vid_div')
+   vid_div.appendChild('button');
+   function function_close() {
+      content.className = "hidden";
+    }; false;
+    </script>
 <style>
     header {
         text-align: center;
@@ -155,7 +163,7 @@
         border-top: solid 1px #ccc;
         padding: 5px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between; 
         align-items: center;
       }
       
@@ -178,11 +186,10 @@
       }
       
       .videoCentered {
-      width: 900px;
+        width: 600px;
         height: auto;
-        margin-left: 0%;
+        margin-left: 10%;
         margin-right: auto;
-        maargin-top: 3%;
         display: block;
         overflow: hidden;
         background-color: #000;
@@ -255,7 +262,10 @@
         .demo-controls-wrapper {
           max-width: 50%;
         }
-      
+      #close_btn {
+        margin-left: 195px;
+        z-index: 9000;
+      }
         .config-editor-wrapper {
           height: auto;
           border-top: 0;
@@ -316,18 +326,17 @@
       
       }
 </style>
-    
-    
   </head>
   <body>
+    <div id="vid_div>"
     <center>
     <video
     id="video"
     controls
     autoplay
     class="videoCentered"
-    style="width: 100%"
-  ></video>
+    style="width: 80%"
+  ></video><button id="close_btn">Close</button></div>
 <p></p><br><br><br><br>
 <section id="controls">
 
@@ -665,7 +674,6 @@
               >
                 Create video-fmp4
               </button>
-              <button id="save_stream">save stream</button>
             </span>
           </p>
         </center>
@@ -941,16 +949,7 @@
       </div>
     </div>
 </section>
-<script>
-  var video= document.getElemntbyID('video')
-  const blob = new Blob([video], 'video.mp4', {
-                type: 'video/mp4',
-              })
-     function download(blob, data) {
-            button.save_stream("click", function download() {
-              
-                  saveAs(blob, "video.mp4");
-      </script>
+
     <footer><br /><br /><br /><br /><br /><br /></footer>
 
     <!-- Demo page required libs -->
