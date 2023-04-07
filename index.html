@@ -145,11 +145,53 @@ padding: 5px;
 
 
 }
-      #header3 {
-        margin: 15%;
+.card {
+    background-color: antiquewhite;
+    width: 420px;
+    height: 275px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+  .card_container {
+    width: 405px;
+    height: 240px;
+    margin-left: 13px;
+    margin-top: 8px;
+    box-shadow: 0 4px 8px 0 rgba(60, 59, 59, 0.5);
+    transition: 0.3s;
+  }
+  /* Add rounded corners to the top left and the top right corner of the image */
+  img {
+    border-radius: 5px 5px 0 0;
+  }
+  h3 {
+    font-size: smaller;
+    font-family: 'Roboto Flex', sans-serif;
+    margin-left: 69px;
+    margin-bottom: 52px;
+    color: rgb(58, 57, 57) 
+  }
+  #header3 {
+    margin-top: 3%;
+    margin-top: 2%;
+  width: 96%;
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 
-      }
-      iframe {
+#header3 div {
+    
+    margin: 10px 20px;
+    width: 430px;
+    padding:5px;
+}
+
+      .iframe {
         margin-right:4%;
         width:598px;
         height: 320px;
@@ -157,8 +199,11 @@ padding: 5px;
 border-style: solid;
 border-color: white;
 border-radius: 15px 50px;
+z-index: 9990;
+padding: 5px;
       }
- flex {
+
+ #flex {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
@@ -250,7 +295,7 @@ border-radius: 15px 50px;
                     <div>
                         <img id="ss_n" src="night.gif" width="612px" />
                     
-                    <iframe src="https://steamystreams.github.io/peepshow/peepshow.html"></iframe>
+                    <iframe class="iframe" src="https://steamystreams.github.io/peepshow/peepshow.html"></iframe>
                     <a href="https://steamystreams.github.io/peepshow/peepshow.html"> <h2>Home of the naughty knothole</h2></a>
                 </div> </div>
               <br>
@@ -260,8 +305,8 @@ border-radius: 15px 50px;
                
                 <!-- modify this form HTML and place wherever you want your form -->
                 <iframe width="500" height="300" class="card" src="https://dood.yt/e/y14sj9rhm8c6pg1x2j2z65kb33gzpxc9" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-                <iframe width="500" height="300" src="https://dood.yt/e/rktprzs1c5j9xh88jcuwggjwa49bq2xd" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-                <iframe width="500" height="300" src="https://dood.yt/e/anzorgi0u1snkevflth1e8e3qzkvzl94" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe width="500" height="300" class="card" src="https://dood.yt/e/rktprzs1c5j9xh88jcuwggjwa49bq2xd" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe width="500" height="300" class="card" src="https://dood.yt/e/anzorgi0u1snkevflth1e8e3qzkvzl94" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
 
             </div>
           
@@ -291,12 +336,12 @@ border-radius: 15px 50px;
                     </div>
                     <div class="flex indigo-lightest opacity-500">
                         <div class="w-25pc">
-                            <img src="playere/images/hwp.jpg" width="150px" height="150px">
+                            <img src="https://steamystreams.github.io/images/hwp.jpg" width="150px" height="150px">
                         </div>
                     </div>
                     <div class="flex indigo-lightest opacity-500">
                         <div class="w-25pc">
-                            <img src="playere/images/msc.png" width="150px" height="150px">
+                            <img src="https://steamystreams.github.io/images/msc.png" width="150px" height="150px">
                         </div>
                 </div>
                 </div>
@@ -379,7 +424,7 @@ border-radius: 15px 50px;
     <footer class=" bg-black muli ">">
                                 <div class="flex flex-wrap ">
                                     <div class="md-w-25pc mb-10 ">
-                                        <img src="images/logo.png " class="w-35 " alt=" ">
+                                        <img src="https://steamystreams.github.io/images/logo.png " class="w-35 " alt=" ">
                                         <div class="white opacity-70 fs-s2 mt-4 md-pr-10 ">
                                         </div>
                                     </div>
