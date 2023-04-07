@@ -40,12 +40,33 @@
     margin-top: 25px;
     margin-left: 25%;
 }
+body, html {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 5px;
+    height:100%;
+    width:100%;
+}
 header {
     margin-top: 0px;
     left:25%;
     position: absolute-center;
    width: 100%;
 }
+
+    button {
+        display: inline-block;
+        padding:4px;
+        min-width: 30px;
+        text-align: center;
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 10px;
+        box-shadow: 0 1px 1px rgba(31, 30, 30, 0.25);
+        flex: 1 1 360px;
+    }
+  
+
 h1 {
     text-shadow:2px 4px #1c1b1b;
  
@@ -75,14 +96,38 @@ a {
         left: 0;
         z-index: -1;
     }
-    .overlay{
-        position: absolute;
-        top: 0;
-        left: 0;
+    #overlay {
+        position: fixed;
+        display: visible;
         width: 100%;
         height: 100%;
-        background: rgba(86, 32, 96, 0.75);
-        opacity: .4;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.8);
+        z-index: 2;
+        cursor: pointer;
+      }
+      #text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 50px;
+        color: white;
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+      }
+      #age, #age_no {
+
+      
+        position: relative;
+        top: 70%;
+        left: 40%;
+        font-size: 50px;
+        color: rgb(70, 14, 123);
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
       }
       #ss_n {
 margin-top: 10%;
@@ -100,6 +145,9 @@ padding: 5px;
 
 
 }
+      #header3 {
+        margin: 15%;
+
       }
       iframe {
         margin-right:4%;
@@ -110,8 +158,21 @@ border-style: solid;
 border-color: white;
 border-radius: 15px 50px;
       }
+ flex {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+ }
+
+      
 </style>
 <script>
+    window.onload = function() {
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+     
     const video = $('#video-bg');
     let playing = false;
     $('#play-btn').click(function(){
@@ -126,9 +187,29 @@ border-radius: 15px 50px;
       }
     }
     )
+}
 </script>
 </head>
 <header>
+    <div id="overlay" onclick="off()">
+        <div id="text">Are you over 18 years of age and not offended by material of an adult nature?</div>
+        <button id="age" onclick="on()">Yes </button>
+        <button id="age_no" onclick="on()">No</button>
+      </div>
+      
+      <div style="padding:20px">
+      
+   
+      
+      <script>
+      function on() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
+      </script>
 
     <body class="bg-black muli">
         <nav class="w-100pc flex flex-column md-flex-row md-px-20 py-0 bg-black">
@@ -163,22 +244,29 @@ border-radius: 15px 50px;
             <video id="video_bg" src="images/sperm_H.264.mp4" muted autoplay loop></video>
         
         <section id="home" class="min-h-100vh flex justify-start items-center">
-            <div class="mx-5 md-mx-l5">
+            
 
-
-                    <img id="ss_n" src="night.gif" width="612px" />
+<div id="flex">
+                    <div>
+                        <img id="ss_n" src="night.gif" width="612px" />
+                    
+                    <iframe src="https://steamystreams.github.io/peepshow/peepshow.html"></iframe>
+                    <a href="https://steamystreams.github.io/peepshow/peepshow.html"> <h2>Home of the naughty knothole</h2></a>
+                </div> </div>
               <br>
               <br>
-                <iframe src="https://steamystreams.github.io/peepshow/peepshow.html"></iframe>
-              <a href="https://steamystreams.github.io/peepshow/peepshow.html"> <h2>Home of the naughty knothole</h2></a>
+             <div id="header3" class="card_container">
+
                
                 <!-- modify this form HTML and place wherever you want your form -->
-             
+                <iframe width="500" height="300" class="card" src="https://dood.yt/e/y14sj9rhm8c6pg1x2j2z65kb33gzpxc9" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe width="500" height="300" src="https://dood.yt/e/rktprzs1c5j9xh88jcuwggjwa49bq2xd" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+                <iframe width="500" height="300" src="https://dood.yt/e/anzorgi0u1snkevflth1e8e3qzkvzl94" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
 
             </div>
-            <button type="button" class="play-btn" id="play-btn">
-                <span><i class="fas fa-play"></i></span>
-        </button>
+          
+                
+  
         </section>
 
 
@@ -264,7 +352,7 @@ border-radius: 15px 50px;
                                         <span class=" opacity-50 ">My Steamy Streams personal cam studio with payouts via Chattapp, Venmo, and Bitcoin.</span></div>
                             <div>
                             <i class=" h-3 indigo " stroke-width=" 4 " data-feather=" check "></i>
-                            <span class=" opacity-50 ">Generate bulk link exports file lockerse</span></div>
+                            <span class=" opacity-50 ">Generate bulk link exports file lockers</span></div>
                         <div>
                             <i class=" h-3 indigo " stroke-width=" 4 " data-feather=" check "></i>
                             <span class=" opacity-50 ">Proxy API</span></div>
