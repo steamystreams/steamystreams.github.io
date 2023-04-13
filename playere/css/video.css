@@ -2,24 +2,49 @@
 -----------------------------------------*/
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900");
 
-/* Main Page Layout 
--- NOTE: Just for the demo page, and not
-required for the video modal... Video Modal
-styles are down below --
------------------------------------------*/
-* {
-  box-sizing: border-box;
-}
-html {
-  background: #fcfcfc;
-}
-@media (min-width: 641px) {
-  html {
-    background: #4b4b4b;
+
+  :root {
+    --background-primary: #010101;
+    --color-primary: #333;
+
   }
-}
-body {
+  
+  html[data-theme='dark'] {
+    --background-primary: #030303;
+    --color-primary: #ccc;
+    transition: color 300ms, background-color 300ms;
+    background: var(--background-primary);
+    color: var(--color-primary);
+    height: 100%;
+    width: 100%;
+  }
+  
+  a:link { text-decoration: none; }
+
+
+  a:visited { text-decoration: none; }
+  
+  
+  a:hover { text-decoration: none; }
+  
+  
+  a:active { text-decoration: none; }
+
+
+
+
+  
+  h1,  p 
+    [data-theme='dark'] {
+      --background-primary: #030303;
+      --color-primary: #ccc;
+      transition: color 300ms, background-color 300ms;
+      background: var(--background-primary);
+      color: var(--color-primary);
+  }
+  body {
   font-family: "Source Sans Pro", sans-serif;
+
 }
 .noscroll {
   overflow: hidden;
@@ -28,15 +53,16 @@ body {
 
 
 main {
-  background: #fcfcfc;
-  display: block;
-  position: relative;
-  font-size: 1rem;
-  width: 100%;
-  min-height: 0;
-  font-size: 0;
 
+   display: block;
+   position: relative;
+   font-size: 1rem;
+   width: 100%;
+   min-height: 0;
+
+   z-index: 0;
 }
+
 @media (min-width: 641px) {
   main .column.left,
   main .column.right {
@@ -44,13 +70,7 @@ main {
     width: 50%;
     min-height: 100vh;
   }
-  main .column.left {
-    position: fixed;
-  }
-  main .column.right {
-    margin-left: 50%;
-  }
-}
+  
 
 .video-banner {
   display: block;
@@ -59,12 +79,14 @@ main {
   .video-banner {
     position: absolute;
     left: 0;
-    right: 0;
-    top: 0;
+    right: 14;
+   
     bottom: 0;
-    z-index: 0;
+
+    z-index: 4;
+
   }
-}
+
 
 .video-banner .video-banner-img {
   display: block;
@@ -72,17 +94,16 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.video-banner-headline {
+.h3 {
   position: absolute;
   left: 1.5rem;
   bottom: 1.5rem;
-
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "momotype", sans-serif;
   font-size: 1.25em;
   font-weight: 900;
   line-height: 1em;
-  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.045em;
 }
@@ -112,35 +133,23 @@ main {
   -webkit-transition: all 0.2s ease-out 0.05s;
   transition: all 0.2s ease-out 0.05s;
 }
-@media (min-width: 641px) {
-  .video-banner-icon-play {
-    width: 4.5em;
-    height: 4.5em;
-  }
-}
-.video-banner-icon-play:hover {
-  -webkit-transform: translateX(-50%) translateY(-50%) scale(1.2);
-  -moz-transform: translateX(-50%) translateY(-50%) scale(1.2);
-  -ms-transform: translateX(-50%) translateY(-50%) scale(1.2);
-  -o-transform: translateX(-50%) translateY(-50%) scale(1.2);
-  transform: translateX(-50%) translateY(-50%) scale(1.2);
-
-  backgound: #330099;
-}
 
 .content {
-  display: block;
-  min-height: 100vh;
-  max-width: 40rem;
-  margin: 2.5rem auto;
-  padding: 1.5rem;
+
+  display: inline-block;
+  vertical-align: top;
+border-radius: 20px;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
+
 @media (min-width: 641px) {
   .content {
     margin: 5.75rem auto;
     padding: 2.5rem;
   }
-}
+
 
 .content h1,
 .content h2,
@@ -172,54 +181,19 @@ main {
   margin-top: 3em;
 }
 
-/* buttons */
-.content .button-group {
-  margin-top: 1em;
-}
-.content .button {
-  display: inline-block;
-  padding: 1em 2em;
-  min-width: 8em;
-  text-align: center;
-  font-weight: 900;
-  text-decoration: none;
-  border-radius: 1.5em;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 
-  /* button theme - secondary is default */
-  background: #f0f0f0;
-  color: #2b2b2b;
 
-  -webkit-transition: all 0.2s ease-out 0.05s;
-  transition: all 0.2s ease-out 0.05s;
-}
-.content .button ~ .button {
-  margin-left: 0.5em;
-}
-.content .button:hover {
-  background: #e5e5e5;
-}
-/* primary button overrides */
-.content .button.primary {
-  background: #e50055;
-  color: #fff;
-}
-.content .button.primary:hover {
-  background: #9d00e5;
-}
 
-/* video thumbnail grid */
-.content .video-thumb-grid {
-  position: relative;
-  font-size: 0; /* collapse the white-space */
-  width: calc(100% + 2rem);
-  margin: 0 -1rem;
-}
-.content .video-thumb {
+
+
+.video_thumb {
+  
   display: inline-block;
   vertical-align: top;
-
+border-radius: 20, 20, 0, 0;
   text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
 
   /* calculate the width, gutters, and aspect ratio */
   width: calc((100% - 4rem) / 2);
@@ -241,15 +215,15 @@ main {
   -webkit-transition: all 0.2s ease-out 0.05s;
   transition: all 0.2s ease-out 0.05s;
 }
-.content .video-thumb:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px rgba(13, 1, 61, 0.35);
+canvas {
+  display: block;
 }
-.content .video-thumb img {
+.content .video_thumb img {
   display: block;
   width: 100%;
   height: 100%;
+
+  box-shadow:0 4px 8px 0 rgba(60, 59, 59, 0.5);
 
   /* position inside the 16:9 container */
   position: absolute;
@@ -262,145 +236,317 @@ main {
   object-fit: cover;
   object-position: 50% 50%;
 
-  background: #2b2b2b;
+ 
 }
 
-/* Video Modal
------------------------------------------*/
-.video-modal,
-.video-modal .overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 3000;
-}
-.video-modal {
-  overflow: hidden;
-  position: fixed;
-  opacity: 0;
 
-  -webkit-transform: translate(500%, 0%);
-  transform: translate(500%, 0%);
 
-  -webkit-transition: -webkit-transform 0s linear 0s;
-  transition: transform 0s linear 0s;
-
-  /* using flexbox for vertical centering */
-
-  /* Flexbox display */
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-
-  /* Vertical alignment */
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
+#header1 {
+  margin-top: -.5%;
+margin-left: -1%;
+height:100%;
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.video-modal .overlay {
-  z-index: 0;
-  background: rgba(13, 1, 61, 0.82); /* overlay color */
-
-  opacity: 0;
-
-  -webkit-transition: opacity 0.2s ease-out 0.05s;
-  transition: opacity 0.2s ease-out 0.05s;
 }
 
-.video_modal_content {
-  position: relative;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  z-index: 1;
+#header3 {
+  margin-top: 20px;
+margin-left: 0px;
 
-  margin: 0 auto;
+  z-index: 9999;
+}
 
-  overflow-y: visible;
+  .visible,
+  .hidden {
+    overflow: hidden;
+    /* This container should not have padding, borders, etc. */
+  }
 
+  
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+  }
+ 
+  .visible > div,
+  .hidden > div {
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  }
+
+  
+  .hidden > div {
+    margin-top: -10000px;
+    transition: margin-top 0s 2s;
+  }
+
+ 
+#header0 {
+  position: fixed;
+  margin-top: 1px;
+
+  margin-left: 0%;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  opacity: 1;
+  width: 100%;
+  height: 270px;
+
+}
+
+.nav {
+  margin-left: 0px;
+}
+.header_logo {
+  margin-left: 11%;
+  margin-top: 0;
+}
+#hwp {
+  margin-top: 20px;
+  margin-left: 16%;
+}
+
+.flex-container {
+
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+  }
+
+#youtube {
+  background-color:#000;
+  width: 700px;
+  height: 600px;
+  z-index:9999;
+  position:relative;
+  margin-top: 45px;
+  margin-left: 25px;
+  overflow: scroll;
+
+}
+
+button {
+  z-index: 9999;
+}
+
+.theme {
+  margin-right: 0px;
+  z-index: 19999;
+}
+
+
+/* Style the button used to pause/play the video */
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
   background: #000;
-
-  width: calc(100% - 12em);
-  height: 0;
-  padding-top: calc((100% - 12em) * 0.5625); /* 16:9 calc */
+  color: #fff;
+  cursor: pointer;
 }
 
-/* Scaling to fit within the current Viewport size:
-   When viewport aspect ratio is greater than 16:9
-   work off the height instead of the width for calc */
-@media (min-aspect-ratio: 16/9) {
-  .video-modal-content {
-    width: 0;
-    height: calc(100vh - 10em);
-    padding-top: 0;
-    padding-left: calc((100vh - 10em) * 1.7778); /* 16:9 calc */
-  }
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+
+}
+.navbutton {
+  margin-top: 0px;
+  width: 30px;
+}
+.card {
+  background-color: rgb(245, 244, 216);
+  margin:13px;
+  width: 420px;
+  height: 340px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 7px 7px 0 0;
+  justify-content: space-between;
 }
 
-/* Mobile Layout Tweaks - side margins reduced */
-@media (max-width: 640px) {
-  .video-modal-content {
-    width: calc(100% - 1em);
-    padding-top: calc((100% - 1em) * 0.5625); /* 16:9 calc */
-  }
-}
-
-/* modal close button */
-.close-video-modal {
+.controls{
   display: block;
-  position: absolute;
-  left: 0;
-  top: -40px;
+}
+#playlist_div {
+  z-index: 500;
+  height: 40%;
+  width:20%;
+  margin-left:30%;
+}
+.card_container {
+  width: 405px;
+  height: 240px;
+  margin-left: 13px;
+  margin-top: 8px;
+  box-shadow: 0 4px 8px 0 rgba(60, 59, 59, 0.5);
+  transition: 0.3s;
+  border-radius: 5px 5px 0 0;
+}
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+}
+h3 {
+  font-size: smaller;
+  font-family: 'Roboto Flex', sans-serif;
+  margin-left: 69px;
+  margin-bottom: 52px;
+  color: rgb(58, 57, 57) 
+}
+video #embed {
+  width: 78%;
+  height: 78%;
+  position: fixed;
+border-color: #000;
+top: 9%;
+left: 9%;
+box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  
+overflow: hidden;
+z-index: 9999;
 
+}
+#youtube {
+  margin-top:50;
+  margin-bottom:50;
+width: 78%;
+  height: 78%;
+  position: fixed;
+border-color: #000;
+top: 9%;
+left: 9%;
+box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  
+overflow: hidden;
+z-index: 9999;
+}
+.btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: .75;
+  margin: 20px;
+  padding: 1.2em 2.8em;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+
+#first {
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+#first:hover {
+  box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+
+#second {
+  border-radius: 3em;
+  border-color: #587883;
+  color: gainsboro;
+  background-color: #444242;
+  background-position: 0 0;
+  background-size: 100%;
+  
+}
+#second:hover {
+  background-position: 100px;
+}
+
+.third {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  transition: all 150ms ease-in-out;
+}
+.third:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+}
+
+.fourth {
+  border-color: #f1c40f;
+  color: #fff;
+  background-image: linear-gradient(45deg, #f1c40f 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  transition: background 300ms ease-in-out;
+}
+.fourth:hover {
+  background-position: 0;
+}
+
+.fifth {
+  border-color: #8e44ad;
+  border-radius: 0;
+  color: #8e44ad;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+.fifth:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #8e44ad;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+.fifth:hover {
   color: #fff;
 }
-
-/* set the iframe element to stretch to fit its parent element */
-iframe#youtube {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-
-  background: #000;
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.5);
+.fifth:hover:after {
+  width: 110%;
 }
 
-/* show the modal: 
-   add class to the body to reveal */
-.show-video-modal .video-modal {
-  opacity: 1;
+.sixth {
+  border-radius: 3em;
+  border-color: #2ecc71;
+  color: #2ecc71;
+  background-image: linear-gradient(to bottom, transparent 50%, #2ecc71 50%);
+  background-position: 0% 0%;
+  background-size: 210%;
+  transition: background 150ms ease-in-out, color 150ms ease-in-out;
+}
+.sixth:hover {
+  color: #fff;
+  background-position: 0 100%;
+}
+/* layout/base.css */
 
-  transform: translate(0%, 0%);
-  -webkit-transform: translate(0%, 0%);
+body {
+  margin: 0;
 }
-.show-video-modal .video-modal .overlay {
-  opacity: 1;
-}
-.show-video-modal .video-modal-content {
-  transform: translate(0%, 0%);
-  -webkit-transform: translate(0%, 0%);
-}
-#controls {
-   width: 98%;
-   height: 600px;
-   position:absolute;
-   margin-bottom: 0;
-   overflow: scroll;
- 
- }
-   
+
+
+}}}
