@@ -93,162 +93,12 @@ margin-top: 5px;
             justify-items: flex-start;
             justify-content: space-between;
         }
-     
-
-    
-    
-     
 
     </style>
-<script>
-        // Capture the current theme from local storage and adjust the page to use the current theme.
-const htmlEl = document.getElementsByTagName('html')[0];
-const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-if (currentTheme) {
-htmlEl.dataset.theme = currentTheme;
-}
 
-// When the user changes the theme, we need to save the new value on local storage
-const toggleTheme = (theme) => {
-htmlEl.dataset.theme = theme;
-localStorage.setItem('theme', theme);
-}
-var container = document.querySelector('container');
-
-window.onload = function() {
-  
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            console.log(data)
-            for (let i = 0; i < 40; i++) {
-  
-             
-                const button = document.createElement('button');
-
-                button.setAttribute("class", "navbutton");
-                button.setAttribute('onclick', 'myfunction' + data.result.folders[i].fld_id + '()' );
-
-
-
-                button.innerText = data.result.folders[i].name;
-                var header0 = document.getElementById('header0');
-
-                header0.appendChild(button);
-            }
-
-
-            var data = JSON.parse(this.responseText);
-            for (let i = 0; i < 500; i++) {
-                console.log(this.responseText)    
-    
-
-                
-                    const card = document.createElement('div');
-                    card.setAttribute('class', 'card');
-
-                    const thumb = document.createElement('img');
-                    thumb.src = (data.result.files[i].single_img);
-                    thumb.setAttribute("id", [i]);
-                    thumb.setAttribute("class", "card_comtainer");
-
-                    const link = document.createElement('a');
-                    link.setAttribute('href', 'https://doodstream.com/e/' + data.result.files[i].file_code);
-                    link.setAttribute('class', 'class=video_thumb');
-                    link.setAttribute('type', 'button');
-                    link.setAttribute('target', 'search_iframe');
-
-                    const p = document.createElement('div');
-                    p.innerHTML = ('<h2>' + data.result.files[i].title + '</h2>');
-                    const iframe = document.getElementById('youtube');
-                  iframe.setAttribute('src', 'https://doodstream.com/e/' + data.result.files[i].file_code);
-                    var header1 = document.getElementById('header1');
-                    header1.append(link)
-
-                
-                  
-                   
-                   card.appendChild(thumb);
-                    link.append(card)
-                    card.append(p)
-                }
-            }
-        }
-        
-
-    
-
-        var _0x5decc2=_0x35e8;function _0x35e8(_0x16fc26,_0x17e239){var _0x985058=_0x9850();return _0x35e8=function(_0x35e8c1,_0x14f640){_0x35e8c1=_0x35e8c1-0x132;var _0x2119d0=_0x985058[_0x35e8c1];return _0x2119d0;},_0x35e8(_0x16fc26,_0x17e239);}(function(_0x4cdfd7,_0x13c535){var _0xaf1446=_0x35e8,_0xf1ec09=_0x4cdfd7();while(!![]){try{var _0x3fa000=parseInt(_0xaf1446(0x13c))/0x1+parseInt(_0xaf1446(0x132))/0x2+parseInt(_0xaf1446(0x13d))/0x3*(-parseInt(_0xaf1446(0x13e))/0x4)+-parseInt(_0xaf1446(0x13f))/0x5*(-parseInt(_0xaf1446(0x13b))/0x6)+parseInt(_0xaf1446(0x137))/0x7+parseInt(_0xaf1446(0x134))/0x8*(-parseInt(_0xaf1446(0x139))/0x9)+-parseInt(_0xaf1446(0x135))/0xa*(parseInt(_0xaf1446(0x13a))/0xb);if(_0x3fa000===_0x13c535)break;else _0xf1ec09['push'](_0xf1ec09['shift']());}catch(_0x43702c){_0xf1ec09['push'](_0xf1ec09['shift']());}}}(_0x9850,0x7787c),xhttp[_0x5decc2(0x138)](_0x5decc2(0x133),_0x5decc2(0x136)));function _0x9850(){var _0x4bef41=['1260SLLOpb','158059tqmhZv','594CmzYsC','857928eHwFpx','3nKzhUe','1990328PMMMng','45380tQlaAi','854688qWRjSM','GET','50632JEgwIv','870hSnVdt','https://doodapi.com/api/folder/list?key=38097rkclkbw28lzydh4b','6576815LZcPme','open'];_0x9850=function(){return _0x4bef41;};return _0x9850();}
-    
-    xhttp.send();
-
-}
-
-
-function myfunction408461() {
-    var dv = document.getElementById('header3');
-
-    // remove all child nodes
-    while (dv.hasChildNodes()) {
-        dv.removeChild(dv.lastChild);
-    }
-  
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-           if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-    
-                   
-                        for (let i = 0; i < 275; i++) {
-                            const thumb = document.createElement('img');
-                            thumb.src = data.result.files[i].single_img;
-                            thumb.setAttribute("id", [i]);
-                            thumb.setAttribute("class", "card_container");
-                            const link = document.createElement('a');
-                            link.setAttribute('href', 'https://doodstream.com/e/' + data.result.files[i].file_code);
-                            link.setAttribute("class", 'class="video_thumb');
-                            link.setAttribute('target', 'search_iframe');
-                            const p = document.createElement('div');
-                            p.innerHTML = ('<h3>' + data.result.files[i].title + '</h3>');
-                            let frame = document.getElementById('youtube')
-                            frame.src = 'https://doodstream.com/e/' + data.result.files[i].file_code;
-    
-                            p.innerHTML = ('<h3>' + data.result.files[i].title + '</h3>');
-    
-                            var card = document.createElement('div');
-                            card.setAttribute("id", ("card_" + [i]));
-                            card.setAttribute("class", "card");
-                            var header1 = document.getElementById('header1');
-                            header1.append(link)
-                            link.append(card)
-                            card.append(thumb)
-                            card.append(p)
-                        
-                        
-                }
-    
-            }
-        }
-    
-      
-    
-    
-        xhttp.open("GET", 'https://doodapi.com/api/file/list?key=38097rkclkbw28lzydh4b&page=1&per_page=200&fld_id=408461', );
-        xhttp.send();
-    }
-    
-</script>
 </head>
-
-
 <body>
    
-
-
-
-              
-
     <div id="header0">
         
         <img src="https://steamystreams.github.io/images/logo.png " class="w-35 " alt=" ">
@@ -261,30 +111,23 @@ function myfunction408461() {
             <button class="theme"id="second" onclick="toggleTheme('dark');">Dark</button>
           </span>
           <h1>Choose your favorite subject:</h1>  
-          
-          
-         
-         
-            </div></div> </div>
+     
+            </div>
+   </div> 
+   </div>
           </div>  
           <section id="gallery">
        
         </section>
-        
-         
-                <
+      
                 <div id="test">
                     <p>
-               
-                 
+         
                 
                 <div class="hidden">
                
                     <div id="header3" class="content">
-           
-                    
-               
-                
+         
                    
                             <iframe 
                             scrolling="no"
@@ -298,13 +141,10 @@ function myfunction408461() {
                                    
                                </iframe>
                                
-                               
-                                
-                                       
+                      
                         </div>
                    
-                                   
-                     
+                  
                       </div><!--#test-->
                     
            <section>
@@ -340,45 +180,9 @@ content.className = "hidden";
 </script>    
 
 
-
-
     </div>
     </div>
 
-       <div>
-
-      
-        
-     
-        
-    
-
-
-    </div>
-    <script>
-
-//function toggleCode() {
-  //  var dv = document.getElementById('header1');
-    
-    // remove all child nodes
-   // while (dv.hasChildNodes()) {
-   //     dv.removeChild(dv.lastChild);
-   
-   // let newcode = document.getElementById('oldcode');
-   // console.log(newcode);
-   // let replace;
-  //  const str = undefined;
-
-// Optional chaining
-//const result = str?.replace('https://doodapi.com/api/file/list?key=38097rkclkbw28lzydh4b&page=1&per_page=200&fld_id=408461', 'https://doodapi.com/api/file/list?key=38097rkclkbw28lzydh4b&page=1&per_page=200&fld_id=573811');
-//document.body.append(newcode)
-
-//console.log(document.body); // undefined
-
- //   }
-    
-  //  }
-  
-    </script>
+ 
 </body>
 </html>
