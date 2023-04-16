@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="hls.min.js"></script>
+    <script src="download.js"></script>
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="canvas_style2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/ConcatenateBlobs.js"></script>
+
+    <script src="snaps_hls.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="test.css">
+    <style>
+    #draggable { width: 150px; height: 150px; padding: 0.5em; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#draggable" ).draggable();
+    } );
+    </script>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        background-image: url(wood.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #video_bg {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      body canvas {
+        display: block;
+        cursor: crosshair;
+      }
+      video {
+        width: 75%;
+        visibility: hidden;
+        position: absolute;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        z-index: 0;
+      }
+     
+      canvas {
+        width: 85%;
+       
+        position: absolute;
+    
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        z-index: 1;
+
+      }
+      #myCanvas {
+        width: 95%;
+       
+        position: absolute;
+      }
+      button {
+        margin-top: 65;
+        margin-left: 15%;
+        position: relative;
+      }
+ 
+         header {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+         } 
+         header .content{
+          flex-direction: row;
+         }
+    </style>
+
+
+
+
+  
+<div id="header">
+
+  
+  <div style="display: flex; width:80%;
+  justify-content:center; padding-top: 0%;">
+  <input id="minutes" type="text" style="width: 25px;height:15px; border: none; font-size: 16px;
+        font-weight: bold; color: black;">
+  <font size="5">
+  :
+  </font>
+  <input id="seconds" type="text" style="width: 25px; height:15px; border: none; font-size: 16px;
+        font-weight: bold; color: black;">
+ 
+<button type="button" id="btn_five">5 min record</button>
+<button type="button" id="btn_fifteen">15 min record</button>
+<button type="button" id="btn_thirty">30 min record</button>
+<div style="display: flex; width:80%;
+justify-content:center; padding-top: 0%;">
+Time Left ::
+</div>
+
+</div>
+
+
+
+
+ </div>
+
+</div>
+
+ <video id="video" muted autoplay loop></video> 
+ <video id="video3" muted autoplay loop></video> 
+<div id="theater">
+  <div> 
+    <div class="camera-container">
+   <div id="container">
+    <canvas id="rec_canvas" width="1920px"  height="1080px"></canvas>
+    </div>  </div>
+  
+  </div></div>
+     
+  
+ 
+
+
+
+<script>
+
+
+  video = document.getElementById('video');
+if (Hls.isSupported()) {
+ let hls = new Hls({
+   debug: true,
+   lowlatency: true,
+   src: window.location.search.replace('?src=', '')
+ }
+ )
+console.log(window.location.search.replace('?src=', ''));
+ hls.loadSource(window.location.search.replace('?src=', ""));
+ hls.attachMedia(video);
+ hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+   video.muted = true;
+   video.play();
+ }
+
+
+ )}
+
+ 
+ video.addEventListener('loadedmetadata', function() {
+
+  var rec_canvas = document.getElementById('rec_canvas');
+  var heightRatio = .56;
+rec_canvas.height = rec_canvas.width * heightRatio;
+  var ctx = rec_canvas.getContext('2d');
+  var video = document.getElementById('video');
+
+var $this = this; //cache
+(function loop() {
+  if (!$this.paused && !$this.ended) {
+    ctx.drawImage($this, 0, 0);
+    setTimeout(loop, 1000 / 60); // drawing at 30fps
+  }
+})();
+}, 0);
+function recordCanvas(rec_canvas, videoLength) {
+  const recordedChunks = [];
+  const mediaRecorder = new MediaRecorder(
+    rec_canvas.captureStream(60), {mimeType: 'video/webm;codecs=H264'});
+  mediaRecorder.ondataavailable = 
+    event => recordedChunks.push(event.data);
+  mediaRecorder.onstop = () => {
+    function finishCapturing(e) {
+      capturing = false;
+      var videoData = [ e.data ];
+      var blob = new Blob(videoData, { 'type': 'video/webm;codecs=H264' });
+      var videoURL = URL.createObjectURL(blob);
+      video3.src = videoURL;
+      video3.play();
+    }
+  
+    const url = URL.createObjectURL(
+      new Blob(recordedChunks, {type: "video/mp4"}));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = 'video.mp4';
+    console.log(download)
+    document.write(anchor.download, url, 'video.mp4');
+    anchor.click();
+    window.URL.revokeObjectURL(url);
+  }
+  mediaRecorder.start();
+  window.setTimeout(() => {mediaRecorder.stop();}, 100000);
+
+}
+document.getElementById("btn_five").onclick = () => {
+  recordCanvas(rec_canvas, 80000);
+  console.time()
+  setTimeout(() => {
+    console.timeEnd()
+  }, 100000)
+  
+};
+document.getElementById("btn_fifteen").onclick = () => {
+  recordCanvas(rec_canvas, 900000);
+};
+document.getElementById("btn_thirty").onclick = () => {
+  recordCanvas(rec_canvas, 18000000);
+};
+
+
+//timer
+var mins=5.0;
+var secs=mins*60;
+let start = document.querySelector('#btn_five');
+btn_five.addEventListener('click', function countdown() {
+
+      setTimeout('Decrement()',60);
+  })
+  function Decrement() {
+      if(document.getElementById) {
+          minutes=document.getElementById("minutes");
+          seconds=document.getElementById("seconds");
+          if(seconds<59) {
+              seconds.value=secs;
+          }
+          else {
+              minutes.value=getminutes();
+              seconds.value=getseconds();
+          }
+          if(mins<1) {
+              minutes.style.color="red";
+              seconds.style.color="red";
+          }
+          if(mins<0) {
+              alert('time up');
+              minutes.value=0;
+              seconds.value=0;
+          }
+          else {
+              secs--;
+              setTimeout('Decrement()',1000);
+          }
+      }
+  }
+
+  function getminutes() {
+      mins=Math.floor(secs/60);
+      return mins;
+  }
+
+  function getseconds() {
+      return secs-Math.round(mins*60);
+  }
+</script>
+ 
+</body>
+
+</html>
