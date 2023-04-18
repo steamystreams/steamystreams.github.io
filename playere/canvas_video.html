@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="hls.min.js"></script>
+    <script src="download.js"></script>
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="canvas_style2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/ConcatenateBlobs.js"></script>
+   =
+    <script src="snaps_hls.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="test.css">
+    <style>
+    #draggable { width: 150px; height: 150px; padding: 0.5em; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#draggable" ).draggable();
+    } );
+    </script>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        background-image: url(wood.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #video_bg {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      body canvas {
+        display: block;
+        cursor: crosshair;
+      }
+      #video {
+        width: 35%;
+        visibility: hidden;
+        position: relative;
+        margin-left:4%;
+        margin-right: 5%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        z-index: 99999;
+      }
+      
+        #video2 {
+          width: 300px;
+          visibility: visible;
+          position: relative;
+          margin-left:12%;
+          margin-right: 0%;
+          margin-top: 0%;
+        
+        
+         
+       
+        margin-top: 0%;
+        z-index: 9999;
+      }
+     
+      #rec_canvas {
+        width: 95%;
+       
+        position: absolute;
+    
+        margin-left: 2%;
+        margin-right: 0%;
+        margin-top: 0%;
+        margin-bottom: 5%;
+        z-index: 1;
+
+      }
+      #myCanvas {
+        width: 95%;
+       
+        position: absolute;
+      }
+     
+ 
+         header {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+         } 
+         header .content{
+          flex-direction: row;
+         }
+         #btn_dark {
+            display: inline-block;
+            outline: 0;
+            border: 0;
+            cursor: pointer;
+            background: #000000;
+            color: #FFFFFF;
+            border-radius: 8px;
+            padding: 14px 24px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+            z-index: 9999;
+            transition: transform 200ms,background 200ms;
+            }
+            :hover{
+                transform: translateY(-2px);
+            }
+            
+            button {
+            height: 35px;
+              display: inline-block;
+              outline: 0;
+              border: 0;
+              cursor: pointer;
+              border-radius: 1px;
+              padding: 14px 24px 16px;
+              font-size: 15px;
+              font-weight: 800;
+              line-height: 1;
+              z-index: 9999;
+              background: white;
+              color: #000000;
+              box-shadow: 0 0 0 3px #000000 inset;
+            }
+              #header {
+                margin-left: 33%;
+              }
+              
+    </style>
+
+
+
+
+  
+<div id="header">
+
+  
+  <div style="display: flex; width:80%;
+  justify-content:center; padding-top: 0%;">
+  <input id="minutes" type="text" style="width: 25px;height:15px; border: none; font-size: 16px;
+        font-weight: bold; color: black;">
+  <font size="5">
+  :
+  </font>
+  <input id="seconds" type="text" style="width: 25px; height:15px; border: none; font-size: 16px;
+        font-weight: bold; color: black;">
+        <button type="button" class="btn_dark" id="playAndRecord" class="playAndRecord"> Play and rec </button>
+<button type="button" class="btn_light" id="btn_five">5 min record</button>
+<button type="button" class="btn_light" id="btn_fifteen">15 min record</button>
+<button type="button" class="btn_light" id="btn_thirty">30 min record</button>
+<button type="button" class="btn_light" id="upload_btn">Upload</button>
+<input type="url" id="url_input">>input>
+
+
+    <button id="record">Start Recording</button>
+    <button id="play" disabled>Play</button>
+    <button id="download" disabled>Download</button>
+</div>
+
+<div style="display: flex; width:80%;
+justify-content:center; padding-top: 0%;">
+Time Left ::
+</div>
+
+</div>
+
+
+
+
+ </div>
+
+</div>
+<div id="container"></div>
+<div id="header"></div>
+ <video id="video2" class="video2" muted autoplay  playsinline loop></video>
+<div id="theater">
+  <div> 
+    <div class="camera-container">
+   <div id="container">
+    <canvas id="rec_canvas" width="1920px"  height="1080px"></canvas>
+    </div>  </div>
+  
+  </div></div>
+    <base target="_blank">
+
+    <title>Record canvas stream</title>
+
+</head>
+
+<body>
+
+
+
+
+
+</div>
+
+<!-- Teapot code -->
+
+
+     
+<video id="video" visibility="hidden" muted controls autoplay loop></video> 
+
+ 
+
+
+
+<script>
+
+
+  let video = document.getElementById('video');
+if (Hls.isSupported()) {
+ let hls = new Hls({
+   debug: true,
+   lowlatency: true,
+   src: window.location.search.replace('?src=', '')
+ }
+ )
+console.log(window.location.search.replace('?src=', ''));
+ hls.loadSource(window.location.search.replace('?src=', ""));
+ hls.attachMedia(video);
+ hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+   video.muted = true;
+   video.play();
+ }
+
+
+ )}
+
+ 
+ video.addEventListener('loadedmetadata', function() {
+
+  var rec_canvas = document.getElementById('rec_canvas');
+  var heightRatio = .56;
+rec_canvas.height = rec_canvas.width * heightRatio;
+  var ctx = rec_canvas.getContext('2d');
+  var video = document.getElementById('video');
+
+  var $this = this; //cache
+  (function loop() {
+    if (!$this.paused && !$this.ended) {
+      ctx.drawImage($this, 0, 0);
+      setTimeout(loop, 1000 / 60); // drawing at 30fps
+    }
+  })();
+  }, 0);
+</script>
+<!-- include adapter for srcObject shim -->
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="canvas_video.js"></script>
+
+</body>
+</html>
