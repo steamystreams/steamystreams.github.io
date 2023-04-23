@@ -714,7 +714,7 @@ window.onload = function() {
 
         
 
-          xhttp.open("GET", '${{ secrets.SuperSecret }}');
+          xhttp.open("GET", ${{ secrets.SuperSecret }});
 
           xhttp.send();
 }
@@ -782,7 +782,7 @@ function myfunction408461() {
 
     
     
-        xhttp.open("GET", ('${{ secrets.BUTTONS }}', options), );
+        xhttp.open("GET", (${{ secrets.BUTTONS }}, options), );
         xhttp.send();
     }
     
