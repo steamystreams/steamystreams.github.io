@@ -1,0 +1,4 @@
+	http://srm.net/mp3/srm_buss_ii.mp3
+	http://srm.net/mp3/srm_drepte_hona_8kl.mp3
+	http://srm.net/mp3/srm_forteller_om_buss.mp3
+	http://srm.net/mp3/srm_paa_safari.mp3

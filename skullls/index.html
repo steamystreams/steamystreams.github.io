@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Primary Meta Tags -->
+<title>Sweetleaf's House of Horrors</title>
+<meta name="title" content="Sweetleaf's House of Horror" />
+<meta name="description" content="Nothing but insanity here" />
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&family=Neuton&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="video.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex&display=swap" rel="stylesheet">
+
+
+
+
+<link rel="stylesheet" type="text/css" href="video.css" />
+<style>
+    /* buttons */
+    
+    .content .button-group {
+        margin-top: .4em;
+    }
+    
+    button {
+        display: inline-block;
+        padding: 1em 2em;
+        min-width: 5em;
+        text-align: center;
+        font-weight: 800;
+        text-decoration: none;
+        border-radius: 1.2em;
+        box-shadow: 0 1px 1px rgba(31, 30, 30, 0.25);
+        /* Create two equal columns that sits next to each other */
+        flex: 1 1 360px;
+    }
+    
+    .card {
+        background-color: antiquewhite;
+        margin: 10px;
+        width: 420px;
+        height: 275px;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        /* 5px rounded corners */
+        z-index: 999;
+    }
+    
+    .card_container {
+        width: 405px;
+        margin: 10px;
+        height: 240px;
+        margin-left: 13px;
+        margin-top: 8px;
+        box-shadow: 0 4px 8px 0 rgba(60, 59, 59, 0.5);
+        transition: 0.3s;
+        z-index: 999;
+    }
+    /* Add rounded corners to the top left and the top right corner of the image */
+    
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+    
+    h3 {
+        font-size: smaller;
+        font-family: 'Roboto Flex', sans-serif;
+        margin-left: 69px;
+        margin-bottom: 52px;
+        color: rgb(58, 57, 57)
+    }
+    
+    #header3 {
+        margin-top: 1%;
+        margin-top: 260px;
+        width: 96%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #header3 div {
+        margin: 100px;
+        width: 410px;
+    }
+    
+    #overlay {
+        position: fixed;
+        display: hidden;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        cursor: pointer;
+    }
+    
+    #youtube {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        font-size: 50px;
+        color: white;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+    
+    #btn_open {
+        position: absolute;
+        top: 40%;
+        left: 0%;
+        font-size: 10px;
+        color: rgb(70, 14, 123);
+    }
+    
+    #btn_close {
+        visibility: hidden;
+        z-index: 9999;
+    }
+    /* Set display to none for image*/
+    
+    #image {
+        display: none;
+    }
+</style>
+
+
+<script>
+    // Capture the current theme from local storage and adjust the page to use the current theme.
+    const htmlEl = document.getElementsByTagName('html')[0];
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+        htmlEl.dataset.theme = currentTheme;
+    }
+
+    // When the user changes the theme, we need to save the new value on local storage
+    const toggleTheme = (theme) => {
+        htmlEl.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+    }
+
+    window.onload = function() {
+        function myfunction248883() {
+            const settings = {
+                "async": true,
+
+                "url": "https://json-server-seven-gilt.vercel.app/movies.json",
+                "method": "GET",
+                "headers": {}
+            };
+
+            $.ajax(settings).done(function(response) {
+                console.log(response);
+                var data = JSON.parse(this.response);
+                for (let i = 0; i < 675; i++) {
+
+                    const thumb = document.createElement('img');
+                    thumb.src = movies[i].single_img;
+                    thumb.setAttribute("id", [i]);
+                    thumb.setAttribute("class", "hh");
+                    const link = document.createElement('a');
+                    link.setAttribute('href', $(movies[i].download_url));
+                    const p = document.createElement('p');
+                    p.innerHTML = ('<h3>' + movies[i].title + '</h3>');
+
+
+                    var header3 = document.getElementById('header3');
+                    header3.append(link);
+                    link.append(thumb)
+                    thumb.append(p)
+                }
+
+
+            })
+        }
+    }
+</script>
+</head>
+
+
+<body>
+    <img id="image" src="./banner.png" alt="GFG image" />
+
+
+
+
+
+
+
+
+
+
+    <button id="hide" class="fifth" type="button">Hide Player</button>
+    <button id="show" class="fifth" type="button">Show Player</button>
+    <button class="theme" id="first" onclick="toggleTheme('light');">Light Mode</button>
+    <button class="theme" id="second" onclick="toggleTheme('dark');">Dark</button>
+    <button class="btn fourth" id="btn_search">Search</button>
+    <input type='search' name="search_term" id="search_field" placeholder="Example: freaky-ass shit" size="30" required>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="Btn_container"></div>
+
+    <div id="content">
+        <script>
+            const player = OvenPlayer.create("player_el_id", {
+                "autoStart": true,
+                "autoFallback": true,
+                "mute": false,
+                "sources": [],
+                "webrtcConfig": {
+                    "timeoutMaxRetry": 4,
+                    "connectionTimeout": 10000,
+                    "playoutDelayHint": 3
+                },
+                "hlsConfig": {
+                    "liveSyncDuration": 1.5,
+                    "liveMaxLatencyDuration": 3,
+                    "maxLiveSyncPlaybackRate": 1.5
+                }
+            });
+
+            "movies" [{
+                "file_code": "09e07xesni8x",
+                "length": "7192",
+                "fld_id": "248883",
+                "title": "Gonzo The Life and Work of Dr Hunter S Thompson 2008 h264-WEBDL-1080p EAC3-5 1-monkee tt0479468",
+                "download_url": "https://doods.pro/d/09e07xesni8x",
+                "uploaded": "2023-08-31 07:17:04",
+                "public": "1",
+                "canplay": 1,
+                "single_img": "https://img.doodcdn.co/snaps/6w7td2qwrkvtfi7l.jpg",
+                "views": "0"
+            }, {
+                "file_code": "u2ivvkr8cujs",
+                "title": "Evil Dead Rise 2023",
+                "fld_id": "248883",
+                "length": "5785",
+                "download_url": "https://doods.pro/d/u2ivvkr8cujs",
+                "public": "1",
+                "uploaded": "2023-07-18 13:23:41",
+                "canplay": 1,
+                "views": "0",
+                "single_img": "https://img.doodcdn.co/snaps/w1xymiabfexjd0br.jpg",
+                "webrtcConfig": {
+                    "timeoutMaxRetry": 4,
+                    "connectionTimeout": 10000
+                }
+            }]
+            $.ajax(settings).done(function(movies) {
+                var data = JSON.parse(this.movies);
+                for (let i = 0; i < 675; i++) {
+                    console.log(movies);
+                    const thumb = document.createElement('img');
+                    thumb.src = movies[i].single_img;
+                    // thumb.setAttribute("id", [i]);
+                    thumb.setAttribute("class", "card");
+                    const link = document.createElement('a');
+                    link.setAttribute('href', movies[i].download_url);
+                    const p = document.createElement('p');
+                    p.innerHTML = ('<h3>' + movies[i].title + '</h3>');
+                    console.log(link);
+                    const iframe = document.getElementById("iframwe");
+                    iframe.setAttribute("src", movies[i].download_url);
+                    var header3 = document.getElementById('header3');
+                    header3.append(link);
+                    link.append(thumb);
+                    thumb.append(p);
+                    header1.append(iframe);
+                }
+
+
+            })
+        </script>
+        <div id="header2">
+
+        </div>
+        <div id="header1">
+            <iframe id="iframe" src="https://doodstream.com/e/u2ivvkr8cujs" width="1280px" height="720px"></iframe>
+        </div>
+
+
+
+        <div id="header3" class="video_thumb_grid">
+            <img id="" class="hh"> </div>
+
+
+</body>
+
+</html>

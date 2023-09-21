@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mistress Minder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,200&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            background-color: #000000;
+            background-video: url('https://inoculate.media/skulls/blood.mp4');
+            repeat: no-repeat;
+            background-size: cover;
+            overflow-x: hidden;
+            margin: 10px;
+        }
+        
+        img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        video {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .respie {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        #sl3d {
+            margin-left: 0;
+        }
+        
+        #wrapper {
+            position: relative;
+        }
+        
+        #wrapper {
+            margin-right: auto;
+            /* 1 */
+            margin-left: auto;
+            /* 1 */
+            max-width: 1160px;
+            /* 2 */
+            padding-right: 10px;
+            /* 3 */
+            padding-left: 10px;
+            /* 3 */
+        }
+        
+        #long {
+            width: 1350px"
+
+        }
+        
+        #banner {
+            width: 1920px;
+        }
+        
+        a {
+            color: #48f;
+        }
+        
+        h2 {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #fff;
+        }
+        
+        h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #fff;
+        }
+        
+        article {
+            display: block;
+            width: auto;
+        }
+        
+        body {
+            font-family: sans-serif;
+        }
+        
+        .TradeGothicLTRoman {
+            font-family: 'Trade Gothic LT W01 Roman';
+        }
+        
+        .TradeGothicLTOblique {
+            font-family: 'Trade Gothic LT W01 Oblique';
+        }
+        
+        .TradeGothicLTBold {
+            font-family: 'Trade Gothic LT W01 Bold';
+        }
+        
+        .TradeGothicLTBoldCondensed {
+            font-family: 'Trade Gothic LT W01 Bd CnNo-20';
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: red;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 9px #999;
+        }
+        
+        .button:hover {
+            background-color: purple
+        }
+        
+        .button:active {
+            background-color: red;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        
+        .button {
+            transition-duration: 0.4s;
+        }
+        
+        .form {
+            color: white;
+        }
+        
+        .button:hover {
+            background-color: red;
+            color: white;
+        }
+        
+        button {
+            display: inline-block;
+            padding: 4px;
+            min-width: 30px;
+            text-align: center;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 1px 1px rgba(31, 30, 30, 0.25);
+            flex: 1 1 360px;
+        }
+        
+        h1 {
+            text-shadow: 2px 4px #1c1b1b;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        
+        a {
+            color: white;
+        }
+        
+        .styledtext {
+            font-family: 'Kavivanar', cursive;
+            font-size: 90px;
+            justify: center;
+            Align-items: center;
+            color: #000000;
+        }
+        
+        #video_bg {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        #overlay {
+            position: fixed;
+            display: visible;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10999;
+            cursor: pointer;
+        }
+        
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            color: white;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        
+        #age,
+        #age_no {
+            position: relative;
+            top: 70%;
+            left: 40%;
+            font-size: 50px;
+            color: rgb(70, 14, 123);
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        
+        @import "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css";
+        @mixin clearfix() {
+            *zoom: 1;
+            &:before,
+            &:after {
+                content: " ";
+                display: table;
+            }
+            &:after {
+                clear: both;
+                display: block;
+                font-size: 0;
+                height: 0;
+                visibility: hidden;
+            }
+        }
+        
+        #video_bg {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .container_left {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        
+        @mixin media($type) {
+            @if $type==tablet {
+                /* Small devices (tablets, 768px and up) */
+                @media (min-width: 768px) and (max-width: 991px) {
+                    @content;
+                }
+            }
+            @else if $type==mediumDesktop {
+                /* Medium devices (desktops, 992px and up) */
+                @media (min-width: 992px) and (max-width: 1100px) {
+                    @content;
+                }
+            }
+            @else if $type==largeDesktop {
+                /* Large devices (large desktops, 1200px and up) */
+                @media (min-width: 1200px) {
+                    @content;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container_left">
+        <iframe width="45%" height="50" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=%2Fcraigellenwood%2Fdj-kraig-burning-man-2019-metamorphosis-mix%2F" frameborder="0" allow="autoplay"></iframe>
+    </div>
+    <div class="container_right">
+        <iframe width="45%" height="50" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=%2Fcraigellenwood%2Fexperimental-knowledge-project%2F" frameborder="0"></iframe>
+        <iframe width="45%" height="50" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fcraigellenwood%2Fdj-kraig-mendocino-meltdown-1993-brad-and-elizabeths-farm-part-2-of-4%2F" frameborder="0"></iframe>
+        <div>
+
+
+
+            <!-- column content -->
+
+
+            <header id="header1">
+
+                <button class="button" id="music" onclick="play_music()">Play Music</button>
+                <button class="button" onclick="document.getElementById('uncle').play();">Story Time with Weird Uncle</button>
+                <button class="button" onclick="document.getElementById('live').play();">Live shoe cam</button>
+                <button class="button" id="movies" onclick="movies()">Horror</button>
+                <button class="button" id="torture" onclick="torture()">Torture</button>
+                <button class="button" id="webcam" onclick="webcam()"> Conference Calls<a href=https://inoculate.media/skulls/SL_Conference.html></a></button>
+                <button class="button" id="craig" onclick="call_craig()"><a href="tel:7027761124">☎ Craig</button></a>
+            </header>
+
+            <audio id="uncle" src="Charlie.mp3" preload="auto"></audio>
+
+            <div id="container.top">
+                <article class="all-browsers">
+                    <img id="1" src="1.jpeg" width="1400px" />
+                    <img id="2" src="2.jpeg" width="1400px" />
+
+            </div>
+            <section id="auction">
+                <div id="wrapper">
+                    <video id="live" autoplay loop mute src="https://inoculate.media/skulls/53408DF1-6A84-4C9B-B940-54259B853120-8181-00000233A8B21138.mp4" width="1680px "></video>
+                    <div id="form ">
+                        <strong>Live Auction Item:<br>
+		Pleaser brand leather heels.<br></strong>
+                        <div class="flex-container ">
+                            <h2>
+                                <p id="message "></p>
+                                <strong>Summerlin Shoe Auction</strong></h2>
+                            <br />
+
+
+
+                        </div>
+                        <iframe class="respi" src="https://steamystreams.github.io/peepshow/peepshow.html" width="1800px " height="920"></iframe>
+                    </div>
+
+
+            </section>
+            <section id="art ">
+                <div id="container.mid ">
+                    <article class="all-browsers ">
+                        <img id="3 " src="./3.png " width="1350px " />
+                        <img id="4 " src="./4.jpeg " width="1350p " />
+
+            </section>
+            </div>
+            <section id="toys ">
+                <div class="container ">
+
+                    <div class="embed-responsive embed-responsive-16by9 ">
+                        <iframe class="respi" src="https://inoculate.media/fluid/index.html " width="1200px "></iframe><br><br>
+                    </div>
+                    <iframe class="respi" id="sl3d" src="https://6505f09aa043593a3c680e25--thriving-hummingbird-ed9103.netlify.app/" width="1520" height="900"></iframe>
+                    <div class="sketchfab-embed-wrapper"> <iframe title="Gasmasky" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered
+                            web-share width="1280" height="720" src="https://sketchfab.com/models/a132a442560b41c38bc11e5da9c14d9e/embed?autostart=1&preload=1&ui_hint=0&ui_theme=dark"> </iframe> </div>
+                    <!-- Remove this when import maps will be widely supported -->
+                    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js "></script>
+
+                    <script type="importmap ">
+                        { "imports ": { "three ": "https://inoculate.media/skulls/build/three.module.js " } }
+
+
+                    </script>
+
+            </section>
+            </article>
+
+</body>
+
+
+</html>
