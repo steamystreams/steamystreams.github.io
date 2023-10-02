@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mistress Minder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,200&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            background-color: #000000;
+            background-image: url('https://inoculate.media/skulls/blood.mp4');
+            repeat: no-repeat;
+            background-size: cover;
+            overflow-x: hidden;
+            margin: 10px;
+        }
+        
+        img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .respie {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        #sl3d {
+            margin-left: 0;
+        }
+        
+        #wrapper {
+            position: relative;
+            margin-top: 220px;
+        }
+        
+        #wrapper {
+            margin-right: auto;
+            /* 1 */
+            margin-left: auto;
+            /* 1 */
+            max-width: 1160px;
+            /* 2 */
+            padding-right: 10px;
+            /* 3 */
+            padding-left: 10px;
+            /* 3 */
+        }
+        
+        #long {
+            width: 1350px"
+
+        }
+        
+        #banner {
+            width: 1920px;
+        }
+        
+        a {
+            color: rgb(203, 41, 41);
+        }
+        
+        h1 {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #fff;
+            font-size: 60px;
+        }
+        
+        h2 {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #fff;
+        }
+        
+        h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+        }
+        /* Dotted border */
+hr.dotted {
+  border-top: 3px dotted #bbb;
+}
+        
+        h4 {
+            font-family: 'JetBrains Mono', monospace;
+            color: #0eb356;
+        }
+        
+        article {
+            display: block;
+            width: auto;
+        }
+        
+        body {
+            font-family: sans-serif;
+        }
+        
+        .TradeGothicLTRoman {
+            font-family: 'Trade Gothic LT W01 Roman';
+        }
+        
+        .TradeGothicLTOblique {
+            font-family: 'Trade Gothic LT W01 Oblique';
+        }
+        
+        .TradeGothicLTBold {
+            font-family: 'Trade Gothic LT W01 Bold';
+        }
+        
+        .TradeGothicLTBoldCondensed {
+            font-family: 'Trade Gothic LT W01 Bd CnNo-20';
+        }
+        
+        .respi {
+            margin-left: -10%;
+            position: absolute;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 6px 10px;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: rgb(188, 20, 73);
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0 3px #999;
+        }
+        
+        .button:active {
+            background-color: rgb(233, 109, 181);
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+            color: white;
+        }
+        
+        .button {
+            transition-duration: 0.4s;
+            color: white;
+        }
+        
+        .form {
+            color: white;
+        }
+        
+        .button:hover {
+            background-color: rgb(177, 103, 223);
+            color: white;
+        }
+        
+        h1 {
+            text-shadow: 2px 4px #1c1b1b;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        
+        a {
+            color: white;
+        }
+        
+        .styledtext {
+            font-family: 'Kavivanar', cursive;
+            font-size: 90px;
+            justify: center;
+            Align-items: center;
+            color: #000000;
+        }
+        
+        #header {
+            background-color: white;
+            position: absolute;
+            top: 0;
+            margin-left: 20%;
+            right: 20%;
+            height: 80px;
+        }
+        
+      
+        
+        #overlay {
+            position: fixed;
+            display: visible;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10999;
+            cursor: pointer;
+        }
+        
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            color: white;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        #babylon {
+            width:"115"
+        }
+        #age,
+        #age_no {
+            position: relative;
+            top: 70%;
+            left: 40%;
+            font-size: 50px;
+            color: rgb(70, 14, 123);
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        
+        @import "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css";
+        @mixin clearfix() {
+            *zoom: 1;
+            &:before,
+            &:after {
+                content: " ";
+                display: table;
+            }
+            &:after {
+                clear: both;
+                display: block;
+                font-size: 0;
+                height: 0;
+                visibility: hidden;
+            }
+        }
+        
+        #navbar {
+            margin-left: 40%;
+            margin-right: 20%;
+        }
+        
+      
+        
+        header {
+            background-color: black;
+        }
+        
+        #banner {
+            margin-left: -5%;
+        }
+        
+        .container_right {
+            flex-direction: row;
+            margin-left: 50%;
+            margin-right: 0px;
+        }
+        
+        .container_left {
+            margin-left: 0px;
+            flex-direction: row;
+            margin-right: 10%;
+        }
+        
+        @mixin media($type) {
+            @if $type==tablet {
+                /* Small devices (tablets, 768px and up) */
+                @media (min-width: 768px) and (max-width: 991px) {
+                    @content;
+                }
+            }
+            @else if $type==mediumDesktop {
+                /* Medium devices (desktops, 992px and up) */
+                @media (min-width: 992px) and (max-width: 1100px) {
+                    @content;
+                }
+            }
+            @else if $type==largeDesktop {
+                /* Large devices (large desktops, 1200px and up) */
+                @media (min-width: 1200px) {
+                    @content;
+                }
+            }
+        }
+    </style>
+   
+</head>
+
+<body>
+    <header>
+        <h2> <strong><img id="banner" width="100%" src="banner.png" width="120%" />
+        <nav id="navbar">
+           
+                <a class="nav-link" href="#music"> Music |</a> <hr class="dashed">
+                <a class="nav-link" href="#movies">FemDom |</a> <hr class="dashed">
+
+                <a class="nav-link" href="/vr.html"> VR |</a> <hr class="dashed">
+              
+            </strong>
+        </h2>
+        </nav>
+    </header>
+
+    <div id="wrapper">
+        <section id="music">
+            <h1>Music</h1>
+            <iframe width="95%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=%2Fcraigellenwood%2Fexperimental-knowledge-project%2F" frameborder="0"></iframe>
+            <iframe width="95%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=%2Fcraigellenwood%2Fdj-kraig-burning-man-2019-metamorphosis-mix%2F" frameborder="0"></iframe>
+
+
+
+            <iframe width="95%%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fcraigellenwood%2Fdj-kraig-goa-anthems-studio-mix-feb2019-for-kells%2F" frameborder="0"></iframe>
+            <iframe width="95%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fcraigellenwood%2Fdj-kraig-mendocino-meltdown-1993-brad-and-elizabeths-farm-part-2-of-4%2F" frameborder="0"></iframe>
+            <div>
+            </div>
+
+
+        </section>
+
+
+        <section id="auction">
+
+            <div id="wrapper">
+
+                <strong><h1>Summerlin Shoe Auction</strong></h1>
+                <video id="live" autoplay loop mute src="https://inoculate.media/skulls/53408DF1-6A84-4C9B-B940-54259B853120-8181-00000233A8B21138.mp4" width="1680px "></video>
+                <div id="form ">
+                    <strong>  <h2>Live Auction Item: Pleaser brand leather heels.<br></strong>
+                    </h2>
+                    <img src="bid.png" />
+
+                    </h2>
+                    <h3>Current bid: $149.87 <i><h4>(Reserve met)</h4></i> Total bids:12 <br>Ends: 9/24/23 6:86am pdt<br></h3>
+                </div>
+                <div class="flex-container ">
+                    <h2>
+                        <p id="message "></p>
+
+
+                        <br />
+
+
+
+                </div>
+                <div id="wrapper">
+
+                    <article class="all-browsers">
+                        <img id="1" src="1.jpeg" width="1400px" />
+
+                </div>
+            </div>
+
+
+        </section>
+        </article>
+
+        <section id="movies">
+            <video id="babylon" src="./babylonjs.webm" autoplay loop controls width="1150px"></video>
+
+<a href="https://doods.pro/e/ej0x3887hfwo"> <img src="https://img.doodcdn.com/splash/twbdu1vvwtw578bj.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/wrm4a0dgiz7p"> <img src="https://img.doodcdn.com/splash/3e9l1fdt7acg27xr.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/yfkqnk73lfkh"> <img src="https://img.doodcdn.com/splash/wpq049xsvntn753e.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/m9srur5qlbjl"> <img src="https://img.doodcdn.com/splash/4r5ckfruvmigpg6n.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/70r9nbpm6pyn"> <img src="https://img.doodcdn.com/splash/1lyh3lunnv1pjpfy.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/u99qhdrc4lt4"> <img src="https://img.doodcdn.com/splash/orrzgkvs4v5jzbo2.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/abb16cggjm8s"> <img src="https://img.doodcdn.com/splash/zh6drzd0rfi2q05t.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/c5c06jdu13o7"> <img src="https://img.doodcdn.com/splash/zye5g20c6pn7xhdy.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/9h2r9vb36dwq"> <img src="https://img.doodcdn.com/splash/54ago1254q0rpyvk.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/qt6za98fhv6m"> <img src="https://img.doodcdn.com/splash/aw8m29ypqy7szk9o.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/lmceaqgrfkca"> <img src="https://img.doodcdn.com/splash/rq1u1g9vcjbw7ftz.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/zud8tp3hil94"> <img src="https://img.doodcdn.com/splash/9asiu1zj4huuhhzi.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/g83d9wiulpxs"> <img src="https://img.doodcdn.com/splash/b9oyt9alfn10co5x.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/4jpx6wbg6pny"> <img src="https://img.doodcdn.com/splash/r00pryi12cze8m35.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/642juhat91nw"> <img src="https://img.doodcdn.com/splash/yv3ibq5ifpj5q94a.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/lc1r87guiqfi"> <img src="https://img.doodcdn.com/splash/uuvadypt1tg016jh.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/hd9pq0zzwmut"> <img src="https://img.doodcdn.com/splash/15uxeu2b7d1t50vc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2l10bhh6ksf7"> <img src="https://img.doodcdn.com/splash/6g1clkiehyvjnu08.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/sd3gk9tx41yx"> <img src="https://img.doodcdn.com/splash/kxg7soni7l3srb5f.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/ghjv6iqgfcld"> <img src="https://img.doodcdn.com/splash/ebt3deasuntipho3.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/22v48v4ijwpq"> <img src="https://img.doodcdn.com/splash/dd79drj27pdvfj12.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/pm5bw7qoyhun"> <img src="https://img.doodcdn.com/splash/4jq072ulmsgy06jf.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/ul00edu0cky2"> <img src="https://img.doodcdn.com/splash/wk71a7ml5dy4tq4e.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/lcjjiklou3vv"> <img src="https://img.doodcdn.com/splash/2wx75cpgbk59f4wb.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/3b95k9xnrnij"> <img src="https://img.doodcdn.com/splash/e2jphy3xiv96vhtj.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/m05s5ue9i5us"> <img src="https://img.doodcdn.com/splash/exxgm5qr6ihw90le.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/5zdnyy3yn8fo"> <img src="https://img.doodcdn.com/splash/wbs5h1yuc1qzcc76.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/eql2377canu0"> <img src="https://img.doodcdn.com/splash/pcgqgh0f59g7febc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/5141ga6q27q7"> <img src="https://img.doodcdn.com/splash/uklnhceev28491xn.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/4jzzg9e5m810"> <img src="https://img.doodcdn.com/splash/852col3n2q5pf6ks.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/mqjlhp0ctkx2"> <img src="https://img.doodcdn.com/splash/7ifh0si47cgpslat.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/0t5jut67l31u"> <img src="https://img.doodcdn.com/splash/ctwxu3or9qwaeh7o.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/yi9qhrd2h75a"> <img src="https://img.doodcdn.com/splash/1q4upyoqsql0ae8j.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2t4zi1eeqzo4"> <img src="https://img.doodcdn.com/splash/6xboagfkg2i9c5uy.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/bvr5b10oc4qz"> <img src="https://img.doodcdn.com/splash/s8d70ms1lefiz4jj.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/bip7uigkyi5f"> <img src="https://img.doodcdn.com/splash/7rlbzvuu86xebvda.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/gva5uo2em0c5"> <img src="https://img.doodcdn.com/splash/5awykrr11kwpkdeb.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/vlile4huepi4"> <img src="https://img.doodcdn.com/splash/fzy4w1p3mjy61hzn.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/qebmexdaa9wi"> <img src="https://img.doodcdn.com/splash/f7dr0fljud5yr919.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/z7kom0oib08h"> <img src="https://img.doodcdn.com/splash/b6y70levw6yzw6f5.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/mgq7lrfufrdu"> <img src="https://img.doodcdn.com/splash/l40iexcnyj2b5yvc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/ze8lwmc6w87i"> <img src="https://img.doodcdn.com/splash/aco66m53hcky1pqt.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/uft6b4zvy2ui"> <img src="https://img.doodcdn.com/splash/74wyo8eypfnci62y.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/mrq1fdwbkgda"> <img src="https://img.doodcdn.com/splash/pakbc1ty8a3uy03z.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2qgrua05tsly"> <img src="https://img.doodcdn.com/splash/7ln09lxw9otujd6g.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/bm3kbeobczt7"> <img src="https://img.doodcdn.com/splash/b1qlf4ut609u0dfi.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/iolb7r4vxnte"> <img src="https://img.doodcdn.com/splash/yo8jlkt7hkkeyb72.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/l0ri01k7e941"> <img src="https://img.doodcdn.com/splash/340fykugek5p4xrh.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/abzvxy64nu1u"> <img src="https://img.doodcdn.com/splash/phsybmb49colde40.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/v9y5lok4qipu"> <img src="https://img.doodcdn.com/splash/nw9t75xep9qp1vls.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/8xkap5hn3576"> <img src="https://img.doodcdn.com/splash/2jolo09w07yumaz5.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/nt4otd3g95e1"> <img src="https://img.doodcdn.com/splash/r8hmp6yrg5uq9rr7.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/rzrpgxl9bsn2"> <img src="https://img.doodcdn.com/splash/y1eaqay9syuagvyu.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/8hgxjenf4jb1"> <img src="https://img.doodcdn.com/splash/wugjc6pp16iky9uv.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/nul3nhjbqcqa"> <img src="https://img.doodcdn.com/splash/jzvc06eucyn3tdfq.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/a0u0hv54jp3i"> <img src="https://img.doodcdn.com/splash/ty6e384qnxvd1lpf.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/q7r0nw9lcuej"> <img src="https://img.doodcdn.com/splash/l1uemhos7h6aka4x.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2qt2duofntv5"> <img src="https://img.doodcdn.com/splash/0klrmxz32ei3goaq.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/myiiuhkywv8o"> <img src="https://img.doodcdn.com/splash/r2oq06z6i45nj2ft.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/94e7ac7v275s"> <img src="https://img.doodcdn.com/splash/ymznnyu32yqcw13l.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/x2jpvka9rwll"> <img src="https://img.doodcdn.com/splash/aobep7jffbi28yd8.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/1vdjfzm7j250"> <img src="https://img.doodcdn.com/splash/uzprvx7pjwxl7i6e.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/vev8exoq3cfi"> <img src="https://img.doodcdn.com/splash/2qifdzwujfsl8fxj.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/4y81d5sku66o"> <img src="https://img.doodcdn.com/splash/3fyaw924f0ywipq0.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/dd92exa4ulbh"> <img src="https://img.doodcdn.com/splash/g07yyn596fy5gu8y.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/z209s4tcujg4"> <img src="https://img.doodcdn.com/splash/t036vi5cdki4qnzc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/lhvwz9lm39t3"> <img src="https://img.doodcdn.com/splash/edl6n7adl4wk2qww.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/4u1zow5s14r5"> <img src="https://img.doodcdn.com/splash/wmkn9unrsytietdw.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/hb40x93ikyty"> <img src="https://img.doodcdn.com/splash/az0r9mm1trhix7il.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/f17dkxx6g6p6"> <img src="https://img.doodcdn.com/splash/ty3aw34za317qb56.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/eu2h27qne2ti"> <img src="https://img.doodcdn.com/splash/jgafl1z9jutrrz79.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/f957z8n3ykae"> <img src="https://img.doodcdn.com/splash/y1tzeo9dfrhytnrh.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/nm5mt2ajgn65"> <img src="https://img.doodcdn.com/splash/so74b508fqvcn5dg.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/s5looe5ukwge"> <img src="https://img.doodcdn.com/splash/fqfcqrkved97azv5.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/7la7xmrzvgsi"> <img src="https://img.doodcdn.com/splash/vmcfevkc8jecero9.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/s2v3c9w83lxa"> <img src="https://img.doodcdn.com/splash/i699rm06x9f26qbh.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/v1trsgksp7ex"> <img src="https://img.doodcdn.com/splash/kd6kdydb3n6w0q8f.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/t3dnwg92hpea"> <img src="https://img.doodcdn.com/splash/i4cm9ylbzzt3m94l.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/6txdu3ul56kf"> <img src="https://img.doodcdn.com/splash/8x7ba89qtc4gnn7x.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/fzxkhsf7jjih"> <img src="https://img.doodcdn.com/splash/vayxfetwgukqwxqn.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/mzmtzsb0ian5"> <img src="https://img.doodcdn.com/splash/ow58yqivowxwxrlc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/par4c099daoy"> <img src="https://img.doodcdn.com/splash/62svl2dpqch3x9tp.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/kyzpxkymhtzz"> <img src="https://img.doodcdn.com/splash/j5szpaxf4uo4hz6h.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/6j8nhmc5o9pk"> <img src="https://img.doodcdn.com/splash/h5ib27rxe52vz8r4.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/72gw496yzbqd"> <img src="https://img.doodcdn.com/splash/hyu2yrzpjwgvzekc.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/idb4auilqdw4"> <img src="https://img.doodcdn.com/splash/fa1d5p5vq08hnxpq.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/6fxk8nvr5mq7"> <img src="https://img.doodcdn.com/splash/0u6bu434imiyru29.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/tk8ctjhjfmzg"> <img src="https://img.doodcdn.com/splash/2x83qk19v02c97eq.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/z3atgrzdkk6v"> <img src="https://img.doodcdn.com/splash/irmkogq6oljesjcd.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/cixs15hv9b2e"> <img src="https://img.doodcdn.com/splash/lef5riowjt8cwjhx.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/cunn3qj6lzsd"> <img src="https://img.doodcdn.com/splash/gpch8jjgmfjskgr9.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/35fp8kwn09m1"> <img src="https://img.doodcdn.com/splash/6akonx6wu6pw2ahq.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/guhi6aeygxz6"> <img src="https://img.doodcdn.com/splash/2n9szt2uyz0eujob.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/pk4rdkw51s92"> <img src="https://img.doodcdn.com/splash/s46oze52ymxf9i1l.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/pm1ei096239x"> <img src="https://img.doodcdn.com/splash/02wni5h9wad9qap0.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/8kexy4ffmg6x"> <img src="https://img.doodcdn.com/splash/vj8k3a1aojqz3fch.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/reehg0n7my3r"> <img src="https://img.doodcdn.com/splash/l5ld1z6st3ubma3i.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/ai59irlqojv7"> <img src="https://img.doodcdn.com/splash/2yh5citclmm4e1bh.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/q7kgg4oad15r"> <img src="https://img.doodcdn.com/splash/7fhsa2jl45ucouqo.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/1cshysj9ixvz"> <img src="https://img.doodcdn.com/splash/84khybh5yq3vh2g1.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2086tqkybuj7"> <img src="https://img.doodcdn.com/splash/rpanbyjqhwyykq26.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/gmmmk5lzvnwt"> <img src="https://img.doodcdn.com/splash/hthkuolwf2l0e20r.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/s2r4sedb0nbc"> <img src="https://img.doodcdn.com/splash/qb1n01831qj8pfg6.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/vvlvdc946t6m"> <img src="https://img.doodcdn.com/splash/o7rzlhiv9bsef0ha.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/2rhsxjrsgn9l"> <img src="https://img.doodcdn.com/splash/94ma3g6u6atudw2c.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/w56m6mdphdym"> <img src="https://img.doodcdn.com/splash/usuwrxwpp4y3btsl.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/ubptpp385el4"> <img src="https://img.doodcdn.com/splash/4aq5pzgqk3ng0j02.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/r6fvl6vsdqkv"> <img src="https://img.doodcdn.com/splash/shwtctb8qxco95v2.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/38fkuomkl330"> <img src="https://img.doodcdn.com/splash/3lwnei77gso6pqix.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/nz3a94p0dron"> <img src="https://img.doodcdn.com/splash/bx8trs7268ksiood.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/oqgf3z5mgfb8"> <img src="https://img.doodcdn.com/splash/42nf98vcy8vbn0cs.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/7zzbc9ppxg95"> <img src="https://img.doodcdn.com/splash/3663sl08urzb6s0x.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/60y9sujfty1n"> <img src="https://img.doodcdn.com/splash/3btc3mb87qz72nei.jpg" width="1150px" /> </a> <hr class="dashed">
+<a href="https://doods.pro/e/kxd44hkjsii8"> <img src="https://img.doodcdn.com/splash/i8ba9v84goxxs5vl.jpg" width="1150px" /> </a> <hr class="dashed">
+
+          
+
+            </h2>
+            <h3>Website Design by <a href="https://inoculate.media">Inoculate Media 2023</a> <hr class="dashed"></h3>
+</body>
+
+</html>
